@@ -21,7 +21,7 @@ const AppBar: React.FunctionComponent<{
           <React.Fragment key={i}>
             {i > 0 && <Divider orientation="vertical" flexItem />}
             <Box mx={1}>
-              <Typography variant="h6">
+              <Typography variant="h6" color={"textPrimary"}>
                 <Link href={`/${p}`}>{p}</Link>
               </Typography>
             </Box>
