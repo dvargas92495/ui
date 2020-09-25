@@ -4,6 +4,8 @@ import Divider from "@material-ui/core/Divider";
 import Link from "@material-ui/core/Link";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 
 const AppBar: React.FunctionComponent<{
   homeIcon: React.ReactNode;
@@ -14,12 +16,18 @@ const AppBar: React.FunctionComponent<{
       <Typography variant="h6">
         <Link href="/">{homeIcon}</Link>
       </Typography>
-      {pages.map((p, i) => (
-        <>
-          {i > 0 && <Divider orientation="vertical" flexItem />}
-          <Link href={`/${p}`}>{p}</Link>
-        </>
-      ))}
+      <Grid container justify="center">
+        {pages.map((p, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && <Divider orientation="vertical" flexItem />}
+            <Box mx={1}>
+              <Typography variant="h6">
+                <Link href={`/${p}`}>{p}</Link>
+              </Typography>
+            </Box>
+          </React.Fragment>
+        ))}
+      </Grid>
       {children}
     </Toolbar>
   </MuiAppBar>
