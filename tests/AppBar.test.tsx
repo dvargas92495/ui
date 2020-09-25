@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar } from "..";
+import { AppBar } from "../src";
 import { render } from "@testing-library/react";
 
 test("Renders Appbar", () => {

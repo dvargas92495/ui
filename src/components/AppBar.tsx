@@ -4,7 +4,9 @@ import Link from "@material-ui/core/Link";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-const AppBar = ({ children, homeIcon }) => (
+const AppBar : React.FunctionComponent<{
+  homeIcon: React.ReactNode
+}> = ({ children, homeIcon }) => (
   <MuiAppBar position="static">
     <Toolbar>
       <Typography variant="h6" style={{ flexGrow: 1 }}>
