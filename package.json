@@ -1,0 +1,19 @@
+{
+  "name": "@dvargas92495/ui",
+  "version": "1.0.0",
+  "description": "UI Component Library For All My Apps",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvargas92495/ui.git"
+  },
+  "author": "dvargas92495 <dvargas92495@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dvargas92495/ui/issues"
+  },
+  "homepage": "https://github.com/dvargas92495/ui#readme"
+}
