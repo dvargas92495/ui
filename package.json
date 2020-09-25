@@ -1,10 +1,19 @@
 {
   "name": "@dvargas92495/ui",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "UI Component Library For All My Apps",
   "main": "index.ts",
   "scripts": {
     "test": "jest"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "./"
+    ]
   },
   "repository": {
     "type": "git",
@@ -12,8 +21,24 @@
   },
   "author": "dvargas92495 <dvargas92495@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/dvargas92495/ui/issues"
   },
-  "homepage": "https://github.com/dvargas92495/ui#readme"
+  "homepage": "https://github.com/dvargas92495/ui#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@types/jest": "^26.0.14",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
 }
