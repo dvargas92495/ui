@@ -1,6 +1,6 @@
 {
   "name": "@dvargas92495/ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "UI Component Library For All My Apps",
   "main": "dist/index.js",
   "scripts": {
@@ -25,7 +25,6 @@
   },
   "author": "dvargas92495 <dvargas92495@gmail.com>",
   "license": "MIT",
-  "type": "module",
   "bugs": {
     "url": "https://github.com/dvargas92495/ui/issues"
   },
