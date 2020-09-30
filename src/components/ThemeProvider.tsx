@@ -16,6 +16,7 @@ const theme = createMuiTheme({
       primary: "#333333",
       secondary: "#888888",
     },
+    divider: "#333333",
   },
   typography: {
     fontFamily: ["Century Gothic"].join(","),

@@ -13,7 +13,7 @@ const AppBar: React.FunctionComponent<{
 }> = ({ children, homeIcon, pages = [] }) => (
   <MuiAppBar position="static" elevation={5} color="transparent">
     <Toolbar>
-      <Typography variant="h6">
+      <Typography variant="h4">
         <Link href="/">{homeIcon}</Link>
       </Typography>
       <Grid container justify="center">
