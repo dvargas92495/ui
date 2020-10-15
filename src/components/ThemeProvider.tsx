@@ -3,6 +3,7 @@ import {
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,
 } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const theme = createMuiTheme({
   palette: {
@@ -30,7 +31,10 @@ const theme = createMuiTheme({
 });
 
 const ThemeProvider: React.FunctionComponent = ({ children }) => (
-  <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
+  <MuiThemeProvider theme={theme}>
+    <CssBaseline />
+    {children}
+  </MuiThemeProvider>
 );
 
 export default ThemeProvider;
