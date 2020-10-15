@@ -7,6 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 
+const BASE_PATH = process.env.APP_BASE_PATH || "";
+
 const AppBar: React.FunctionComponent<{
   homeIcon: React.ReactNode;
   pages?: string[];
@@ -22,7 +24,7 @@ const AppBar: React.FunctionComponent<{
             {i > 0 && <Divider orientation="vertical" flexItem />}
             <Box mx={1}>
               <Typography variant="h6" color={"textPrimary"}>
-                <Link href={`/${p}`} color="inherit">
+                <Link href={`${BASE_PATH}/${p}`} color="inherit">
                   {p}
                 </Link>
               </Typography>
