@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
+    "prepublish": "npm run build",
     "start": "rollup -c -w",
     "test": "jest"
   },
