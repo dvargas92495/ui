@@ -7,7 +7,7 @@ const DataLoader = ({
   children,
 }: {
   loadAsync: () => Promise<void>;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
