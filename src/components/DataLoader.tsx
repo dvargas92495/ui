@@ -23,7 +23,7 @@ const DataLoader = ({
       {error}
     </Typography>
   ) : (
-    { children }
+    <>{children}</>
   );
 };
 
