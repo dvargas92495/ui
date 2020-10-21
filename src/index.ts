@@ -1,5 +1,6 @@
 export { default as AppBar } from "./components/AppBar";
 export { default as DataLoader } from "./components/DataLoader";
+export { default as ExternalLink } from "./components/ExternalLink";
 export { default as Footer } from "./components/Footer";
 export { default as Landing } from "./components/Landing";
 export { default as Logo } from "./components/Logo";
