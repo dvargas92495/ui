@@ -13,6 +13,7 @@ export { default as Landing } from "./components/Landing";
 export { default as Logo } from "./components/Logo";
 export { default as Main } from "./components/Main";
 export { default as NavList } from "./components/NavList";
+export { default as NavigationDrawer } from "./components/NavigationDrawer";
 export { default as Outlined } from "./components/Outlined";
 export { default as Root } from "./components/Root";
 export { default as Subtitle } from "./components/Subtitle";
