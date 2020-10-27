@@ -30,7 +30,7 @@ const AppBar: React.FunctionComponent<{
           {pages.map((p, i) => (
             <React.Fragment key={i}>
               {i > 0 && <Divider orientation="vertical" flexItem />}
-              <Typography variant="h6" color={"textPrimary"} className={classes.link}>
+              <Typography variant={"subtitle1"} color={"textPrimary"} className={classes.link}>
                 <Link href={`${BASE_PATH}${p}`} color="inherit">
                   {p}
                 </Link>

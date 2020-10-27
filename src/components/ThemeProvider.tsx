@@ -20,12 +20,13 @@ const theme = createMuiTheme({
     divider: "#333333",
   },
   typography: {
-    fontFamily: ["Century Gothic"].join(","),
+    fontFamily: ["Avenir Light"].join(","),
     subtitle1: {
       fontSize: "1.25em",
+      fontFamily: ["Century Gothic"].join(","),
     },
     body1: {
-      fontFamily: ["Avenir Light"].join(","),
+      fontFamily: ["Century Gothic"].join(","),
     },
   },
 });
