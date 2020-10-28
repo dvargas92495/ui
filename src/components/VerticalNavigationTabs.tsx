@@ -9,21 +9,25 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(-8),
   },
   tabs: {
-    minWidth: theme.spacing(40),
+    minWidth: theme.spacing(30),
   },
   tabPanel: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
   },
 }));
 
 const VerticalNavigationTabs = ({
   items,
+  label,
   children,
 }: {
   items: { label: string; href: string }[];
+  label: string;
   children: React.ReactNode;
 }) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(
+    items.findIndex((i) => i.label === label) || 0
+  );
   const handleChange = React.useCallback(
     (_: React.ChangeEvent<{}>, newValue: number) => setValue(newValue),
     [setValue]
