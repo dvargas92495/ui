@@ -5,13 +5,16 @@ import {
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+const primaryMain = "#3BA4DC";
+const secondaryMain = "#F7941D";
+
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#3BA4DC",
+      main: primaryMain,
     },
     secondary: {
-      main: "#F7941D",
+      main: secondaryMain,
     },
     text: {
       primary: "#333333",
@@ -27,6 +30,15 @@ const theme = createMuiTheme({
     },
     body1: {
       fontFamily: ["Century Gothic"].join(","),
+    },
+  },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        "span.token.dom.variable": {
+          color: primaryMain,
+        },
+      },
     },
   },
 });
