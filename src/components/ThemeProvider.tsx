@@ -24,6 +24,12 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: ["Avenir Light"].join(","),
+    h2: {
+      marginBlockEnd: '0.83em',
+    },
+    h3: {
+      marginBlockEnd: '1em',
+    },
     subtitle1: {
       fontSize: "1.25em",
       fontFamily: ["Century Gothic"].join(","),

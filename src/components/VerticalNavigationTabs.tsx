@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   searchBar: {
     color: theme.palette.getContrastText(theme.palette.primary.main),
-    margin: theme.spacing(2),
+    padding: theme.spacing(2),
   },
 }));
 
@@ -49,31 +49,34 @@ const VerticalNavigationTabs = ({
 
   return (
     <div className={classes.root}>
-      <Tabs
-        orientation="vertical"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical Navigation Tabs"
-        className={classes.tabs}
-      >
+      <div>
         <Paper variant="outlined" square className={classes.search}>
           <TextField
             label="Search Docs"
             variant="filled"
             className={classes.searchBar}
             fullWidth
+            color={"secondary"}
           />
         </Paper>
-        {items.map((item, i) => (
-          <Tab
-            key={i}
-            label={item.label}
-            href={item.href}
-            id={`nav-tab-${i}`}
-            aria-controls={`nav-tabpanel-${i}`}
-          />
-        ))}
-      </Tabs>
+        <Tabs
+          orientation="vertical"
+          value={value}
+          onChange={handleChange}
+          aria-label="Vertical Navigation Tabs"
+          className={classes.tabs}
+        >
+          {items.map((item, i) => (
+            <Tab
+              key={i}
+              label={item.label}
+              href={item.href}
+              id={`nav-tab-${i}`}
+              aria-controls={`nav-tabpanel-${i}`}
+            />
+          ))}
+        </Tabs>
+      </div>
       <div
         role="tabpanel"
         id={`nav-tabpanel-${value}`}
