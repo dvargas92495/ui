@@ -30,15 +30,7 @@ const theme = createMuiTheme({
     },
     body1: {
       fontFamily: ["Century Gothic"].join(","),
-    },
-  },
-  overrides: {
-    MuiCssBaseline: {
-      "@global": {
-        "span.token.dom.variable": {
-          color: primaryMain,
-        },
-      },
+      marginBottom: 24,
     },
   },
 });

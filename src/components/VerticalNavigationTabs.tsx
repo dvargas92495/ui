@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   tabs: {
     minWidth: theme.spacing(30),
     color: theme.palette.getContrastText(theme.palette.text.primary),
-    backgroundColor: theme.palette.text.primary
+    backgroundColor: theme.palette.text.primary,
   },
   tabPanel: {
     padding: theme.spacing(3),
@@ -22,7 +22,11 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     backgroundColor: theme.palette.primary.main,
-  }
+  },
+  searchBar: {
+    color: theme.palette.getContrastText(theme.palette.primary.main),
+    margin: theme.spacing(2),
+  },
 }));
 
 const VerticalNavigationTabs = ({
@@ -53,7 +57,12 @@ const VerticalNavigationTabs = ({
         className={classes.tabs}
       >
         <Paper variant="outlined" square className={classes.search}>
-          <TextField label="Search Docs" variant="filled" />
+          <TextField
+            label="Search Docs"
+            variant="filled"
+            className={classes.searchBar}
+            fullWidth
+          />
         </Paper>
         {items.map((item, i) => (
           <Tab
