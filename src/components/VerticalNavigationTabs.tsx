@@ -5,6 +5,8 @@ import Tabs from "@material-ui/core/Tabs";
 import React from "react";
 import H4 from "./H4";
 
+const BASE_PATH = `${process.env.APP_BASE_PATH || ""}/`;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -80,7 +82,7 @@ const VerticalNavigationTabs = ({
             <Tab
               key={i}
               label={item.label}
-              href={item.href}
+              href={`${BASE_PATH}${item.href}`}
               id={`nav-tab-${i}`}
               aria-controls={`nav-tabpanel-${i}`}
             />
