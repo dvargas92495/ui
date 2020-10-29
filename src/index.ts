@@ -20,3 +20,4 @@ export { default as Subtitle } from "./components/Subtitle";
 export { default as ThemeProvider } from "./components/ThemeProvider";
 export { default as VerticalGridContent } from "./components/VerticalGridContent";
 export { default as VerticalNavigationTabs } from "./components/VerticalNavigationTabs";
+export { ServerStyleSheets } from '@material-ui/core/styles';
