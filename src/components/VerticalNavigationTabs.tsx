@@ -8,11 +8,11 @@ import H4 from "./H4";
 const useStyles = makeStyles((theme) => ({
   tabsContainer: {
     display: "flex",
-    flexDirection: "column",    
-    position: 'absolute',
+    flexDirection: "column",
+    position: "absolute",
     left: 0,
     bottom: 0,
-    top: theme.spacing(8)
+    top: theme.spacing(8),
   },
   tabs: {
     minWidth: theme.spacing(30),
@@ -55,6 +55,7 @@ const VerticalNavigationTabs = ({
   const classes = useStyles();
 
   return (
+    <>
       <div className={classes.tabsContainer}>
         <Paper variant="outlined" square className={classes.titleContainer}>
           {/*<TextField
@@ -92,6 +93,7 @@ const VerticalNavigationTabs = ({
       >
         {children}
       </div>
+    </>
   );
 };
 
