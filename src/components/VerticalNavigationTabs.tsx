@@ -69,7 +69,7 @@ const VerticalNavigationTabs = ({
             fullWidth
             color={"secondary"}
           />*/}
-          <H4>{title}</H4>
+          <H4 className={classes.title}>{title}</H4>
         </Paper>
         <Tabs
           orientation="vertical"
