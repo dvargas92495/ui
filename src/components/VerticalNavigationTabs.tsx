@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     marginTop: theme.spacing(-8),
+    display: "flex",
   },
   tabsContainer: {
     display: "flex",
