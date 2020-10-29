@@ -23,9 +23,7 @@ const AppBar: React.FunctionComponent<{
   return (
     <MuiAppBar position="static" elevation={5} color="transparent">
       <Toolbar>
-        <Typography variant="h4">
-          <Link href={BASE_PATH}>{homeIcon}</Link>
-        </Typography>
+        <Link href={BASE_PATH}>{homeIcon}</Link>
         <Grid container justify="center">
           {pages.map((p, i) => (
             <React.Fragment key={i}>
