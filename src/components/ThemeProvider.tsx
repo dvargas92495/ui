@@ -25,10 +25,13 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: ["Avenir Light"].join(","),
     h2: {
-      marginBlockEnd: "0.83em",
+      marginBlockEnd: "0.42em",
     },
     h3: {
-      marginBlockEnd: "1em",
+      marginBlockEnd: "0.5em",
+    },
+    h4: {
+      marginBlockEnd: '0.67em',
     },
     h6: {
       marginBottom: 24,

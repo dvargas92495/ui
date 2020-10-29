@@ -10,6 +10,7 @@ export { default as H4 } from "./components/H4";
 export { default as H5 } from "./components/H5";
 export { default as H6 } from "./components/H6";
 export { default as Landing } from "./components/Landing";
+export { default as LI } from "./components/LI";
 export { default as Logo } from "./components/Logo";
 export { default as Main } from "./components/Main";
 export { default as NavList } from "./components/NavList";

@@ -4,6 +4,7 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import TextField from "@material-ui/core/TextField";
 import React from "react";
+import H4 from "./H4";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
   tabPanel: {
     padding: theme.spacing(3),
     paddingBottom: theme.spacing(0),
+    maxWidth: theme.spacing(100),
   },
-  search: {
+  titleContainer: {
     backgroundColor: theme.palette.primary.main,
-  },
-  searchBar: {
-    color: theme.palette.getContrastText(theme.palette.primary.main),
     padding: theme.spacing(2),
-    paddingBottom: theme.spacing(0),
+  },
+  title: {
+    color: theme.palette.getContrastText(theme.palette.primary.main),
   },
 }));
 
@@ -39,10 +40,12 @@ const VerticalNavigationTabs = ({
   items,
   label,
   children,
+  title,
 }: {
   items: { label: string; href: string }[];
   label: string;
   children: React.ReactNode;
+  title: string;
 }) => {
   const [value, setValue] = React.useState(
     items.findIndex((i) => i.label === label) || 0
@@ -56,14 +59,15 @@ const VerticalNavigationTabs = ({
   return (
     <div className={classes.root}>
       <div className={classes.tabsContainer}>
-        <Paper variant="outlined" square className={classes.search}>
-          <TextField
+        <Paper variant="outlined" square className={classes.titleContainer}>
+          {/*<TextField
             label="Search Docs"
             variant="filled"
             className={classes.searchBar}
             fullWidth
             color={"secondary"}
-          />
+          />*/}
+          <H4>{title}</H4>
         </Paper>
         <Tabs
           orientation="vertical"
