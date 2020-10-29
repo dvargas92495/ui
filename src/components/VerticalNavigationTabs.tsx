@@ -9,9 +9,6 @@ const useStyles = makeStyles((theme) => ({
   tabsContainer: {
     display: "flex",
     flexDirection: "column",
-    position: "absolute",
-    left: 0,
-    bottom: 0,
     top: theme.spacing(8),
   },
   tabs: {
