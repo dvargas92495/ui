@@ -1,4 +1,3 @@
-import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 
@@ -8,18 +7,16 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     marginLeft: 0,
     marginRight: 0,
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
+    width: '100%',
+    padding: 0,
   },
 }));
 
 const Main = ({ children }: { children: React.ReactNode }) => {
   const classes = useStyles();
-  return (
-    <Container maxWidth={"lg"} component={"main"} className={classes.main}>
-      <>{children}</>
-    </Container>
-  );
+  return <main className={classes.main}>{children}</main>;
 };
 
 export default Main;

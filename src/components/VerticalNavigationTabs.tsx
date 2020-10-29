@@ -6,13 +6,16 @@ import React from "react";
 import H4 from "./H4";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    marginTop: theme.spacing(-8),
+  },
   tabsContainer: {
     display: "flex",
     flexDirection: "column",
-    top: theme.spacing(8),
+    minWidth: theme.spacing(34),
   },
   tabs: {
-    minWidth: theme.spacing(30),
     color: theme.palette.getContrastText(theme.palette.text.primary),
     backgroundColor: theme.palette.text.primary,
     flexGrow: 1,
@@ -28,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     color: theme.palette.getContrastText(theme.palette.primary.main),
+    marginBottom: 0,
   },
 }));
 
@@ -52,7 +56,7 @@ const VerticalNavigationTabs = ({
   const classes = useStyles();
 
   return (
-    <>
+    <div className={classes.root}>
       <div className={classes.tabsContainer}>
         <Paper variant="outlined" square className={classes.titleContainer}>
           {/*<TextField
@@ -90,7 +94,7 @@ const VerticalNavigationTabs = ({
       >
         {children}
       </div>
-    </>
+    </div>
   );
 };
 
