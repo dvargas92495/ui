@@ -11,10 +11,15 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(-8),
     marginLeft: theme.spacing(-3),
   },
+  tabsContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
   tabs: {
     minWidth: theme.spacing(30),
     color: theme.palette.getContrastText(theme.palette.text.primary),
     backgroundColor: theme.palette.text.primary,
+    flexGrow: 1,
   },
   tabPanel: {
     padding: theme.spacing(3),
@@ -26,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   searchBar: {
     color: theme.palette.getContrastText(theme.palette.primary.main),
     padding: theme.spacing(2),
+    paddingBottom: theme.spacing(0),
   },
 }));
 
@@ -49,7 +55,7 @@ const VerticalNavigationTabs = ({
 
   return (
     <div className={classes.root}>
-      <div>
+      <div className={classes.tabsContainer}>
         <Paper variant="outlined" square className={classes.search}>
           <TextField
             label="Search Docs"
