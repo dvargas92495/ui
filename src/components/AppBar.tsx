@@ -17,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
 
 const AppBar: React.FunctionComponent<{
   homeIcon: React.ReactNode;
+  userIcon: React.ReactNode;
   pages?: string[];
-}> = ({ children, homeIcon, pages = [] }) => {
+}> = ({ children, homeIcon, pages = [], userIcon }) => {
   const classes = useStyles();
   return (
     <MuiAppBar position="static" elevation={5} color="transparent">
@@ -37,6 +38,7 @@ const AppBar: React.FunctionComponent<{
           ))}
         </Grid>
         {children}
+        {userIcon}
       </Toolbar>
     </MuiAppBar>
   );

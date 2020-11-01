@@ -1,3 +1,4 @@
+export { default as AddUser } from "./components/AddUser";
 export { default as AppBar } from "./components/AppBar";
 export { default as Body } from "./components/Body";
 export { default as DataLoader } from "./components/DataLoader";
