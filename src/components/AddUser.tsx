@@ -9,13 +9,18 @@ const useStyles = makeStyles(() => ({
   button: {
     minWidth: 84,
   },
+  title: {
+    marginBottom: 0,
+  },
 }));
 
 const AddUser = ({
   buttonText,
+  title,
   children,
 }: {
   buttonText: string;
+  title: string;
   children: React.ReactNode;
 }) => {
   const classes = useStyles();
@@ -33,10 +38,8 @@ const AddUser = ({
         {buttonText}
       </Button>
       <Dialog onClose={close} open={isOpen}>
-        <DialogTitle>{buttonText}</DialogTitle>
-        <DialogContent>
-          {children}
-        </DialogContent>
+        <DialogTitle className={classes.title}>{title}</DialogTitle>
+        <DialogContent>{children}</DialogContent>
       </Dialog>
     </>
   );
