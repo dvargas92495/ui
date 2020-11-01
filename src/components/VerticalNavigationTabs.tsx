@@ -50,7 +50,7 @@ const VerticalNavigationTabs = ({
   title: string;
 }) => {
   const [value, setValue] = React.useState(
-    items.findIndex((i) => i.label === label) || 0
+    Math.max(items.findIndex((i) => i.label === label), 0)
   );
   const handleChange = React.useCallback(
     (_: React.ChangeEvent<{}>, newValue: number) => setValue(newValue),
