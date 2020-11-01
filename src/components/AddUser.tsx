@@ -6,6 +6,9 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import React, { useCallback, useState } from "react";
 
 const useStyles = makeStyles(() => ({
+  dialog: {
+    textAlign: "center",
+  },
   button: {
     minWidth: 84,
   },
@@ -37,7 +40,7 @@ const AddUser = ({
       >
         {buttonText}
       </Button>
-      <Dialog onClose={close} open={isOpen}>
+      <Dialog onClose={close} open={isOpen} className={classes.dialog}>
         <DialogTitle className={classes.title}>{title}</DialogTitle>
         <DialogContent>{children}</DialogContent>
       </Dialog>
