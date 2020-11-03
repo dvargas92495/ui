@@ -8,7 +8,10 @@ import Outlined from "./Outlined";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
+  },
+  root: {
+    marginBottom: theme.spacing(3),
   },
 }));
 
@@ -43,7 +46,7 @@ const CheckboxForm = ({
   ]);
   const classes = useStyles();
   return (
-    <Outlined>
+    <Outlined className={classes.root}>
       <Grid container spacing={1} className={classes.container}>
         {items.map((item) => (
           <Grid item xs={4} key={item}>
@@ -61,7 +64,7 @@ const CheckboxForm = ({
           </Grid>
         ))}
         <Grid item xs={6}>
-          <Button onClick={onButtonClick} variant={"contained"}>
+          <Button onClick={onButtonClick} variant={"contained"} color="primary">
             {buttonText}
           </Button>
         </Grid>
