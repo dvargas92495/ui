@@ -61,12 +61,12 @@ const CheckboxForm = ({
           </Grid>
         ))}
         <Grid item xs={6}>
-          <Button onClick={onButtonClick} variant={"outlined"}>
+          <Button onClick={onButtonClick} variant={"contained"}>
             {buttonText}
           </Button>
         </Grid>
         <Grid item xs={6}>
-          <Button onClick={onCheckAll} variant={"outlined"} color="secondary">
+          <Button onClick={onCheckAll} variant={"contained"} color="secondary">
             Check All
           </Button>
         </Grid>
