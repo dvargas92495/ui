@@ -31,7 +31,7 @@ const theme = createMuiTheme({
       marginBlockEnd: "0.5em",
     },
     h4: {
-      marginBlockEnd: '0.67em',
+      marginBlockEnd: "0.67em",
     },
     h6: {
       marginBottom: 24,
@@ -43,6 +43,13 @@ const theme = createMuiTheme({
     body1: {
       fontFamily: ["Century Gothic"].join(","),
       marginBottom: 24,
+    },
+  },
+  overrides: {
+    MuiFormControlLabel: {
+      label: {
+        marginBottom: 0,
+      },
     },
   },
 });

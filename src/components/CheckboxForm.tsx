@@ -2,8 +2,17 @@ import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
-import React, { useCallback, useState } from "react";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import React, { useCallback, useMemo, useState } from "react";
 import Outlined from "./Outlined";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: theme.spacing(1),
+  },
+}));
+
+const CHECK_ALL = "CHECK ALL";
 
 const CheckboxForm = ({
   items,
@@ -14,9 +23,11 @@ const CheckboxForm = ({
   onSave: (items: string[]) => void;
   buttonText: string;
 }) => {
-  const [checkboxes, setCheckboxes] = useState(
-    Object.fromEntries(items.map((i) => [i, true]))
+  const initialValue = useMemo(
+    () => Object.fromEntries(items.map((i) => [i, true])),
+    [items]
   );
+  const [checkboxes, setCheckboxes] = useState(initialValue);
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) =>
       setCheckboxes({
@@ -29,9 +40,13 @@ const CheckboxForm = ({
     () => onSave(items.filter((i) => checkboxes[i])),
     [onSave, checkboxes, items]
   );
+  const onCheckAll = useCallback(() => setCheckboxes(initialValue), [
+    setCheckboxes,
+  ]);
+  const classes = useStyles();
   return (
     <Outlined>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} className={classes.container}>
         {items.map((item) => (
           <Grid item xs={4} key={item}>
             <FormControlLabel
@@ -47,8 +62,15 @@ const CheckboxForm = ({
             />
           </Grid>
         ))}
-        <Grid item xs={12}>
-          <Button onClick={onButtonClick}>{buttonText}</Button>
+        <Grid item xs={6}>
+          <Button onClick={onButtonClick} variant={"outlined"}>
+            {buttonText}
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
+          <Button onClick={onCheckAll} variant={"outlined"} color="secondary">
+            Check All
+          </Button>
         </Grid>
       </Grid>
     </Outlined>
