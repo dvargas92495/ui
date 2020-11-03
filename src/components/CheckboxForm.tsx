@@ -12,8 +12,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CHECK_ALL = "CHECK ALL";
-
 const CheckboxForm = ({
   items,
   onSave,
