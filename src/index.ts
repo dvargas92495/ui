@@ -1,7 +1,7 @@
 export { default as AddUser } from "./components/AddUser";
 export { default as AppBar } from "./components/AppBar";
 export { default as Body } from "./components/Body";
-export { default as CheckboxGroup } from './components/CheckboxForm';
+export { default as CheckboxForm } from './components/CheckboxForm';
 export { default as DataLoader } from "./components/DataLoader";
 export { default as ExternalLink } from "./components/ExternalLink";
 export { default as Footer } from "./components/Footer";
