@@ -24,6 +24,9 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: ["Avenir Light"].join(","),
+    h1: {
+      fontSize: "4.5rem",
+    },
     h2: {
       marginBlockEnd: "0.42em",
     },
