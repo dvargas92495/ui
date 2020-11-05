@@ -6,8 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-
-const BASE_PATH = `${process.env.APP_BASE_PATH || ""}/`;
+import { BASE_PATH } from "./util";
 
 const useStyles = makeStyles((theme) => ({
   link: {

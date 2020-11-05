@@ -4,8 +4,7 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import React from "react";
 import H4 from "./H4";
-
-const BASE_PATH = `${process.env.APP_BASE_PATH || ""}/`;
+import { BASE_PATH } from "./util";
 
 const useStyles = makeStyles((theme) => ({
   root: {
