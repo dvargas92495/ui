@@ -36,6 +36,11 @@ const Footer = () => {
               Privacy Policy
             </Link>
           </Typography>
+          <Typography variant={"body2"} color="textSecondary">
+            <Link href={`${BASE_PATH}contact`} color="inherit">
+              Contact
+            </Link>
+          </Typography>
         </Grid>
       </Grid>
     </footer>
