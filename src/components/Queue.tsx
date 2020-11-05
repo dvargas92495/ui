@@ -6,15 +6,22 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import React, { useState, useCallback } from "react";
 import DataLoader from "./DataLoader";
 
 type QueueItem = {
   avatar: React.ReactElement;
   primary: React.ReactNode;
-  secondary: React.ReactNode;
   action: React.ReactElement;
 };
+
+const useStyles = makeStyles((theme) => ({
+  listItem: {
+    paddingRight: theme.spacing(12),
+    height: theme.spacing(20),
+  }
+}))
 
 const Queue = ({
   title,
@@ -25,26 +32,22 @@ const Queue = ({
 }) => {
   const [items, setItems] = useState<QueueItem[]>([]);
   const loadAsync = useCallback(() => loadItems().then(setItems), [setItems]);
+  const classes = useStyles();
   return (
     <Card>
       <CardHeader title={title} />
       <CardContent>
-        <List>
-          <DataLoader loadAsync={loadAsync}>
-            {items.map((item) => (
-              <ListItem>
+        <DataLoader loadAsync={loadAsync}>
+          <List>
+            {items.map((item, i) => (
+              <ListItem key={i} className={classes.listItem}>
                 <ListItemAvatar>{item.avatar}</ListItemAvatar>
-                <ListItemText
-                  primary={item.primary}
-                  secondary={item.secondary}
-                />
-                <ListItemSecondaryAction>
-                  {item.action}
-                </ListItemSecondaryAction>
+                <ListItemText primary={item.primary} />
+                <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
               </ListItem>
             ))}
-          </DataLoader>
-        </List>
+          </List>
+        </DataLoader>
       </CardContent>
     </Card>
   );
