@@ -20,8 +20,15 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     paddingRight: theme.spacing(12),
     height: theme.spacing(20),
-  }
-}))
+  },
+  card: {
+    height: "100%",
+  },
+  cardContent: {
+    overflowY: "scroll",
+    height: "100%",
+  },
+}));
 
 const Queue = ({
   title,
@@ -36,7 +43,7 @@ const Queue = ({
   return (
     <Card>
       <CardHeader title={title} />
-      <CardContent>
+      <CardContent className={classes.cardContent}>
         <DataLoader loadAsync={loadAsync}>
           <List>
             {items.map((item, i) => (
