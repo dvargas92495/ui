@@ -41,7 +41,7 @@ const Queue = ({
   const loadAsync = useCallback(() => loadItems().then(setItems), [setItems]);
   const classes = useStyles();
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardHeader title={title} />
       <CardContent className={classes.cardContent}>
         <DataLoader loadAsync={loadAsync}>
