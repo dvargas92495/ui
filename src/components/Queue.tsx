@@ -28,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "scroll",
     height: "100%",
   },
+  '&::-webkit-scrollbar': {
+    width: 2,
+  },
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: theme.palette.primary.main,
+  }
 }));
 
 const Queue = ({

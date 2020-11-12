@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "date-fns": "^2.16.1",
     "react": "^17.0.1",
     "react-device-detect": "^1.14.0",
     "react-dom": "^17.0.1"
