@@ -8,6 +8,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { FieldComponent } from "./util";
+import { makeStyles } from "@material-ui/core/styles";
 
 type FormElement<T> = {
   defaultValue: T;
@@ -15,6 +16,12 @@ type FormElement<T> = {
   validate: (value: T) => string;
   component: FieldComponent<T>;
 };
+
+const useStyles = makeStyles(() => ({
+  title: {
+    marginBottom: 0,
+  },
+}));
 
 const FormDialog = ({
   onSave,
@@ -62,6 +69,7 @@ const FormDialog = ({
     () => Object.values(fieldError).some((m) => !!m),
     [fieldError]
   );
+  const classes = useStyles();
 
   return (
     <>
@@ -73,12 +81,12 @@ const FormDialog = ({
         onClose={handleClose}
         aria-labelledby="issue-form-title"
       >
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle className={classes.title}>{title}</DialogTitle>
         <DialogContent>
           <DialogContentText>{contentText}</DialogContentText>
           <Grid container spacing={1}>
             {formElements.map((f) => (
-              <Grid item xs={6} key={f.name}>
+              <Grid item xs={12} key={f.name}>
                 <f.component
                   key={f.name}
                   value={formData[f.name]}

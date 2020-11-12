@@ -23,6 +23,7 @@ export { default as NumberField } from "./components/NumberField";
 export { default as Outlined } from "./components/Outlined";
 export { default as Queue } from "./components/Queue";
 export { default as Root } from "./components/Root";
+export { default as StringField } from "./components/StringField";
 export { default as Subtitle } from "./components/Subtitle";
 export { default as ThemeProvider } from "./components/ThemeProvider";
 export { default as VerticalGridContent } from "./components/VerticalGridContent";
