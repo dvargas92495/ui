@@ -4,7 +4,7 @@ import { FieldComponent } from "./util";
 
 const NumberField: FieldComponent<number> = ({ value, onChange, ...props }) => {
   const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => onChange(parseInt(e.target.value)),
+    (e: ChangeEvent<HTMLInputElement>) => onChange(parseInt(e.target.value) || 0),
     [onChange]
   );
   return (

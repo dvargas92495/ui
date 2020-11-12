@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     overflowY: "scroll",
     height: "100%",
+    "&::-webkit-scrollbar": {
+      width: theme.spacing(0.5),
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.primary.main,
+    },
   },
-  '&::-webkit-scrollbar': {
-    width: 2,
-  },
-  '&::-webkit-scrollbar-thumb': {
-    backgroundColor: theme.palette.primary.main,
-  }
 }));
 
 const Queue = ({

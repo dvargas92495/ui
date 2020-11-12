@@ -65,7 +65,7 @@ const FormDialog = ({
 
   return (
     <>
-      <Button color="secondary" variant="contained" onClick={handleOpen}>
+      <Button color="primary" variant="contained" onClick={handleOpen}>
         {buttonText}
       </Button>
       <Dialog
@@ -78,26 +78,29 @@ const FormDialog = ({
           <DialogContentText>{contentText}</DialogContentText>
           <Grid container spacing={1}>
             {formElements.map((f) => (
-              <f.component
-                value={formData[f.name]}
-                onChange={(v: any) => onChange({ name: f.name, value: v })}
-                required
-                fullWidth
-                error={!!fieldError[f.name]}
-                helperText={fieldError[f.name]}
-                name={f.name}
-                label={`${f.name.charAt(0).toUpperCase()}${f.name.substring(
-                  1
-                )}`}
-                variant={"filled"}
-                onBlur={() => {
-                  const error = f.validate(formData[f.name]);
-                  if (error) {
-                    setFieldError({ ...fieldError, [f.name]: error });
-                  }
-                }}
-                onFocus={() => setFieldError({ ...fieldError, [f.name]: "" })}
-              />
+              <Grid item xs={6} key={f.name}>
+                <f.component
+                  key={f.name}
+                  value={formData[f.name]}
+                  onChange={(v: any) => onChange({ name: f.name, value: v })}
+                  required
+                  fullWidth
+                  error={!!fieldError[f.name]}
+                  helperText={fieldError[f.name]}
+                  name={f.name}
+                  label={`${f.name.charAt(0).toUpperCase()}${f.name.substring(
+                    1
+                  )}`}
+                  variant={"filled"}
+                  onBlur={() => {
+                    const error = f.validate(formData[f.name]);
+                    if (error) {
+                      setFieldError({ ...fieldError, [f.name]: error });
+                    }
+                  }}
+                  onFocus={() => setFieldError({ ...fieldError, [f.name]: "" })}
+                />
+              </Grid>
             ))}
           </Grid>
         </DialogContent>
