@@ -62,15 +62,18 @@ const FormDialog = ({
       .finally(() => setLoading(false));
   }, [setLoading, formData, closeWithSuccess, setError]);
   const onChange = useCallback(
-    ({ name, value }: { name: string; value: any }) =>
-      setFormData({ ...formData, [name]: value }),
-    [formData, setFormData]
+    ({ name, value }: { name: string; value: any }) => {
+      setFormData({ ...formData, [name]: value });
+      setError('');
+    },
+    [formData, setFormData, setError]
   );
   const saveDisabled = useMemo(
     () =>
       Object.values(fieldError).some((m) => !!m) ||
-      Object.values(formData).some((v) => !v),
-    [fieldError, formData]
+      Object.values(formData).some((v) => !v) ||
+      !!error,
+    [fieldError, formData, error]
   );
   const classes = useStyles();
 
