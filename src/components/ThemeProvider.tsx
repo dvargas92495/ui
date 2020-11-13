@@ -54,6 +54,16 @@ const theme = createMuiTheme({
         marginBottom: 0,
       },
     },
+    MuiDialogTitle: {
+      root: {
+        marginBottom: 0,
+      },
+    },
+    MuiInputBase: {
+      root: {
+        marginBottom: 0,
+      }
+    }
   },
 });
 

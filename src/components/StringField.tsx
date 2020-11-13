@@ -13,7 +13,7 @@ const StringField: FieldComponent<string> = ({ value, onChange, ...props }) => {
       value={`${value}`}
       type={"text"}
       onChange={handleChange}
-      placeholder={'0'}
+      placeholder={`Enter ${props.label}...`}
     />
   );
 };
