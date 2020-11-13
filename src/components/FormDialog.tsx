@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { FieldComponent } from "./util";
 import { makeStyles } from "@material-ui/core";
-import { H2 } from "..";
+import H6 from "./H6";
 
 type FormElement<T> = {
   defaultValue: T;
@@ -21,8 +21,8 @@ type FormElement<T> = {
 const useStyles = makeStyles(() => ({
   title: {
     marginBottom: 0,
-  }
-}))
+  },
+}));
 
 const FormDialog = ({
   onSave,
@@ -67,8 +67,10 @@ const FormDialog = ({
     [formData, setFormData]
   );
   const saveDisabled = useMemo(
-    () => Object.values(fieldError).some((m) => !!m),
-    [fieldError]
+    () =>
+      Object.values(fieldError).some((m) => !!m) ||
+      Object.values(formData).some((v) => !v),
+    [fieldError, formData]
   );
   const classes = useStyles();
 
@@ -82,7 +84,9 @@ const FormDialog = ({
         onClose={handleClose}
         aria-labelledby="issue-form-title"
       >
-        <DialogTitle disableTypography={true}><H2 className={classes.title}>{title}</H2></DialogTitle>
+        <DialogTitle disableTypography={true}>
+          <H6 className={classes.title}>{title}</H6>
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>{contentText}</DialogContentText>
           <Grid container spacing={2}>
@@ -115,9 +119,7 @@ const FormDialog = ({
         </DialogContent>
         <DialogActions>
           <DialogContentText color={"error"}>{error}</DialogContentText>
-          <DialogContentText color={"primary"}>
-            {loading && <CircularProgress />}
-          </DialogContentText>
+          {loading && <CircularProgress />}
           <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
