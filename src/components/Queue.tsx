@@ -14,6 +14,7 @@ type QueueItem = {
   avatar: React.ReactElement;
   primary: React.ReactNode;
   action: React.ReactElement;
+  secondary: React.ReactNode;
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +56,7 @@ const Queue = ({
             {items.map((item, i) => (
               <ListItem key={i} className={classes.listItem}>
                 <ListItemAvatar>{item.avatar}</ListItemAvatar>
-                <ListItemText primary={item.primary} />
+                <ListItemText primary={item.primary} secondary={item.secondary} />
                 <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
               </ListItem>
             ))}
