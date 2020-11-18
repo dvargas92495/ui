@@ -7,7 +7,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo, useMemo } from "react";
 import DataLoader from "./DataLoader";
 
 type QueueItem = {
@@ -15,6 +15,7 @@ type QueueItem = {
   primary: React.ReactNode;
   action: React.ReactElement;
   secondary: React.ReactNode;
+  key: number;
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -40,23 +41,35 @@ const useStyles = makeStyles((theme) => ({
 const Queue = ({
   title,
   loadItems,
+  filter = () => true,
 }: {
   title: string;
-  loadItems: () => Promise<QueueItem[]>;
+  loadItems: () => Promise<Omit<QueueItem, "key">[]>;
+  filter?: (item: QueueItem) => boolean;
 }) => {
   const [items, setItems] = useState<QueueItem[]>([]);
-  const loadAsync = useCallback(() => loadItems().then(setItems), [setItems]);
+  const loadAsync = useCallback(
+    () =>
+      loadItems().then((items) =>
+        setItems(items.map((item, key) => ({ ...item, key })))
+      ),
+    [setItems]
+  );
   const classes = useStyles();
+  const filteredItems = useMemo(() => items.filter(filter), [items, filter]);
   return (
     <Card className={classes.card}>
       <CardHeader title={title} />
       <CardContent className={classes.cardContent}>
         <DataLoader loadAsync={loadAsync}>
           <List>
-            {items.map((item, i) => (
-              <ListItem key={i} className={classes.listItem}>
+            {filteredItems.map((item) => (
+              <ListItem key={item.key} className={classes.listItem}>
                 <ListItemAvatar>{item.avatar}</ListItemAvatar>
-                <ListItemText primary={item.primary} secondary={item.secondary} />
+                <ListItemText
+                  primary={item.primary}
+                  secondary={item.secondary}
+                />
                 <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
               </ListItem>
             ))}
