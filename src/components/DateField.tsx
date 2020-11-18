@@ -4,18 +4,19 @@ import { FieldComponent } from "./util";
 import parse from "date-fns/parse";
 import format from "date-fns/format";
 
-const DateField: FieldComponent<Date> = ({ value, onChange, ...props }) => {
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => onChange(parse(e.target.value, "yyyy-MM-dd", new Date())),
-    [onChange]
+const DateField: FieldComponent<Date> = ({ value, setValue, ...props }) => {
+  const onChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) =>
+      setValue(parse(e.target.value, "yyyy-MM-dd", new Date())),
+    [setValue]
   );
   return (
     <TextField
       {...props}
       value={format(value, "yyyy-MM-dd")}
       type={"date"}
-      onChange={handleChange}
-      placeholder={'YYYY-MM-DD'}
+      onChange={onChange}
+      placeholder={"YYYY-MM-DD"}
     />
   );
 };

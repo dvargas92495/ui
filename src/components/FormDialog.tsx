@@ -98,7 +98,7 @@ const FormDialog = ({
                 <f.component
                   key={f.name}
                   value={formData[f.name]}
-                  onChange={(v: any) => onChange({ name: f.name, value: v })}
+                  setValue={(v: any) => onChange({ name: f.name, value: v })}
                   required
                   fullWidth
                   error={!!fieldError[f.name]}

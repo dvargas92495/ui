@@ -1,10 +1,11 @@
 name: Publish package
 on:
   push:
-    branches: master
+    branches: main
     paths:
       - "src/**"
-      - ".github/workflows/master.yaml"
+      - "package.json"
+      - ".github/workflows/main.yaml"
 
 jobs:
   deploy:
@@ -17,5 +18,7 @@ jobs:
           node-version: 12.16.1
       - name: install
         run: npm install
-      - name: Publish
-        run: npm publish
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          access: "public"

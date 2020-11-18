@@ -2,17 +2,17 @@ import TextField from "@material-ui/core/TextField";
 import React, { ChangeEvent, useCallback } from "react";
 import { FieldComponent } from "./util";
 
-const StringField: FieldComponent<string> = ({ value, onChange, ...props }) => {
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value || ''),
-    [onChange]
+const StringField: FieldComponent<string> = ({ value, setValue, ...props }) => {
+  const onChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value || ''),
+    [setValue]
   );
   return (
     <TextField
       {...props}
-      value={`${value}`}
+      value={value}
       type={"text"}
-      onChange={handleChange}
+      onChange={onChange}
       placeholder={`Enter ${props.label}...`}
     />
   );
