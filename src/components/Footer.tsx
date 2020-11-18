@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Footer = () => {
+const Footer = ({ siteLinks }: { siteLinks: string[] }) => {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
@@ -26,21 +26,13 @@ const Footer = () => {
         </Grid>
         <Grid item xs={8}>
           <H6>Site Links</H6>
-          <Typography variant={"body2"} color="textSecondary">
-            <Link href={`${BASE_PATH}terms-of-use`} color="inherit">
-              Terms of Use
-            </Link>
-          </Typography>
-          <Typography variant={"body2"} color="textSecondary">
-            <Link href={`${BASE_PATH}privacy`} color="inherit">
-              Privacy Policy
-            </Link>
-          </Typography>
-          <Typography variant={"body2"} color="textSecondary">
-            <Link href={`${BASE_PATH}contact`} color="inherit">
-              Contact
-            </Link>
-          </Typography>
+          {siteLinks.map((l, i) => (
+            <Typography variant={"body2"} color="textSecondary" key={i}>
+              <Link href={`${BASE_PATH}${l.toLowerCase().replace(/ /g, '-')}`} color="inherit">
+                {l}
+              </Link>
+            </Typography>
+          ))}
         </Grid>
       </Grid>
     </footer>

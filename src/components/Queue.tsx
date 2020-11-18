@@ -7,7 +7,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import React, { useState, useCallback, useMemo, useMemo } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import DataLoader from "./DataLoader";
 
 type QueueItem = {
