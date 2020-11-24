@@ -54,6 +54,11 @@ const theme = createMuiTheme({
         marginBottom: 0,
       },
     },
+    MuiCardHeader: {
+      subheader: {
+        marginBottom: 0,
+      }
+    },
     MuiInputBase: {
       root: {
         marginBottom: 0,

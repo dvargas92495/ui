@@ -25,10 +25,13 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     height: "100%",
+    display: 'flex',
+    flexDirection: 'column',
   },
   cardContent: {
+    flexGrow: 1,
     overflowY: "scroll",
-    height: "100%",
+    padding: 0,
     "&::-webkit-scrollbar": {
       width: theme.spacing(0.5),
     },
@@ -36,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
     },
   },
+  list: {
+    padding: 0,
+  }
 }));
 
 const Queue = ({
@@ -64,7 +70,7 @@ const Queue = ({
       <CardHeader title={title} subheader={subheader} />
       <CardContent className={classes.cardContent}>
         <DataLoader loadAsync={loadAsync}>
-          <List>
+          <List className={classes.list}>
             {filteredItems.map((item) => (
               <ListItem key={item.key} className={classes.listItem}>
                 <ListItemAvatar>{item.avatar}</ListItemAvatar>
