@@ -40,10 +40,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Queue = ({
   title,
+  subheader,
   loadItems,
   filter = () => true,
 }: {
   title: string;
+  subheader: React.ReactNode;
   loadItems: () => Promise<Omit<QueueItem, "key">[]>;
   filter?: (item: QueueItem) => boolean;
 }) => {
@@ -59,7 +61,7 @@ const Queue = ({
   const filteredItems = useMemo(() => items.filter(filter), [items, filter]);
   return (
     <Card className={classes.card}>
-      <CardHeader title={title} />
+      <CardHeader title={title} subheader={subheader} />
       <CardContent className={classes.cardContent}>
         <DataLoader loadAsync={loadAsync}>
           <List>
