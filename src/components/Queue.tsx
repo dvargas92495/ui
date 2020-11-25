@@ -1,22 +1,10 @@
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemText from "@material-ui/core/ListItemText";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import React, { useState, useCallback, useMemo } from "react";
 import DataLoader from "./DataLoader";
-
-type QueueItem = {
-  avatar: React.ReactElement;
-  primary: React.ReactNode;
-  action: React.ReactElement;
-  secondary: React.ReactNode;
-  key: number;
-};
+import Items, { Item } from "./Items";
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -25,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     height: "100%",
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   cardContent: {
     flexGrow: 1,
@@ -41,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     padding: 0,
-  }
+  },
 }));
 
 const Queue = ({
@@ -52,10 +40,10 @@ const Queue = ({
 }: {
   title: string;
   subheader: React.ReactNode;
-  loadItems: () => Promise<Omit<QueueItem, "key">[]>;
-  filter?: (item: QueueItem) => boolean;
+  loadItems: () => Promise<Omit<Item, "key">[]>;
+  filter?: (item: Item) => boolean;
 }) => {
-  const [items, setItems] = useState<QueueItem[]>([]);
+  const [items, setItems] = useState<Item[]>([]);
   const loadAsync = useCallback(
     () =>
       loadItems().then((items) =>
@@ -70,18 +58,11 @@ const Queue = ({
       <CardHeader title={title} subheader={subheader} />
       <CardContent className={classes.cardContent}>
         <DataLoader loadAsync={loadAsync}>
-          <List className={classes.list}>
-            {filteredItems.map((item) => (
-              <ListItem key={item.key} className={classes.listItem}>
-                <ListItemAvatar>{item.avatar}</ListItemAvatar>
-                <ListItemText
-                  primary={item.primary}
-                  secondary={item.secondary}
-                />
-                <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
+          <Items
+            items={filteredItems}
+            listClassName={classes.list}
+            itemClassName={classes.listItem}
+          />
         </DataLoader>
       </CardContent>
     </Card>
