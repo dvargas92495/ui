@@ -6,11 +6,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 import React from "react";
 
 export type Item = {
-  avatar: React.ReactElement;
+  avatar?: React.ReactElement;
   primary: React.ReactNode;
-  action: React.ReactElement;
+  action?: React.ReactElement;
   secondary: React.ReactNode;
-  key: number;
+  key: number | string;
 };
 
 const Items = ({
@@ -25,7 +25,7 @@ const Items = ({
   <List className={listClassName}>
     {items.map((item) => (
       <ListItem key={item.key} className={itemClassName}>
-        <ListItemAvatar>{item.avatar}</ListItemAvatar>
+        {item.avatar && <ListItemAvatar>{item.avatar}</ListItemAvatar>}
         <ListItemText primary={item.primary} secondary={item.secondary} />
         <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
       </ListItem>
