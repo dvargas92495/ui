@@ -10,7 +10,7 @@ const Logo = ({
 }) => (
   <SvgIcon
     viewBox={`0 0 ${viewBoxWidth} 400`}
-    style={{ width: "80%", height: "50vh" }}
+    style={{ width: "80%", height: "100%", verticalAlign: "middle" }}
   >
     {children}
   </SvgIcon>

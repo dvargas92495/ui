@@ -6,6 +6,7 @@ import React from "react";
 const useStyles = makeStyles(() => ({
   logoContainer: {
     width: "100%",
+    height: "50vh",
     textAlign: 'center',
   },
 }));

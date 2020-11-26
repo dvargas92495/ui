@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
   link: {
     margin: theme.spacing(0, 1),
   },
+  home: {
+    maxWidth: theme.spacing(10.5)
+  }
 }));
 
 const AppBar: React.FunctionComponent<{
@@ -23,7 +26,7 @@ const AppBar: React.FunctionComponent<{
   return (
     <MuiAppBar position="static" elevation={5} color="transparent">
       <Toolbar>
-        <Link href={BASE_PATH}>{homeIcon}</Link>
+        <Link href={BASE_PATH} className={classes.home}>{homeIcon}</Link>
         <Grid container justify="center">
           {pages.map((p, i) => (
             <React.Fragment key={i}>
