@@ -9,7 +9,7 @@ export type Item = {
   avatar?: React.ReactElement;
   primary: React.ReactNode;
   action?: React.ReactElement;
-  secondary: React.ReactNode;
+  secondary?: React.ReactNode;
   key: number | string;
 };
 
