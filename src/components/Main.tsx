@@ -4,7 +4,7 @@ import React from "react";
 const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2),
+    marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
     display: "flex",
