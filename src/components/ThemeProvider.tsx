@@ -25,18 +25,26 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: ["Avenir Light"].join(","),
     h1: {
+      fontFamily: ["Century Gothic"].join(","),
       fontSize: "4.5rem",
     },
     h2: {
+      fontFamily: ["Century Gothic"].join(","),
       marginBlockEnd: "0.42em",
     },
     h3: {
+      fontFamily: ["Century Gothic"].join(","),
       marginBlockEnd: "0.5em",
     },
     h4: {
+      fontFamily: ["Century Gothic"].join(","),
       marginBlockEnd: "0.67em",
     },
+    h5: {
+      fontFamily: ["Century Gothic"].join(","),
+    },
     h6: {
+      fontFamily: ["Century Gothic"].join(","),
       marginBottom: 24,
     },
     subtitle1: {
@@ -44,7 +52,6 @@ const theme = createMuiTheme({
       fontFamily: ["Century Gothic"].join(","),
     },
     body1: {
-      fontFamily: ["Century Gothic"].join(","),
       marginBottom: 24,
     },
   },
@@ -57,13 +64,18 @@ const theme = createMuiTheme({
     MuiCardHeader: {
       subheader: {
         marginBottom: 0,
-      }
+      },
     },
     MuiInputBase: {
       root: {
         marginBottom: 0,
-      }
-    }
+      },
+    },
+    MuiButton: {
+      label: {
+        marginBottom: 0,
+      },
+    },
   },
 });
 

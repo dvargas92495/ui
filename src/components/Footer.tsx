@@ -1,15 +1,16 @@
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles";
+import { fade, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { H6 } from "..";
+import H6 from "./H6";
 import { BASE_PATH } from "./util";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
     padding: theme.spacing(3, 2),
     marginTop: "auto",
+    background: fade(theme.palette.secondary.light, 0.25),
   },
 }));
 
