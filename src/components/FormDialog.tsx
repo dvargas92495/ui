@@ -33,7 +33,7 @@ const FormDialog = ({
   formElements,
 }: {
   onSave: (body: any) => Promise<any>;
-  onSuccess: () => void;
+  onSuccess?: () => void;
   buttonText: string;
   title: React.ReactNode;
   contentText: React.ReactNode;
@@ -44,7 +44,9 @@ const FormDialog = ({
   const handleClose = useCallback(() => setOpen(false), [setOpen]);
   const closeWithSuccess = useCallback(() => {
     handleClose();
-    onSuccess();
+    if (onSuccess) {
+      onSuccess();
+    }
   }, [handleClose, onSuccess]);
   const [error, setError] = useState("");
   const [fieldError, setFieldError] = useState(
@@ -64,7 +66,7 @@ const FormDialog = ({
   const onChange = useCallback(
     ({ name, value }: { name: string; value: any }) => {
       setFormData({ ...formData, [name]: value });
-      setError('');
+      setError("");
     },
     [formData, setFormData, setError]
   );
