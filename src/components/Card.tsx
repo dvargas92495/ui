@@ -9,7 +9,7 @@ const Card: React.FunctionComponent<{ header: string }> = ({
 }) => {
   return (
     <MuiCard>
-      <CardHeader>{header}</CardHeader>
+      <CardHeader title={header} />
       <CardContent>{children}</CardContent>
     </MuiCard>
   );
