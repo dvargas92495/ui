@@ -4,14 +4,14 @@ import { FieldComponent } from "./util";
 
 const StringField: FieldComponent<string> = ({ value, setValue, ...props }) => {
   const onChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value || ''),
+    (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value || ""),
     [setValue]
   );
   return (
     <TextField
       {...props}
       value={value}
-      type={"text"}
+      type={props.name?.toLowerCase() === "password" ? "password" : "text"}
       onChange={onChange}
       placeholder={`Enter ${props.label}...`}
     />
