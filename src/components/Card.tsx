@@ -3,13 +3,13 @@ import MuiCard from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 
-const Card: React.FunctionComponent<{ header: string }> = ({
-  header,
+const Card: React.FunctionComponent<{ title: string }> = ({
+  title,
   children,
 }) => {
   return (
     <MuiCard>
-      <CardHeader title={header} />
+      <CardHeader title={title} />
       <CardContent>{children}</CardContent>
     </MuiCard>
   );

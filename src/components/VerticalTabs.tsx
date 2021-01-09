@@ -39,7 +39,7 @@ const VerticalTabs = ({
   children,
   title,
 }: {
-  children: React.ReactElement<{ label: string }>[];
+  children: React.ReactElement<{ title: string }>[];
   title: React.ReactNode;
 }) => {
   const [value, setValue] = React.useState(0);
@@ -48,7 +48,7 @@ const VerticalTabs = ({
     [setValue]
   );
   const classes = useStyles();
-  const items = children.map((c) => c.props.label);
+  const items = children.map((c) => c.props.title);
 
   return (
     <div className={classes.root}>
