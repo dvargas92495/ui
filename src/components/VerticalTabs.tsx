@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginTop: theme.spacing(2),
+    textAlign: "center",
   },
 }));
 
@@ -37,7 +38,7 @@ const VerticalTabs = ({
   return (
     <div className={classes.root}>
       <Paper variant="elevation" square>
-        <H4>{title}</H4>
+        <H4 className={classes.title}>{title}</H4>
         <Tabs
           orientation="vertical"
           value={value}
