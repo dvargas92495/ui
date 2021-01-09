@@ -14,25 +14,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2),
     width: "100%",
   },
-  /*
-  tabsContainer: {
-    display: "flex",
-    flexDirection: "column",
-    minWidth: theme.spacing(34),
-  },
-  tabs: {
-    color: theme.palette.getContrastText(theme.palette.text.primary),
-    backgroundColor: theme.palette.text.primary,
-    flexGrow: 1,
-  },
-  titleContainer: {
-    backgroundColor: theme.palette.primary.main,
-    padding: theme.spacing(2),
-  },
   title: {
-    color: theme.palette.getContrastText(theme.palette.primary.main),
-    marginBottom: 0,
-  },*/
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const VerticalTabs = ({
