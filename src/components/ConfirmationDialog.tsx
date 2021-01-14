@@ -19,7 +19,7 @@ const ConfirmationDialog: React.FunctionComponent<{
   color: "primary" | "secondary";
   title: string;
   content: string;
-  action: () => Promise<void>;
+  action: () => Promise<any>;
   onSuccess?: () => void;
 }> = ({ buttonText, color, title, content, action, onSuccess }) => {
   const [open, setOpen] = useState(false);

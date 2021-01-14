@@ -177,7 +177,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
     textAlign: "center",
-    width: "fit-content",
   },
   primaryContent: {
     paddingTop: theme.spacing(8),
