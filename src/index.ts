@@ -4,6 +4,7 @@ export { default as Body } from "./components/Body";
 export { default as Button } from "./components/Button";
 export { default as Card } from "./components/Card";
 export { default as CheckboxForm } from "./components/CheckboxForm";
+export { default as ConfirmationDialog } from "./components/ConfirmationDialog";
 export { default as DataLoader } from "./components/DataLoader";
 export { default as DateField } from "./components/DateField";
 export { default as ExternalLink } from "./components/ExternalLink";
@@ -16,7 +17,12 @@ export { default as H4 } from "./components/H4";
 export { default as H5 } from "./components/H5";
 export { default as H6 } from "./components/H6";
 export { default as Items } from "./components/Items";
-export { default as Landing } from "./components/Landing";
+export {
+  default as Landing,
+  Splash as SplashLanding,
+  Stats as StatsLanding,
+  Showcase as ShowcaseLanding,
+} from "./components/Landing";
 export { default as LI } from "./components/LI";
 export { default as Logo } from "./components/Logo";
 export { default as Main } from "./components/Main";
