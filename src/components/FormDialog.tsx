@@ -14,7 +14,7 @@ import H6 from "./H6";
 type FormElement<T> = {
   defaultValue: T;
   name: string;
-  validate: (value: T) => string;
+  validate: (value: T) => string | Promise<string>;
   component: FieldComponent<T>;
 };
 
@@ -110,8 +110,8 @@ const FormDialog = ({
                     1
                   )}`}
                   variant={"filled"}
-                  onBlur={() => {
-                    const error = f.validate(formData[f.name]);
+                  onBlur={async () => {
+                    const error = await f.validate(formData[f.name]);
                     if (error) {
                       setFieldError({ ...fieldError, [f.name]: error });
                     }
