@@ -14,7 +14,7 @@ import H6 from "./H6";
 type FormElement<T> = {
   defaultValue: T;
   name: string;
-  validate: (value: T) => string | Promise<string>;
+  validate: (value: T) => string;
   component: FieldComponent<T>;
 };
 
