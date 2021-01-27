@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.getContrastText(theme.palette.text.primary),
     backgroundColor: theme.palette.text.primary,
     flexGrow: 1,
+    alignItems: 'center',
   },
   tabPanel: {
     padding: theme.spacing(3),
@@ -61,13 +62,6 @@ const VerticalNavigationTabs = ({
     <div className={classes.root}>
       <div className={classes.tabsContainer}>
         <Paper variant="outlined" square className={classes.titleContainer}>
-          {/*<TextField
-            label="Search Docs"
-            variant="filled"
-            className={classes.searchBar}
-            fullWidth
-            color={"secondary"}
-          />*/}
           <H4 className={classes.title}>{title}</H4>
         </Paper>
         <Tabs

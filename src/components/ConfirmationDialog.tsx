@@ -59,7 +59,7 @@ const ConfirmationDialog: React.FunctionComponent<{
           <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
-          <Button onClick={onSubmit} color="primary">
+          <Button onClick={onSubmit} color="primary" disabled={loading}>
             Submit
           </Button>
         </DialogActions>
