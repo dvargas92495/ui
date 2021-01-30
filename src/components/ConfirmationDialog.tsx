@@ -39,7 +39,7 @@ const ConfirmationDialog: React.FunctionComponent<{
       .then(closeWithSuccess)
       .catch((e) => setError(e.response?.data || e.message))
       .finally(() => setLoading(false));
-  }, [setLoading, closeWithSuccess, setError]);
+  }, [setLoading, closeWithSuccess, setError, action]);
   const classes = useStyles();
   return (
     <>
