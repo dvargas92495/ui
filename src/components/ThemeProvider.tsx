@@ -26,33 +26,44 @@ const theme = createMuiTheme({
     fontFamily: ["Avenir Light"].join(","),
     h1: {
       fontFamily: ["Century Gothic"].join(","),
-      fontSize: "4.5rem",
+      fontSize: "3rem",
+      fontWeight: 600,
+      margin: "3rem 0",
     },
     h2: {
       fontFamily: ["Century Gothic"].join(","),
-      marginBlockEnd: "0.42em",
+      fontWeight: 600,
+      fontSize: "2.5rem",
+      margin: "2.5rem 0",
     },
     h3: {
       fontFamily: ["Century Gothic"].join(","),
-      marginBlockEnd: "0.5em",
+      fontWeight: 600,
+      fontSize: "2rem",
+      margin: "2rem 0",
     },
     h4: {
       fontFamily: ["Century Gothic"].join(","),
-      marginBlockEnd: "0.67em",
+      fontWeight: 600,
+      fontSize: "1.75rem",
+      margin: "1.75rem 0",
     },
     h5: {
       fontFamily: ["Century Gothic"].join(","),
+      fontWeight: 600,
+      margin: "1.5rem 0",
     },
     h6: {
       fontFamily: ["Century Gothic"].join(","),
-      marginBottom: 24,
+      fontWeight: 600,
+      margin: "1.25rem 0",
     },
     subtitle1: {
-      fontSize: "1.25em",
+      fontSize: "1.25rem",
       fontFamily: ["Century Gothic"].join(","),
     },
     body1: {
-      marginBottom: 24,
+      margin: '1em 0',
     },
   },
   overrides: {
