@@ -24,6 +24,7 @@ export {
   Showcase as ShowcaseLanding,
 } from "./components/Landing";
 export { default as LI } from "./components/LI";
+export { default as Loading } from "./components/Loading";
 export { default as Logo } from "./components/Logo";
 export { default as Main } from "./components/Main";
 export { default as NavList } from "./components/NavList";
