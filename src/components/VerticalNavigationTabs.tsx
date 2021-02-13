@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     color: theme.palette.getContrastText(theme.palette.primary.main),
-    marginBottom: 0,
+    margin: 0,
   },
 }));
 

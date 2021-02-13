@@ -63,7 +63,7 @@ const theme = createMuiTheme({
       fontFamily: ["Century Gothic"].join(","),
     },
     body1: {
-      margin: '1em 0',
+      margin: "1em 0",
     },
   },
   overrides: {
@@ -72,9 +72,17 @@ const theme = createMuiTheme({
         marginBottom: 0,
       },
     },
+    MuiInputLabel: {
+      root: {
+        margin: 0,
+      },
+    },
     MuiCardHeader: {
       subheader: {
-        marginBottom: 0,
+        margin: 0,
+      },
+      title: {
+        margin: 0,
       },
     },
     MuiInputBase: {
