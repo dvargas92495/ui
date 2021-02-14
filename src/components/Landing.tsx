@@ -26,7 +26,7 @@ const useSplashStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
   },
   marginLessLabel: {
-    marginBottom: 0,
+    margin: 0,
   },
 }));
 
