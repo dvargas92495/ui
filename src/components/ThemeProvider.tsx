@@ -69,7 +69,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiFormControlLabel: {
       label: {
-        marginBottom: 0,
+        margin: 0,
       },
     },
     MuiInputLabel: {
