@@ -72,11 +72,6 @@ const theme = createMuiTheme({
         margin: 0,
       },
     },
-    MuiInputBase: {
-      root: {
-        margin: 0,
-      },
-    },
     MuiInputLabel: {
       root: {
         margin: 0,
@@ -92,7 +87,7 @@ const theme = createMuiTheme({
     },
     MuiInputBase: {
       root: {
-        marginBottom: 0,
+        margin: 0,
       },
     },
     MuiButton: {
