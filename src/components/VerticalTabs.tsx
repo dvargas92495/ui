@@ -25,11 +25,13 @@ const useStyles = makeStyles((theme) => ({
 const VerticalTabs = ({
   children,
   title,
+  initialValue = 0,
 }: {
   children: React.ReactElement<{ title: string }>[];
   title: React.ReactNode;
+  initialValue?: number;
 }) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(initialValue);
   const handleChange = React.useCallback(
     (_: React.ChangeEvent<{}>, newValue: number) => setValue(newValue),
     [setValue]
