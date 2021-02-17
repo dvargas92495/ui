@@ -17,19 +17,25 @@ const Items = ({
   items,
   listClassName,
   itemClassName,
+  noItemMessage = "No Results",
 }: {
   items: Item[];
   listClassName?: string;
   itemClassName?: string;
+  noItemMessage?: string;
 }) => (
   <List className={listClassName}>
-    {items.map((item) => (
-      <ListItem key={item.key} className={itemClassName}>
-        {item.avatar && <ListItemAvatar>{item.avatar}</ListItemAvatar>}
-        <ListItemText primary={item.primary} secondary={item.secondary} />
-        <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
-      </ListItem>
-    ))}
+    {items.length ? (
+      items.map((item) => (
+        <ListItem key={item.key} className={itemClassName}>
+          {item.avatar && <ListItemAvatar>{item.avatar}</ListItemAvatar>}
+          <ListItemText primary={item.primary} secondary={item.secondary} />
+          <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
+        </ListItem>
+      ))
+    ) : (
+      <Body>{noItemMessage}</Body>
+    )}
   </List>
 );
 
