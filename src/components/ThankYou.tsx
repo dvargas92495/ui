@@ -19,7 +19,7 @@ const ThankYou: React.FunctionComponent<{ sponsors: Sponsor[] }> = ({
             minHeight: 250,
           }}
         >
-          <img src={imgSrc} alt={title} />
+          <img src={imgSrc} alt={title} style={{ height: 200 }} />
           <H6>
             {url ? (
               <Link href={url} target="_blank" rel="noopener">
