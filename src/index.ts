@@ -34,6 +34,7 @@ export { default as Queue } from "./components/Queue";
 export { default as Root } from "./components/Root";
 export { default as StringField } from "./components/StringField";
 export { default as Subtitle } from "./components/Subtitle";
+export { default as ThankYou } from "./components/ThankYou";
 export { default as ThemeProvider } from "./components/ThemeProvider";
 export { default as UserAvatar } from "./components/UserAvatar";
 export { default as VerticalGridContent } from "./components/VerticalGridContent";
