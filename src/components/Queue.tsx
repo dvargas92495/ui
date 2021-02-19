@@ -41,7 +41,7 @@ const Queue = ({
   title: string;
   subheader: React.ReactNode;
   loadItems: () => Promise<any[]>;
-  mapper: (item: any) => Omit<Item, 'key'>;
+  mapper: (item: any, refresh: () => Promise<void>) => Omit<Item, "key">;
   filter?: (item: Item) => boolean;
 }) => {
   const [items, setItems] = useState<Item[]>([]);
@@ -51,8 +51,11 @@ const Queue = ({
   );
   const classes = useStyles();
   const filteredItems = useMemo(
-    () => items.map((item, key) => ({ ...mapper(item), key })).filter(filter),
-    [items, filter, mapper]
+    () =>
+      items
+        .map((item, key) => ({ ...mapper(item, loadAsync), key }))
+        .filter(filter),
+    [items, filter, mapper, loadAsync]
   );
   return (
     <Card className={classes.card}>
