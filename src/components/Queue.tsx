@@ -41,7 +41,7 @@ const Queue = ({
   title: string;
   subheader: React.ReactNode;
   loadItems: () => Promise<any[]>;
-  mapper: (item: any) => Item;
+  mapper: (item: any) => Omit<Item, 'key'>;
   filter?: (item: Item) => boolean;
 }) => {
   const [items, setItems] = useState<Item[]>([]);
