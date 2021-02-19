@@ -35,23 +35,25 @@ const Queue = ({
   title,
   subheader,
   loadItems,
+  mapper,
   filter = () => true,
 }: {
   title: string;
   subheader: React.ReactNode;
-  loadItems: () => Promise<Omit<Item, "key">[]>;
+  loadItems: () => Promise<any[]>;
+  mapper: (item: any) => Item;
   filter?: (item: Item) => boolean;
 }) => {
   const [items, setItems] = useState<Item[]>([]);
   const loadAsync = useCallback(
-    () =>
-      loadItems().then((items) =>
-        setItems(items.map((item, key) => ({ ...item, key })))
-      ),
+    () => loadItems().then((items) => setItems(items)),
     [setItems]
   );
   const classes = useStyles();
-  const filteredItems = useMemo(() => items.filter(filter), [items, filter]);
+  const filteredItems = useMemo(
+    () => items.map((item, key) => ({ ...mapper(item), key })).filter(filter),
+    [items, filter, mapper]
+  );
   return (
     <Card className={classes.card}>
       <CardHeader title={title} subheader={subheader} />
