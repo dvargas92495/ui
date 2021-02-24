@@ -34,7 +34,6 @@ const Items = ({
           <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
         </ListItem>
       ))}
-      )
     </List>
   ) : noItemMessage ? (
     <Body>{noItemMessage}</Body>
