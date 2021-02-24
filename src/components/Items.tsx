@@ -4,7 +4,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import React from "react";
-import Body from './Body';
+import Body from "./Body";
 
 export type Item = {
   avatar?: React.ReactElement;
@@ -24,20 +24,22 @@ const Items = ({
   listClassName?: string;
   itemClassName?: string;
   noItemMessage?: string;
-}) => (
-  <List className={listClassName}>
-    {items.length ? (
-      items.map((item) => (
+}) =>
+  items.length ? (
+    <List className={listClassName}>
+      {items.map((item) => (
         <ListItem key={item.key} className={itemClassName}>
           {item.avatar && <ListItemAvatar>{item.avatar}</ListItemAvatar>}
           <ListItemText primary={item.primary} secondary={item.secondary} />
           <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
         </ListItem>
-      ))
-    ) : (
-      <Body>{noItemMessage}</Body>
-    )}
-  </List>
-);
+      ))}
+      )
+    </List>
+  ) : noItemMessage ? (
+    <Body>{noItemMessage}</Body>
+  ) : (
+    <></>
+  );
 
 export default Items;
