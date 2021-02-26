@@ -10,10 +10,14 @@ import Link from "@material-ui/core/Link";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    height: '100%',
   },
   media: {
     height: 140,
   },
+  title: {
+    marginTop: 0,
+  }
 });
 
 const CardGrid: React.FunctionComponent<{
@@ -23,11 +27,11 @@ const CardGrid: React.FunctionComponent<{
   return (
     <Grid container spacing={2}>
       {items.map(({ image, title, description, href }) => (
-        <Grid xs={3}>
+        <Grid item xs={2}>
           <Card className={classes.root}>
             <CardMedia className={classes.media} image={image} title={title} />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
+              <Typography gutterBottom variant="h6" className={classes.title}>
                 <Link href={href}>{title}</Link>
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
