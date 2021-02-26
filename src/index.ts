@@ -18,6 +18,7 @@ export { default as H3 } from "./components/H3";
 export { default as H4 } from "./components/H4";
 export { default as H5 } from "./components/H5";
 export { default as H6 } from "./components/H6";
+export { default as IconButton } from "./components/IconButton";
 export { default as Items } from "./components/Items";
 export {
   default as Landing,
