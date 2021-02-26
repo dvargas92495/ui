@@ -15,9 +15,11 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 140,
+    borderRadius: 4,
   },
   title: {
-    marginTop: 0,
+    margin: 0,
+    textAlign: "center",
   },
   overlay: {
     backgroundColor: "rgba(255,255,255,0.95)",
@@ -32,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     alignItems: "center",
     display: "flex",
+  },
+  content: {
+    padding: theme.spacing(1),
   },
 }));
 
@@ -50,23 +55,29 @@ const CardGrid: React.FunctionComponent<{
   return (
     <Grid container spacing={2}>
       {items.map(({ image, title, description, href }) => (
-        <Grid item xs={width}>
+        <Grid item xs={width} key={title}>
           <Card className={classes.root}>
-            <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-              <CardMedia
-                className={classes.media}
-                image={image}
-                title={title}
-              />
-              <Fade in={showDescription} timeout={1000}>
-                <div className={classes.overlay}>{description}</div>
-              </Fade>
-            </div>
-            <CardContent>
-              <Typography gutterBottom variant="h6" className={classes.title}>
-                <Link href={href}>{title}</Link>
-              </Typography>
-            </CardContent>
+            <Link href={href}>
+              <div
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+                style={{ padding: 8, position: 'relative' }}
+              >
+                <CardMedia
+                  className={classes.media}
+                  image={image}
+                  title={title}
+                />
+                <Fade in={showDescription} timeout={750}>
+                  <div className={classes.overlay}>{description}</div>
+                </Fade>
+              </div>
+              <CardContent className={classes.content}>
+                <Typography variant="h6" className={classes.title}>
+                  {title}
+                </Typography>
+              </CardContent>
+            </Link>
           </Card>
         </Grid>
       ))}
