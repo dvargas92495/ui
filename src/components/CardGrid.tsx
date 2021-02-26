@@ -8,18 +8,10 @@ import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Fade from "@material-ui/core/Fade";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-    height: "100%",
-  },
+const usePreviewStyles = makeStyles((theme) => ({
   media: {
     height: 140,
     borderRadius: 4,
-  },
-  title: {
-    margin: 0,
-    textAlign: "center",
   },
   overlay: {
     backgroundColor: "rgba(255,255,255,0.95)",
@@ -35,6 +27,44 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     display: "flex",
   },
+}));
+
+const Preview: React.FunctionComponent<{
+  image: string;
+  title: string;
+  description: string;
+}> = ({ image, title, description }) => {
+  const classes = usePreviewStyles();
+  const [showDescription, setShowDescription] = useState(false);
+  const onMouseEnter = useCallback(() => setShowDescription(true), [
+    setShowDescription,
+  ]);
+  const onMouseLeave = useCallback(() => setShowDescription(false), [
+    setShowDescription,
+  ]);
+  return (
+    <div
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      style={{ padding: 8, position: "relative" }}
+    >
+      <CardMedia className={classes.media} image={image} title={title} />
+      <Fade in={showDescription} timeout={750}>
+        <div className={classes.overlay}>{description}</div>
+      </Fade>
+    </div>
+  );
+};
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 345,
+    height: "100%",
+  },
+  title: {
+    margin: 0,
+    textAlign: "center",
+  },
   content: {
     padding: theme.spacing(1),
   },
@@ -45,33 +75,14 @@ const CardGrid: React.FunctionComponent<{
   width: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }> = ({ items, width }) => {
   const classes = useStyles();
-  const [showDescription, setShowDescription] = useState(false);
-  const onMouseEnter = useCallback(() => setShowDescription(true), [
-    setShowDescription,
-  ]);
-  const onMouseLeave = useCallback(() => setShowDescription(false), [
-    setShowDescription,
-  ]);
+
   return (
     <Grid container spacing={2}>
       {items.map(({ image, title, description, href }) => (
         <Grid item xs={width} key={title}>
           <Card className={classes.root}>
             <Link href={href}>
-              <div
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-                style={{ padding: 8, position: 'relative' }}
-              >
-                <CardMedia
-                  className={classes.media}
-                  image={image}
-                  title={title}
-                />
-                <Fade in={showDescription} timeout={750}>
-                  <div className={classes.overlay}>{description}</div>
-                </Fade>
-              </div>
+              <Preview title={title} description={description} image={image} />
               <CardContent className={classes.content}>
                 <Typography variant="h6" className={classes.title}>
                   {title}
