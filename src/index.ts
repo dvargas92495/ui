@@ -3,6 +3,7 @@ export { default as AppBar } from "./components/AppBar";
 export { default as Body } from "./components/Body";
 export { default as Button } from "./components/Button";
 export { default as Card } from "./components/Card";
+export { default as CardGrid } from "./components/CardGrid";
 export { default as CheckboxForm } from "./components/CheckboxForm";
 export { default as ConfirmationDialog } from "./components/ConfirmationDialog";
 export { default as DataLoader } from "./components/DataLoader";
