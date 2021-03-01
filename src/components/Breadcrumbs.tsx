@@ -14,7 +14,7 @@ const Breadcrumbs: React.FunctionComponent<{
       aria-label="breadcrumb"
     >
       {links.map(({ text, href }) => (
-        <Link color="inherit" href={href}>
+        <Link color="inherit" href={href} key={text}>
           {text}
         </Link>
       ))}
