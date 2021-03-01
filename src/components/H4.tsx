@@ -1,16 +1,8 @@
-import { Typography } from "@material-ui/core";
+import Typography, { TypographyProps } from "@material-ui/core/Typography";
 import React from "react";
 
-const H4 = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <Typography variant={"h4"} className={className}>
-    {children}
-  </Typography>
-);
+const H4: React.FunctionComponent<Omit<TypographyProps, "variant">> = (
+  props
+) => <Typography variant={"h4"} {...props} />;
 
 export default H4;
