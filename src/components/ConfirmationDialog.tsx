@@ -16,12 +16,12 @@ const useStyles = makeStyles(() => ({
 
 const ConfirmationDialog: React.FunctionComponent<{
   buttonText: string;
-  color: "primary" | "secondary";
+  color?: "primary" | "secondary";
   title: string;
   content: string;
   action: () => Promise<any>;
   onSuccess?: () => void;
-}> = ({ buttonText, color, title, content, action, onSuccess }) => {
+}> = ({ buttonText, color = "primary", title, content, action, onSuccess }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
