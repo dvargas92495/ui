@@ -74,8 +74,9 @@ const FormDialog = ({
     () =>
       Object.values(fieldError).some((m) => !!m) ||
       Object.values(formData).some((v) => !v) ||
-      !!error,
-    [fieldError, formData, error]
+      !!error ||
+      loading,
+    [fieldError, formData, error, loading]
   );
   const classes = useStyles();
 
