@@ -25,7 +25,10 @@ const ConfirmationDialog: React.FunctionComponent<{
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const handleOpen = useCallback(() => setOpen(true), [setOpen]);
+  const handleOpen = useCallback(() => {
+    setError("");
+    setOpen(true);
+  }, [setOpen, setError]);
   const handleClose = useCallback(() => setOpen(false), [setOpen]);
   const closeWithSuccess = useCallback(() => {
     handleClose();
@@ -35,6 +38,7 @@ const ConfirmationDialog: React.FunctionComponent<{
   }, [handleClose, onSuccess]);
   const onSubmit = useCallback(() => {
     setLoading(true);
+    setError("");
     action()
       .then(closeWithSuccess)
       .catch((e) => setError(e.response?.data || e.message))
