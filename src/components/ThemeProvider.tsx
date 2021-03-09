@@ -95,6 +95,11 @@ const theme = createMuiTheme({
         marginBottom: 0,
       },
     },
+    MuiBreadcrumbs: {
+      root: {
+        margin: 0,
+      },
+    },
   },
 });
 

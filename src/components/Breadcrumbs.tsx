@@ -18,7 +18,9 @@ const Breadcrumbs: React.FunctionComponent<{
           {text}
         </Link>
       ))}
-      <Typography color="textPrimary">{page}</Typography>
+      <Typography color="textPrimary" style={{ margin: 0 }}>
+        {page}
+      </Typography>
     </MuiBreadcrumbs>
   );
 };
