@@ -10,7 +10,10 @@ import H6 from "./H6";
 
 const useStyles = makeStyles(() => ({
   title: {
-    marginBottom: 0,
+    margin: 0,
+  },
+  content: {
+    margin: 0,
   },
 }));
 
@@ -66,7 +69,9 @@ const ConfirmationDialog: React.FunctionComponent<{
           <H6 className={classes.title}>{title}</H6>
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>{content}</DialogContentText>
+          <DialogContentText className={classes.content}>
+            {content}
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <DialogContentText color={"error"}>{error}</DialogContentText>
