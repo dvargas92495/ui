@@ -21,8 +21,17 @@ const ConfirmationDialog: React.FunctionComponent<{
   content: string;
   action: () => Promise<any>;
   onSuccess?: () => void;
-}> = ({ buttonText, color = "primary", title, content, action, onSuccess }) => {
-  const [open, setOpen] = useState(false);
+  defaultIsOpen?: boolean;
+}> = ({
+  buttonText,
+  color = "primary",
+  title,
+  content,
+  action,
+  onSuccess,
+  defaultIsOpen = false,
+}) => {
+  const [open, setOpen] = useState(defaultIsOpen);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const handleOpen = useCallback(() => {
@@ -41,7 +50,9 @@ const ConfirmationDialog: React.FunctionComponent<{
     setError("");
     action()
       .then(closeWithSuccess)
-      .catch((e) => setError(e.response?.data || e.message))
+      .catch((e) =>
+        setError(e.response?.data?.error || e.response?.data || e.message)
+      )
       .finally(() => setLoading(false));
   }, [setLoading, closeWithSuccess, setError, action]);
   const classes = useStyles();
