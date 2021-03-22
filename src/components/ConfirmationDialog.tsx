@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ConfirmationDialog: React.FunctionComponent<{
-  buttonText: string;
+  buttonText: React.ReactNode;
   color?: "primary" | "secondary";
   title: string;
   content: string;
