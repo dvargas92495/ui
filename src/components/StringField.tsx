@@ -7,7 +7,7 @@ import { IconButton, InputAdornment } from "@material-ui/core";
 
 type ExtraProps = { toggleable?: boolean };
 
-const useInputProps = ({toggleable}: ExtraProps) => {
+const useInputProps = ({ toggleable }: ExtraProps) => {
   const [show, setShow] = useState(false);
   if (toggleable) {
     return {
@@ -27,12 +27,17 @@ const useInputProps = ({toggleable}: ExtraProps) => {
   }
 };
 
-const StringField: FieldComponent<string, { toggleable?: boolean }> = ({ value, setValue, ...props }) => {
+const StringField: FieldComponent<string, { toggleable?: boolean }> = ({
+  value,
+  setValue,
+  toggleable,
+  ...props
+}) => {
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value || ""),
     [setValue]
   );
-  const inputProps = useInputProps(props);
+  const inputProps = useInputProps({ toggleable });
   return (
     <TextField
       {...props}

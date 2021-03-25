@@ -45,3 +45,4 @@ export { default as VerticalGridContent } from "./components/VerticalGridContent
 export { default as VerticalNavigationTabs } from "./components/VerticalNavigationTabs";
 export { default as VerticalTabs } from "./components/VerticalTabs";
 export { ServerStyleSheets } from "@material-ui/core/styles";
+export * from '@material-ui/core';
