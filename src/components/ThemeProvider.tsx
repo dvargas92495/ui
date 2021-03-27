@@ -100,6 +100,11 @@ const theme = createMuiTheme({
         margin: 0,
       },
     },
+    MuiListItemText: {
+      primary: {
+        margin: 0,
+      },
+    },
   },
 });
 
