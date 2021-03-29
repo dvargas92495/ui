@@ -45,6 +45,10 @@ const StringField: FieldComponent<string, { toggleable?: boolean }> = ({
       type={props.name?.toLowerCase() === "password" ? "password" : "text"}
       onChange={onChange}
       placeholder={`Enter ${props.label}...`}
+      InputProps={{
+        ...props.InputProps,
+        ...inputProps.InputProps,
+      }}
       {...inputProps}
     />
   );
