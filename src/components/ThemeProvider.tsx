@@ -105,6 +105,13 @@ const theme = createMuiTheme({
         margin: 0,
       },
     },
+    MuiDialogTitle: {
+      root: {
+        "& h2": {
+          margin: 0,
+        },
+      },
+    },
   },
 });
 
