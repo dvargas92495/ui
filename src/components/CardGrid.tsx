@@ -1,5 +1,5 @@
 import Grid from "@material-ui/core/Grid";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,7 +10,6 @@ import Fade from "@material-ui/core/Fade";
 
 const usePreviewStyles = makeStyles((theme) => ({
   media: {
-    height: 140,
     borderRadius: 4,
   },
   overlay: {
@@ -27,6 +26,14 @@ const usePreviewStyles = makeStyles((theme) => ({
     alignItems: "center",
     display: "flex",
   },
+  container: {
+    padding: 8,
+    position: "relative",
+    flexGrow: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
 }));
 
 const Preview: React.FunctionComponent<{
@@ -35,6 +42,7 @@ const Preview: React.FunctionComponent<{
   description: string;
 }> = ({ image, title, description }) => {
   const classes = usePreviewStyles();
+  const containerRef = useRef<HTMLDivElement>(null);
   const [showDescription, setShowDescription] = useState(false);
   const onMouseEnter = useCallback(() => setShowDescription(true), [
     setShowDescription,
@@ -42,13 +50,39 @@ const Preview: React.FunctionComponent<{
   const onMouseLeave = useCallback(() => setShowDescription(false), [
     setShowDescription,
   ]);
+  const [height, setHeight] = useState(140);
+  useEffect(() => {
+    const dummyImage = new Image();
+    dummyImage.src = image;
+    dummyImage.style.visibility = "hidden";
+    dummyImage.onload = () => {
+      document.body.appendChild(dummyImage);
+      const { clientWidth, clientHeight } = dummyImage;
+      dummyImage.remove();
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.clientWidth - 16;
+        const containerHeight = containerRef.current.clientHeight - 16;
+        if (clientWidth / clientHeight < containerWidth / containerHeight) {
+          setHeight(containerHeight);
+        } else {
+          setHeight((containerWidth * clientHeight) / clientWidth);
+        }
+      }
+    };
+  }, [containerRef, image]);
   return (
     <div
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      style={{ padding: 8, position: "relative" }}
+      className={classes.container}
+      ref={containerRef}
     >
-      <CardMedia className={classes.media} image={image} title={title} />
+      <CardMedia
+        className={classes.media}
+        image={image}
+        title={title}
+        style={{ height }}
+      />
       <Fade in={showDescription} timeout={750}>
         <div className={classes.overlay}>{description}</div>
       </Fade>
@@ -68,6 +102,11 @@ const useStyles = makeStyles((theme) => ({
   content: {
     padding: theme.spacing(1),
   },
+  link: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+  },
 }));
 
 const CardGrid: React.FunctionComponent<{
@@ -81,7 +120,7 @@ const CardGrid: React.FunctionComponent<{
       {items.map(({ image, title, description, href }) => (
         <Grid item xs={width} key={title}>
           <Card className={classes.root}>
-            <Link href={href}>
+            <Link href={href} className={classes.link}>
               <Preview title={title} description={description} image={image} />
               <CardContent className={classes.content}>
                 <Typography variant="h6" className={classes.title}>
