@@ -25,6 +25,7 @@ const ConfirmationDialog: React.FunctionComponent<{
   action: () => Promise<any>;
   onSuccess?: () => void;
   defaultIsOpen?: boolean;
+  disabled?: boolean;
 }> = ({
   buttonText,
   color = "primary",
@@ -33,6 +34,7 @@ const ConfirmationDialog: React.FunctionComponent<{
   action,
   onSuccess,
   defaultIsOpen = false,
+  disabled = false,
 }) => {
   const [open, setOpen] = useState(defaultIsOpen);
   const [loading, setLoading] = useState(false);
@@ -79,7 +81,7 @@ const ConfirmationDialog: React.FunctionComponent<{
           <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
-          <Button onClick={onSubmit} color="primary" disabled={loading}>
+          <Button onClick={onSubmit} color="primary" disabled={loading || disabled}>
             Submit
           </Button>
         </DialogActions>
