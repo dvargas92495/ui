@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const FormDialog = ({
+  defaultIsOpen = false,
   onSave,
   onSuccess,
   buttonText,
@@ -38,8 +39,9 @@ const FormDialog = ({
   title: React.ReactNode;
   contentText: React.ReactNode;
   formElements: FormElement<string | number | Date>[];
+  defaultIsOpen?: boolean;
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultIsOpen);
   const handleOpen = useCallback(() => setOpen(true), [setOpen]);
   const handleClose = useCallback(() => setOpen(false), [setOpen]);
   const closeWithSuccess = useCallback(() => {
