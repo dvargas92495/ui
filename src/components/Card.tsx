@@ -1,14 +1,15 @@
 import React from "react";
-import MuiCard from "@material-ui/core/Card";
+import MuiCard, { CardProps } from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 
-const Card: React.FunctionComponent<{ title: string }> = ({
+const Card: React.FunctionComponent<{ title: string } & CardProps> = ({
   title,
   children,
+  ...cardProps
 }) => {
   return (
-    <MuiCard>
+    <MuiCard {...cardProps}>
       <CardHeader title={title} />
       <CardContent>{children}</CardContent>
     </MuiCard>
