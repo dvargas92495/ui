@@ -14,7 +14,7 @@ const emojisToTooltip = {
   "📖": "Documentation",
 };
 
-type Sponsor = {
+export type ThankYouSponsor = {
   title: string;
   imgSrc?: string;
   url?: string;
@@ -22,7 +22,7 @@ type Sponsor = {
 };
 
 const ThankYou: React.FunctionComponent<{
-  sponsors: Sponsor[];
+  sponsors: ThankYouSponsor[];
   defaultImgSrc: string;
 }> = ({ sponsors, defaultImgSrc }) => (
   <Grid container style={{ margin: "16px 0" }} spacing={1}>
