@@ -14,6 +14,8 @@ const emojisToTooltip = {
   "📖": "Documentation",
 };
 
+export const isThankYouEmoji = (s: string): boolean => !!emojisToTooltip[s];
+
 export type ThankYouSponsor = {
   title: string;
   imgSrc?: string;

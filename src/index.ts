@@ -37,7 +37,11 @@ export { default as Queue } from "./components/Queue";
 export { default as Root } from "./components/Root";
 export { default as StringField } from "./components/StringField";
 export { default as Subtitle } from "./components/Subtitle";
-export { default as ThankYou, ThankYouSponsor } from "./components/ThankYou";
+export {
+  default as ThankYou,
+  ThankYouSponsor,
+  isThankYouEmoji,
+} from "./components/ThankYou";
 export { default as Tooltip } from "./components/Tooltip";
 export { default as ThemeProvider } from "./components/ThemeProvider";
 export { default as UserAvatar } from "./components/UserAvatar";
@@ -45,4 +49,4 @@ export { default as VerticalGridContent } from "./components/VerticalGridContent
 export { default as VerticalNavigationTabs } from "./components/VerticalNavigationTabs";
 export { default as VerticalTabs } from "./components/VerticalTabs";
 export { ServerStyleSheets } from "@material-ui/core/styles";
-export * from '@material-ui/core';
+export * from "@material-ui/core";
