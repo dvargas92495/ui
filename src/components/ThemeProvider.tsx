@@ -103,6 +103,7 @@ const theme = createMuiTheme({
     MuiListItem: {
       root: {
         display: "list-item",
+        fontSize: 16,
         "& .MuiTypography-root": {
           margin: 0,
         },
