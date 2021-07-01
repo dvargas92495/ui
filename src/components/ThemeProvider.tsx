@@ -103,7 +103,7 @@ const theme = createMuiTheme({
     MuiListItem: {
       root: {
         display: "list-item",
-        "MuiTypography-root": {
+        "& .MuiTypography-root": {
           margin: 0,
         },
       },
