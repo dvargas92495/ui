@@ -100,6 +100,14 @@ const theme = createMuiTheme({
         margin: 0,
       },
     },
+    MuiListItem: {
+      root: {
+        display: "list-item",
+        "MuiTypography-root": {
+          margin: 0,
+        },
+      },
+    },
     MuiListItemText: {
       primary: {
         margin: 0,
