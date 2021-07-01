@@ -9,6 +9,7 @@ import Items, { Item } from "./Items";
 const useStyles = makeStyles((theme) => ({
   listItem: {
     paddingRight: theme.spacing(12),
+    borderTop: "1px solid gray",
   },
   card: {
     height: "100%",
