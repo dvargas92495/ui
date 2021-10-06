@@ -6,7 +6,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import { BASE_PATH } from "./util";
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -26,13 +25,13 @@ const AppBar: React.FunctionComponent<{
   return (
     <MuiAppBar position="static" elevation={5} color="transparent">
       <Toolbar>
-        <Link href={BASE_PATH} className={classes.home}>{homeIcon}</Link>
+        <Link href={"/"} className={classes.home}>{homeIcon}</Link>
         <Grid container justify="center">
           {pages.map((p, i) => (
             <React.Fragment key={i}>
               {i > 0 && <Divider orientation="vertical" flexItem />}
               <Typography variant={"subtitle1"} color={"textPrimary"} className={classes.link}>
-                <Link href={`${BASE_PATH}${p}`} color="inherit">
+                <Link href={`/${p}`} color="inherit">
                   {p}
                 </Link>
               </Typography>

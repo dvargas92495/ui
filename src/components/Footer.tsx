@@ -4,7 +4,6 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import H6 from "./H6";
-import { BASE_PATH } from "./util";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -29,7 +28,7 @@ const Footer = ({ siteLinks }: { siteLinks: string[] }) => {
           <H6>Site Links</H6>
           {siteLinks.map((l, i) => (
             <Typography variant={"body2"} color="textSecondary" key={i}>
-              <Link href={`${BASE_PATH}${l.toLowerCase().replace(/ /g, '-')}`} color="inherit">
+              <Link href={`/${l.toLowerCase().replace(/ /g, '-')}`} color="inherit">
                 {l}
               </Link>
             </Typography>

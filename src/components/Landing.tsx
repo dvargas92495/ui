@@ -5,7 +5,6 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 import Typography from "@material-ui/core/Typography";
 import React, { SVGAttributes } from "react";
 import Button from "@material-ui/core/Button";
-import { BASE_PATH } from "./util";
 import H4 from "./H4";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -54,7 +53,7 @@ export const Splash = ({
         <Button
           variant={"contained"}
           color="primary"
-          href={`${BASE_PATH}${primaryHref}`}
+          href={`/${primaryHref}`}
           className={classes.button}
         >
           <Typography variant="h6" className={classes.marginLessLabel}>
@@ -64,7 +63,7 @@ export const Splash = ({
         <Button
           variant={"outlined"}
           color="primary"
-          href={`${BASE_PATH}${secondaryHref}`}
+          href={`/${secondaryHref}`}
           className={classes.button}
         >
           <Typography variant="h6" className={classes.marginLessLabel}>
