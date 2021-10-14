@@ -26,6 +26,7 @@ export {
   Stats as StatsLanding,
   Showcase as ShowcaseLanding,
 } from "./components/Landing";
+export { default as Layout, LayoutHead } from "./components/Layout";
 export { default as LI } from "./components/LI";
 export { default as Loading } from "./components/Loading";
 export { default as Logo } from "./components/Logo";
@@ -49,4 +50,4 @@ export { default as VerticalGridContent } from "./components/VerticalGridContent
 export { default as VerticalNavigationTabs } from "./components/VerticalNavigationTabs";
 export { default as VerticalTabs } from "./components/VerticalTabs";
 
-export { default as useAuthenticatedHandler } from './useAuthenticatedHandler';
+export { default as useAuthenticatedHandler } from "./useAuthenticatedHandler";
