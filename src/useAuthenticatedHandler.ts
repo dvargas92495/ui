@@ -1,4 +1,5 @@
 import { useSession } from "@clerk/clerk-react";
+import { useCallback } from "react";
 import { InnerPromise } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -12,36 +13,39 @@ const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
   const { getToken } = useSession();
   const httpMethod = method.toUpperCase();
   const isBody = ["PUT", "POST"].includes(httpMethod);
-  return (params?: Omit<Parameters<T>[0], "user">) =>
-    getToken().then((token) =>
-      fetch(
-        `${process.env.API_URL}/${path}${
-          isBody || !params
-            ? ""
-            : `?${new URLSearchParams(
-                Object.fromEntries(
-                  Object.keys(params).map((k) => [k, `${params[k]}`])
-                )
-              ).toString()}`
-        }`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            ...(isBody ? { "Content-Type": "application/json" } : {}),
-          },
-          method,
-          ...(isBody ? { body: JSON.stringify(params) } : {}),
-        }
-      ).then((r) => {
-        if (r.ok) {
-          return r.json().then((d) => d as InnerPromise<ReturnType<T>>);
-        } else {
-          return r.text().then((s) => {
-            throw new Error(s);
-          });
-        }
-      })
-    );
+  return useCallback(
+    (params?: Omit<Parameters<T>[0], "user">) =>
+      getToken().then((token) =>
+        fetch(
+          `${process.env.API_URL}/${path}${
+            isBody || !params
+              ? ""
+              : `?${new URLSearchParams(
+                  Object.fromEntries(
+                    Object.keys(params).map((k) => [k, `${params[k]}`])
+                  )
+                ).toString()}`
+          }`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              ...(isBody ? { "Content-Type": "application/json" } : {}),
+            },
+            method,
+            ...(isBody ? { body: JSON.stringify(params) } : {}),
+          }
+        ).then((r) => {
+          if (r.ok) {
+            return r.json().then((d) => d as InnerPromise<ReturnType<T>>);
+          } else {
+            return r.text().then((s) => {
+              throw new Error(s);
+            });
+          }
+        })
+      ),
+    [getToken, method, path]
+  );
 };
 
 export default useAuthenticatedHandler;
