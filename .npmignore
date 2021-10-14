@@ -1,5 +1,3 @@
 /tests
-.babelrc
 .gitignore
-rollup.config.js
 tsconfig.json

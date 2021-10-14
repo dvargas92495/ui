@@ -4,10 +4,9 @@
   "description": "UI Component Library For All My Apps",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "tsc",
     "prepublish": "npm run build",
     "postversion": "git push origin main",
-    "start": "rollup -c -w",
     "test": "jest"
   },
   "jest": {
@@ -32,23 +31,15 @@
   },
   "homepage": "https://github.com/dvargas92495/ui#readme",
   "devDependencies": {
-    "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4",
-    "@rollup/plugin-commonjs": "^15.1.0",
-    "@rollup/plugin-node-resolve": "^9.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@types/jest": "^26.0.14",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0",
     "jest": "^26.4.2",
     "prettier": "^2.1.2",
-    "rollup": "^2.28.2",
-    "rollup-plugin-typescript2": "^0.27.2",
     "ts-jest": "^26.4.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.4.4"
   },
   "dependencies": {
     "@clerk/clerk-react": "^1.22.1",
@@ -58,10 +49,6 @@
     "react": "^17.0.1",
     "react-device-detect": "^1.14.0",
     "react-dom": "^17.0.1"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0 || ^17",
-    "react-dom": "^16.8.0 || ^17"
   },
   "files": [
     "dist"
