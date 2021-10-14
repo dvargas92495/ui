@@ -46,6 +46,7 @@ export {
 export { default as Tooltip } from "./components/Tooltip";
 export { default as ThemeProvider } from "./components/ThemeProvider";
 export { default as UserAvatar } from "./components/UserAvatar";
+export { default as UserProfileTab } from "./components/UserProfileTab";
 export { default as VerticalGridContent } from "./components/VerticalGridContent";
 export { default as VerticalNavigationTabs } from "./components/VerticalNavigationTabs";
 export { default as VerticalTabs } from "./components/VerticalTabs";
