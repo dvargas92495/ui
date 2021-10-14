@@ -26,7 +26,7 @@ const AppBar: React.FunctionComponent<{
     <MuiAppBar position="static" elevation={5} color="transparent">
       <Toolbar>
         <Link href={"/"} className={classes.home}>{homeIcon}</Link>
-        <Grid container justify="center">
+        <Grid container justifyContent="center">
           {pages.map((p, i) => (
             <React.Fragment key={i}>
               {i > 0 && <Divider orientation="vertical" flexItem />}

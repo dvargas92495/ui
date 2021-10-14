@@ -5,7 +5,7 @@ type InnerPromise<T extends Promise<unknown>> = T extends Promise<infer R>
   : unknown;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useAuthenticatedHandler = <T extends (arg: any) => Promise<unknown>>({
+const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
   path,
   method,
 }: {

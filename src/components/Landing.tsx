@@ -1,7 +1,7 @@
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
+import { alpha } from "@material-ui/core/styles/colorManipulator";
 import Typography from "@material-ui/core/Typography";
 import React, { SVGAttributes } from "react";
 import Button from "@material-ui/core/Button";
@@ -149,7 +149,7 @@ export const Stats = ({
         container
         alignItems="flex-start"
         spacing={8}
-        justify="space-evenly"
+        justifyContent="space-evenly"
       >
         {stats.map((s) => (
           <Grid item xs={3} key={s.label}>
@@ -170,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
   secondaryContent: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
-    background: fade(theme.palette.secondary.light, 0.25),
+    background: alpha(theme.palette.secondary.light, 0.25),
   },
   breakContent: {
     paddingTop: theme.spacing(8),
@@ -180,7 +180,7 @@ const useStyles = makeStyles((theme) => ({
   primaryContent: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
-    background: fade(theme.palette.primary.light, 0.25),
+    background: alpha(theme.palette.primary.light, 0.25),
     textAlign: "center",
   },
 }));

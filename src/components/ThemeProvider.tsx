@@ -1,8 +1,6 @@
 import React from "react";
-import {
-  createMuiTheme,
-  ThemeProvider as MuiThemeProvider,
-} from "@material-ui/core/styles";
+import MuiThemeProvider from "@material-ui/styles/ThemeProvider";
+import createMuiTheme from "@material-ui/core/styles/createTheme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 const primaryMain = "#3BA4DC";
