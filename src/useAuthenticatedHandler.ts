@@ -1,4 +1,5 @@
 import { useSession } from "@clerk/clerk-react";
+import { InnerPromise } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
