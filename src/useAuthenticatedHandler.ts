@@ -1,9 +1,5 @@
 import { useSession } from "@clerk/clerk-react";
 
-type InnerPromise<T extends Promise<unknown>> = T extends Promise<infer R>
-  ? R
-  : unknown;
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
   path,
@@ -32,7 +28,7 @@ const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
             Authorization: `Bearer ${token}`,
             ...(isBody ? { "Content-Type": "application/json" } : {}),
           },
-          method: "POST",
+          method,
           ...(isBody ? { body: JSON.stringify(params) } : {}),
         }
       ).then((r) => {

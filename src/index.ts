@@ -52,3 +52,5 @@ export { default as VerticalNavigationTabs } from "./components/VerticalNavigati
 export { default as VerticalTabs } from "./components/VerticalTabs";
 
 export { default as useAuthenticatedHandler } from "./useAuthenticatedHandler";
+
+export { InnerPromise } from './types';
