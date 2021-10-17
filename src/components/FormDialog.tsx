@@ -7,7 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { FieldComponent } from "./util";
+import { FieldComponent } from "../types";
 import { makeStyles } from "@material-ui/core";
 import H6 from "./H6";
 

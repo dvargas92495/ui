@@ -1,6 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 import React, { ChangeEvent, useCallback, useState } from "react";
-import { FieldComponent } from "./util";
+import { FieldComponent } from "../types";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { IconButton, InputAdornment } from "@material-ui/core";

@@ -51,6 +51,7 @@ export { default as VerticalGridContent } from "./components/VerticalGridContent
 export { default as VerticalNavigationTabs } from "./components/VerticalNavigationTabs";
 export { default as VerticalTabs } from "./components/VerticalTabs";
 
+export { default as clerkUserProfileCss } from "./clerkUserProfileCss";
 export { default as useAuthenticatedHandler } from "./useAuthenticatedHandler";
 
-export { InnerPromise } from './types';
+export { InnerPromise } from "./types";

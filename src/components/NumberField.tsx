@@ -1,7 +1,7 @@
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import React, { ChangeEvent, useCallback } from "react";
-import { FieldComponent } from "./util";
+import { FieldComponent } from "../types";
 
 type Dimension = "money";
 

@@ -1,6 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 import React, { ChangeEvent, useCallback } from "react";
-import { FieldComponent } from "./util";
+import { FieldComponent } from "../types";
 import parse from "date-fns/parse";
 import format from "date-fns/format";
 
