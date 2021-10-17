@@ -15,7 +15,11 @@ import {
 
 const sheets = new ServerStyleSheets();
 
-const Layout: React.FC<{homeIcon: React.ReactNode}> = ({ children, homeIcon }) => {
+const Layout: React.FC<{ homeIcon?: React.ReactNode; pages?: string[] }> = ({
+  children,
+  pages = [],
+  homeIcon = "Home",
+}) => {
   return sheets.collect(
     <ClerkProvider frontendApi={process.env.CLERK_FRONTEND_API} authVersion={2}>
       <ThemeProvider>
@@ -47,9 +51,12 @@ const Layout: React.FC<{homeIcon: React.ReactNode}> = ({ children, homeIcon }) =
                 </SignedOut>
               </>
             }
+            pages={pages}
           />
           <Main>{children}</Main>
-          <Footer siteLinks={[]} />
+          <Footer
+            siteLinks={["About", "Terms of Use", "Privacy Policy", "Contact"]}
+          />
         </Root>
       </ThemeProvider>
     </ClerkProvider>

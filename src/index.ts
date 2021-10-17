@@ -1,3 +1,4 @@
+export { default as About } from "./components/About";
 export { default as AddUser } from "./components/AddUser";
 export { default as AppBar } from "./components/AppBar";
 export { default as Body } from "./components/Body";
@@ -7,6 +8,7 @@ export { default as Card } from "./components/Card";
 export { default as CardGrid } from "./components/CardGrid";
 export { default as CheckboxForm } from "./components/CheckboxForm";
 export { default as ConfirmationDialog } from "./components/ConfirmationDialog";
+export { default as Contact } from "./components/Contact";
 export { default as DataLoader } from "./components/DataLoader";
 export { default as DateField } from "./components/DateField";
 export { default as ExternalLink } from "./components/ExternalLink";
@@ -34,10 +36,12 @@ export { default as Main } from "./components/Main";
 export { default as NavList } from "./components/NavList";
 export { default as NumberField } from "./components/NumberField";
 export { default as Outlined } from "./components/Outlined";
+export { default as PrivacyPolicy } from "./components/PrivacyPolicy";
 export { default as Queue } from "./components/Queue";
 export { default as Root } from "./components/Root";
 export { default as StringField } from "./components/StringField";
 export { default as Subtitle } from "./components/Subtitle";
+export { default as TermsOfUse } from "./components/TermsOfUse";
 export {
   default as ThankYou,
   ThankYouSponsor,
