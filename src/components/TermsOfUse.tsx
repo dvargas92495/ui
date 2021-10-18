@@ -1,5 +1,6 @@
 import React from "react";
 import Body from "./Body";
+import ExternalLink from "./ExternalLink";
 import H1 from "./H1";
 import H6 from "./H6";
 
@@ -383,7 +384,10 @@ const TermsOfUse = ({ name, domain }: { name: string; domain: string }) => (
       shall be binding upon assignees.
     </Body>
     <H6> Your Privacy.</H6>
-    <Body>Please read our [Privacy Policy](/privacy-policy).</Body>
+    <Body>
+      Please read our
+      <ExternalLink href={"/privacy-policy"}>Privacy Policy</ExternalLink>.
+    </Body>
     <H6> Contact Information</H6>
     <Body>Address: Earth</Body>
     <Body>Email: dvargas92495@gmail.com</Body>
