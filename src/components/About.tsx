@@ -12,13 +12,13 @@ const About = ({
   subtitle: string;
   paragraphs: string[];
 }) => (
-  <>
+  <div>
     <H1>{title}</H1>
     <H6>{subtitle}</H6>
     {paragraphs.map((p, i) => (
       <Body key={i}>{p}</Body>
     ))}
-  </>
+  </div>
 );
 
 export default About;

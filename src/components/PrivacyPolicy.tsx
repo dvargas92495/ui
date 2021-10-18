@@ -4,7 +4,7 @@ import H2 from "./H2";
 import H6 from "./H6";
 
 const PrivacyPolicy = ({ name, domain }: { name: string; domain: string }) => (
-  <>
+  <div>
     <H2>Privacy Policy for Vargas Arts, LLC</H2>
     <Body>
       {name}, accessible from https://{domain}, is an application residing in
@@ -181,7 +181,7 @@ const PrivacyPolicy = ({ name, domain }: { name: string; domain: string }) => (
       contact us immediately and we will do our best efforts to promptly remove
       such information from our records.
     </Body>
-  </>
+  </div>
 );
 
 export default PrivacyPolicy;

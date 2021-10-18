@@ -4,7 +4,7 @@ import H1 from "./H1";
 import H6 from "./H6";
 
 const TermsOfUse = ({ name, domain }: { name: string; domain: string }) => (
-  <>
+  <div>
     <H1>Terms of Use</H1>
     <Body>
       The {name} website located at https://{domain} was founded by Vargas Arts,
@@ -387,7 +387,7 @@ const TermsOfUse = ({ name, domain }: { name: string; domain: string }) => (
     <H6> Contact Information</H6>
     <Body>Address: Earth</Body>
     <Body>Email: dvargas92495@gmail.com</Body>
-  </>
+  </div>
 );
 
 export default TermsOfUse;
