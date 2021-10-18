@@ -385,7 +385,7 @@ const TermsOfUse = ({ name, domain }: { name: string; domain: string }) => (
     </Body>
     <H6> Your Privacy.</H6>
     <Body>
-      Please read our
+      Please read our{" "}
       <ExternalLink href={"/privacy-policy"}>Privacy Policy</ExternalLink>.
     </Body>
     <H6> Contact Information</H6>

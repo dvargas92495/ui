@@ -19,7 +19,7 @@ const PrivacyPolicy = ({ name, domain }: { name: string; domain: string }) => (
     </Body>
     <Body>
       If you have additional questions or require more information about our
-      Privacy Policy, do not hesitate to
+      Privacy Policy, do not hesitate to{" "}
       <ExternalLink href={"/contact"}>contact us</ExternalLink>.
     </Body>
     <Body>
@@ -33,7 +33,7 @@ const PrivacyPolicy = ({ name, domain }: { name: string; domain: string }) => (
     <H6>Consent</H6>
     <Body>
       By using our websites, you hereby consent to our Privacy Policy and agree
-      to its terms. For our Terms and Conditions, please visit the 
+      to its terms. For our Terms and Conditions, please visit the{" "}
       <ExternalLink href={'/terms-of-use'}>Terms Of Use</ExternalLink>.
     </Body>
     <H6>Information we collect</H6>
