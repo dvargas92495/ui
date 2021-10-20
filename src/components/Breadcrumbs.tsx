@@ -1,8 +1,8 @@
 import React from "react";
-import MuiBreadcrumbs from "@material-ui/core/Breadcrumbs";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import Link from "@material-ui/core/Link";
-import Typography from "@material-ui/core/Typography";
+import MuiBreadcrumbs from "@mui/material/Breadcrumbs";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 
 const Breadcrumbs: React.FunctionComponent<{
   links: { text: string; href: string }[];

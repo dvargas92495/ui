@@ -1,4 +1,4 @@
-import Typography, { TypographyProps } from "@material-ui/core/Typography";
+import Typography, { TypographyProps } from "@mui/material/Typography";
 import React from "react";
 
 const H4: React.FunctionComponent<Omit<

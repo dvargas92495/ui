@@ -1,5 +1,5 @@
 import React from "react";
-import MuiButton, { ButtonProps } from "@material-ui/core/Button";
+import MuiButton, { ButtonProps } from "@mui/material/Button";
 
 const Button = (props: ButtonProps) => <MuiButton {...props} />;
 

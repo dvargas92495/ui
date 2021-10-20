@@ -1,12 +1,12 @@
 import React from "react";
-import MuiThemeProvider from "@material-ui/styles/ThemeProvider";
-import createMuiTheme from "@material-ui/core/styles/createTheme";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import createTheme from "@mui/material/styles/createTheme";
+import MuiThemeProvider from "@mui/material/styles/ThemeProvider";
+import CssBaseline from "@mui/material/CssBaseline";
 
 const primaryMain = "#3BA4DC";
 const secondaryMain = "#F7941D";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: primaryMain,
@@ -64,58 +64,69 @@ const theme = createMuiTheme({
       margin: "1em 0",
     },
   },
-  overrides: {
+  components: {
     MuiFormControlLabel: {
-      label: {
-        margin: 0,
-      },
-    },
-    MuiInputLabel: {
-      root: {
-        margin: 0,
-      },
-    },
-    MuiCardHeader: {
-      subheader: {
-        margin: 0,
-      },
-      title: {
-        margin: 0,
-      },
-    },
-    MuiInputBase: {
-      root: {
-        margin: 0,
-      },
-    },
-    MuiButton: {
-      label: {
-        marginBottom: 0,
-      },
-    },
-    MuiBreadcrumbs: {
-      root: {
-        margin: 0,
-      },
-    },
-    MuiListItem: {
-      root: {
-        display: "list-item",
-        fontSize: 16,
-        "& .MuiTypography-root": {
+      styleOverrides: {
+        label: {
           margin: 0,
         },
       },
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        },
+      },
+    },
+    MuiCardHeader: {
+      styleOverrides: {
+        subheader: {
+          margin: 0,
+        },
+        title: {
+          margin: 0,
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        },
+      },
+    },
+    MuiBreadcrumbs: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        },
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          display: "list-item",
+          fontSize: 16,
+          "& .MuiTypography-root": {
+            margin: 0,
+          },
+        },
+      },
+    },
     MuiListItemText: {
-      primary: {
-        margin: 0,
+      styleOverrides: {
+        primary: {
+          margin: 0,
+        },
       },
     },
     MuiDialogTitle: {
-      root: {
-        "& h2": {
-          margin: 0,
+      styleOverrides: {
+        root: {
+          "& h2": {
+            margin: 0,
+          },
         },
       },
     },

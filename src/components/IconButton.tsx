@@ -1,9 +1,9 @@
 import React from "react";
-import MuiIconButton, { IconButtonProps } from "@material-ui/core/IconButton";
-import ChevronLeft from "@material-ui/icons/ChevronLeft";
-import ChevronRight from "@material-ui/icons/ChevronRight";
-import FileCopy from "@material-ui/icons/FileCopy";
-import Delete from "@material-ui/icons/Delete";
+import MuiIconButton, { IconButtonProps } from "@mui/material/IconButton";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import ChevronRight from "@mui/icons-material/ChevronRight";
+import FileCopy from "@mui/icons-material/FileCopy";
+import Delete from "@mui/icons-material/Delete";
 
 const ICONS = {
   chevronLeft: ChevronLeft,

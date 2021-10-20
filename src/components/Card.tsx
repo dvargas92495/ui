@@ -1,7 +1,7 @@
 import React from "react";
-import MuiCard, { CardProps } from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
+import MuiCard, { CardProps } from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
 
 const Card: React.FunctionComponent<{ title: string } & CardProps> = ({
   title,

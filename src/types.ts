@@ -1,4 +1,4 @@
-import type { TextFieldProps } from "@material-ui/core/TextField";
+import type { TextFieldProps } from "@mui/material/TextField";
 
 export type InnerPromise<T extends Promise<unknown>> = T extends Promise<
   infer R

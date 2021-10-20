@@ -1,37 +1,53 @@
-import Paper from "@material-ui/core/Paper";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import Tab from "@material-ui/core/Tab";
-import Tabs from "@material-ui/core/Tabs";
+import Paper from "@mui/material/Paper";
+import styled from "@mui/material/styles/styled";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
 import React from "react";
 import H4 from "./H4";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = "VerticalNavigationTabs";
+
+const classes = {
+  root: `${PREFIX}-root`,
+  tabsContainer: `${PREFIX}-tabsContainer`,
+  tabs: `${PREFIX}-tabs`,
+  tabPanel: `${PREFIX}-tabPanel`,
+  titleContainer: `${PREFIX}-titleContainer`,
+  title: `${PREFIX}-title`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.root}`]: {
     width: "100%",
     marginTop: theme.spacing(-8),
     display: "flex",
   },
-  tabsContainer: {
+
+  [`& .${classes.tabsContainer}`]: {
     display: "flex",
     flexDirection: "column",
     minWidth: theme.spacing(34),
   },
-  tabs: {
+
+  [`& .${classes.tabs}`]: {
     color: theme.palette.getContrastText(theme.palette.text.primary),
     backgroundColor: theme.palette.text.primary,
     flexGrow: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
-  tabPanel: {
+
+  [`& .${classes.tabPanel}`]: {
     padding: theme.spacing(3),
     paddingBottom: theme.spacing(0),
     maxWidth: theme.spacing(100),
   },
-  titleContainer: {
+
+  [`& .${classes.titleContainer}`]: {
     backgroundColor: theme.palette.primary.main,
     padding: theme.spacing(2),
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     color: theme.palette.getContrastText(theme.palette.primary.main),
     margin: 0,
   },
@@ -49,16 +65,18 @@ const VerticalNavigationTabs = ({
   title: string;
 }) => {
   const [value, setValue] = React.useState(
-    Math.max(items.findIndex((i) => i.label === label), 0)
+    Math.max(
+      items.findIndex((i) => i.label === label),
+      0
+    )
   );
   const handleChange = React.useCallback(
     (_: React.ChangeEvent<{}>, newValue: number) => setValue(newValue),
     [setValue]
   );
-  const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <div className={classes.tabsContainer}>
         <Paper variant="outlined" square className={classes.titleContainer}>
           <H4 className={classes.title}>{title}</H4>
@@ -89,7 +107,7 @@ const VerticalNavigationTabs = ({
       >
         {children}
       </div>
-    </div>
+    </Root>
   );
 };
 

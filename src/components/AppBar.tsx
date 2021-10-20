@@ -1,19 +1,31 @@
 import React from "react";
-import MuiAppBar from "@material-ui/core/AppBar";
-import Divider from "@material-ui/core/Divider";
-import Link from "@material-ui/core/Link";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import styled from '@mui/material/styles/styled';
+import MuiAppBar from "@mui/material/AppBar";
+import Divider from "@mui/material/Divider";
+import Link from "@mui/material/Link";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 
-const useStyles = makeStyles((theme) => ({
-  link: {
+const PREFIX = 'AppBar';
+
+const classes = {
+  link: `${PREFIX}-link`,
+  home: `${PREFIX}-home`
+};
+
+const StyledMuiAppBar = styled(MuiAppBar)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.link}`]: {
     margin: theme.spacing(0, 1),
   },
-  home: {
+
+  [`& .${classes.home}`]: {
     maxWidth: theme.spacing(10.5),
-  },
+  }
 }));
 
 const AppBar: React.FunctionComponent<{
@@ -21,9 +33,9 @@ const AppBar: React.FunctionComponent<{
   userIcon: React.ReactNode;
   pages?: string[];
 }> = ({ children, homeIcon, pages = [], userIcon }) => {
-  const classes = useStyles();
+
   return (
-    <MuiAppBar position="static" elevation={5} color="transparent">
+    <StyledMuiAppBar position="static" elevation={5} color="transparent">
       <Toolbar>
         <Link href={"/"} className={classes.home}>
           {homeIcon}
@@ -47,7 +59,7 @@ const AppBar: React.FunctionComponent<{
         {children}
         {userIcon}
       </Toolbar>
-    </MuiAppBar>
+    </StyledMuiAppBar>
   );
 };
 

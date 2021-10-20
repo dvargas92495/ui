@@ -1,17 +1,14 @@
-import { makeStyles } from "@material-ui/core/styles";
+import styled from "@mui/material/styles/styled";
 import React from "react";
 
-const useStyles = makeStyles(() => ({
-  root: {
+const StyledRoot = styled("div")({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-  },
-}));
+});
 
 const Root = ({ children }: { children: React.ReactNode }) => {
-  const classes = useStyles();
-  return <div className={classes.root}>{children}</div>;
+  return <StyledRoot>{children}</StyledRoot>;
 };
 
 export default Root;

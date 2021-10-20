@@ -1,6 +1,6 @@
 import CircularProgress, {
   CircularProgressProps,
-} from "@material-ui/core/CircularProgress";
+} from "@mui/material/CircularProgress";
 import React from "react";
 
 const Loading: React.FunctionComponent<

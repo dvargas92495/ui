@@ -1,15 +1,28 @@
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from "@mui/material/Button";
+import styled from "@mui/material/styles/styled";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
 import React, { useCallback, useMemo, useState } from "react";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Grid from "@material-ui/core/Grid";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Grid from "@mui/material/Grid";
+import CircularProgress from "@mui/material/CircularProgress";
 import { FieldComponent } from "../types";
-import { makeStyles } from "@material-ui/core";
 import H6 from "./H6";
+
+const PREFIX = "FormDialog";
+
+const classes = {
+  title: `${PREFIX}-title`,
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled("div")(() => ({
+  [`& .${classes.title}`]: {
+    marginBottom: 0,
+  },
+}));
 
 type FormElement<T> = {
   defaultValue: T;
@@ -17,12 +30,6 @@ type FormElement<T> = {
   validate: (value: T) => string;
   component: FieldComponent<T>;
 };
-
-const useStyles = makeStyles(() => ({
-  title: {
-    marginBottom: 0,
-  },
-}));
 
 const FormDialog = ({
   defaultIsOpen = false,
@@ -80,10 +87,9 @@ const FormDialog = ({
       loading,
     [fieldError, formData, error, loading]
   );
-  const classes = useStyles();
 
   return (
-    <>
+    <Root>
       <Button color="primary" variant="contained" onClick={handleOpen}>
         {buttonText}
       </Button>
@@ -92,7 +98,7 @@ const FormDialog = ({
         onClose={handleClose}
         aria-labelledby="issue-form-title"
       >
-        <DialogTitle disableTypography={true}>
+        <DialogTitle>
           <H6 className={classes.title}>{title}</H6>
         </DialogTitle>
         <DialogContent>
@@ -136,7 +142,7 @@ const FormDialog = ({
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </Root>
   );
 };
 

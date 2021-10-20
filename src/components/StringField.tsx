@@ -1,9 +1,9 @@
-import TextField from "@material-ui/core/TextField";
+import TextField from "@mui/material/TextField";
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { FieldComponent } from "../types";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { IconButton, InputAdornment } from "@material-ui/core";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { IconButton, InputAdornment } from "@mui/material";
 
 type ExtraProps = { toggleable?: boolean };
 
@@ -15,7 +15,7 @@ const useInputProps = ({ toggleable }: ExtraProps) => {
       InputProps: {
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton onClick={() => setShow(!show)}>
+            <IconButton onClick={() => setShow(!show)} size="large">
               {show ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           </InputAdornment>

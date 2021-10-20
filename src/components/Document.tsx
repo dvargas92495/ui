@@ -1,29 +1,41 @@
 import React from "react";
 import ThemeProvider from "./ThemeProvider";
-import ServerStyleSheets from "@material-ui/styles/ServerStyleSheets";
 import { ClerkProvider } from "@clerk/clerk-react";
+import createCache from "@emotion/cache";
+import createEmotionServer from "@emotion/server/create-instance";
+import { CacheProvider } from "@emotion/react";
 
-const sheets = new ServerStyleSheets();
+const cache = createCache({ key: "css" });
+const {
+  extractCriticalToChunks,
+  constructStyleTagsFromChunks,
+} = createEmotionServer(cache);
 
 const Document: React.FC = ({ children }) => {
-  return sheets.collect(
+  return (
     <ClerkProvider frontendApi={process.env.CLERK_FRONTEND_API} authVersion={2}>
-      <ThemeProvider>{children}</ThemeProvider>
+      <CacheProvider value={cache}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </CacheProvider>
     </ClerkProvider>
   );
 };
 
 export const Head = ({
+  html,
   title,
   description = title,
   img,
   styles,
 }: {
+  html: string;
   title: string;
   description?: string;
   img?: string;
   styles?: string;
 }): React.ReactElement => {
+  const emotionChunks = extractCriticalToChunks(html);
+  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
   return (
     <>
       <title>{title}</title>
@@ -39,7 +51,7 @@ export const Head = ({
       <meta name="twitter:description" content={description} />
       <meta name="og:image" content={img} />
       <meta name="twitter:image" content={img} />
-      {sheets.getStyleElement()}
+      {emotionCss}
       {styles && <style>{styles}</style>}
     </>
   );

@@ -1,16 +1,24 @@
-import Button from "@material-ui/core/Button";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Grid from "@material-ui/core/Grid";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import Button from "@mui/material/Button";
+import styled from "@mui/material/styles/styled";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Grid from "@mui/material/Grid";
 import React, { useCallback, useMemo, useState } from "react";
 import Outlined from "./Outlined";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
+const PREFIX = "CheckboxForm";
+
+const classes = {
+  container: `${PREFIX}-container`,
+  root: `${PREFIX}-root`,
+};
+
+const StyledOutlined = styled(Outlined)(({ theme }) => ({
+  [`& .${classes.container}`]: {
     padding: theme.spacing(2),
   },
-  root: {
+
+  [`&.${classes.root}`]: {
     marginBottom: theme.spacing(3),
   },
 }));
@@ -44,9 +52,9 @@ const CheckboxForm = ({
   const onCheckAll = useCallback(() => setCheckboxes(initialValue), [
     setCheckboxes,
   ]);
-  const classes = useStyles();
+
   return (
-    <Outlined className={classes.root}>
+    <StyledOutlined className={classes.root}>
       <Grid container spacing={1} className={classes.container}>
         {items.map((item) => (
           <Grid item xs={4} key={item}>
@@ -74,7 +82,7 @@ const CheckboxForm = ({
           </Button>
         </Grid>
       </Grid>
-    </Outlined>
+    </StyledOutlined>
   );
 };
 

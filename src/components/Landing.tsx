@@ -1,33 +1,21 @@
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import { alpha } from "@material-ui/core/styles/colorManipulator";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@mui/material/Grid";
+import styled from "@mui/material/styles/styled";
+import Container from "@mui/material/Container";
+import { alpha } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import React, { SVGAttributes } from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import H4 from "./H4";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
 import H6 from "./H6";
 
-const useSplashStyles = makeStyles((theme) => ({
-  logoContainer: {
-    width: "100%",
-    textAlign: "center",
-  },
-  logo: {
-    width: "100%",
-    height: "100%",
-  },
-  button: {
-    margin: theme.spacing(2),
-  },
-  marginLessLabel: {
-    margin: 0,
-  },
-}));
+const LogoContainer = styled(Grid)({
+  width: "100%",
+  textAlign: "center",
+});
 
 export const Splash = ({
   Logo,
@@ -42,7 +30,10 @@ export const Splash = ({
   primaryHref: string;
   secondaryHref: string;
 }) => {
-  const classes = useSplashStyles();
+  const StyledLogo = styled(Logo)({
+    width: "100%",
+    height: "100%",
+  });
   return (
     <Grid container alignItems="center">
       <Grid item xs={6}>
@@ -54,9 +45,9 @@ export const Splash = ({
           variant={"contained"}
           color="primary"
           href={`/${primaryHref}`}
-          className={classes.button}
+          sx={{ m: 2 }}
         >
-          <Typography variant="h6" className={classes.marginLessLabel}>
+          <Typography variant="h6" sx={{ m: 0 }}>
             Getting Started
           </Typography>
         </Button>
@@ -64,33 +55,31 @@ export const Splash = ({
           variant={"outlined"}
           color="primary"
           href={`/${secondaryHref}`}
-          className={classes.button}
+          sx={{ m: 2 }}
         >
-          <Typography variant="h6" className={classes.marginLessLabel}>
+          <Typography variant="h6" sx={{ m: 0 }}>
             Explore
           </Typography>
         </Button>
       </Grid>
       <Grid item xs={1} />
-      <Grid item xs={5} className={classes.logoContainer}>
-        <Logo className={classes.logo} />
-      </Grid>
+      <LogoContainer item xs={5}>
+        <StyledLogo />
+      </LogoContainer>
     </Grid>
   );
 };
 
-const useShowStyles = makeStyles((theme) => ({
-  card: {
-    height: 350,
-  },
-  breakTitle: {
-    textAlign: "center",
-  },
-  media: {
-    height: 160,
-    backgroundSize: "contain",
-    margin: theme.spacing(2),
-  },
+const StyledCard = styled(Card)({
+  height: 350,
+});
+const BreakTitle = styled("div")({
+  textAlign: "center",
+});
+const StyledMedia = styled(CardMedia)(({ theme }) => ({
+  height: 160,
+  backgroundSize: "contain",
+  margin: theme.spacing(2),
 }));
 
 export const Showcase = ({
@@ -100,36 +89,25 @@ export const Showcase = ({
   header: string;
   showCards: { title: string; description: string; image: string }[];
 }) => {
-  const classes = useShowStyles();
   return (
     <>
-      <div className={classes.breakTitle}>
+      <BreakTitle>
         <H4>{header}</H4>
-      </div>
+      </BreakTitle>
       <Grid container alignItems="flex-start" spacing={2}>
         {showCards.map((b) => (
           <Grid item xs={4} key={b.title}>
-            <Card className={classes.card}>
+            <StyledCard>
               <CardHeader title={b.title} />
-              <CardMedia
-                title={b.title}
-                image={b.image}
-                className={classes.media}
-              />
+              <StyledMedia title={b.title} image={b.image} />
               <CardContent>{b.description}</CardContent>
-            </Card>
+            </StyledCard>
           </Grid>
         ))}
       </Grid>
     </>
   );
 };
-
-const useStatStyles = makeStyles(() => ({
-  marginLessLabel: {
-    marginBottom: 0,
-  },
-}));
 
 export const Stats = ({
   statHeader,
@@ -140,7 +118,6 @@ export const Stats = ({
   statSubheader: string;
   stats: { value: string; label: string }[];
 }) => {
-  const classes = useStatStyles();
   return (
     <>
       <H4>{statHeader}</H4>
@@ -154,7 +131,7 @@ export const Stats = ({
         {stats.map((s) => (
           <Grid item xs={3} key={s.label}>
             <H4>{s.value}</H4>
-            <H6 className={classes.marginLessLabel}>{s.label}</H6>
+            <H6 sx={{ m: 0 }}>{s.label}</H6>
           </Grid>
         ))}
       </Grid>
@@ -162,48 +139,33 @@ export const Stats = ({
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: theme.spacing(-8),
-    width: "100%",
-  },
-  secondaryContent: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-    background: alpha(theme.palette.secondary.light, 0.25),
-  },
-  breakContent: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-    textAlign: "center",
-  },
-  primaryContent: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-    background: alpha(theme.palette.primary.light, 0.25),
-    textAlign: "center",
-  },
+// const useStyles = makeStyles((theme) => ({
+const LandingRoot = styled("div")(({ theme }) => ({
+  marginTop: theme.spacing(-8),
+  width: "100%",
+}));
+
+const LandingContent = styled("div")<{ index: number }>(({ theme, index }) => ({
+  paddingTop: theme.spacing(8),
+  paddingBottom: theme.spacing(8),
+  textAlign: "center",
+  background:
+    index % 4 === 0
+      ? alpha(theme.palette.secondary.light, 0.25)
+      : index % 4 === 2
+      ? alpha(theme.palette.primary.light, 0.25)
+      : "inherit",
 }));
 
 const Landing = ({ children }: { children: React.ReactNodeArray }) => {
-  const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <LandingRoot>
       {children.map((c, i) => (
-        <div
-          className={
-            i % 4 === 0
-              ? classes.secondaryContent
-              : i % 4 === 2
-              ? classes.primaryContent
-              : classes.breakContent
-          }
-          key={i}
-        >
+        <LandingContent index={i} key={i}>
           <Container maxWidth={"lg"}>{[c]}</Container>
-        </div>
+        </LandingContent>
       ))}
-    </div>
+    </LandingRoot>
   );
 };
 

@@ -1,13 +1,19 @@
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
-import { alpha } from "@material-ui/core/styles";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@mui/material/Grid";
+import styled from "@mui/material/styles/styled";
+import Link from "@mui/material/Link";
+import { alpha } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import React from "react";
 import H6 from "./H6";
 
-const useStyles = makeStyles((theme) => ({
-  footer: {
+const PREFIX = "Footer";
+
+const classes = {
+  footer: `${PREFIX}-footer`,
+};
+
+const Root = styled("footer")(({ theme }) => ({
+  [`&.${classes.footer}`]: {
     padding: theme.spacing(3, 2),
     marginTop: "auto",
     background: alpha(theme.palette.secondary.light, 0.25),
@@ -15,9 +21,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Footer = ({ siteLinks }: { siteLinks: string[] }) => {
-  const classes = useStyles();
   return (
-    <footer className={classes.footer}>
+    <Root className={classes.footer}>
       <hr />
       <Grid container>
         <Grid item xs={4}>
@@ -29,14 +34,17 @@ const Footer = ({ siteLinks }: { siteLinks: string[] }) => {
           <H6>Site Links</H6>
           {siteLinks.map((l, i) => (
             <Typography variant={"body2"} color="textSecondary" key={i}>
-              <Link href={`/${l.toLowerCase().replace(/ /g, '-')}`} color="inherit">
+              <Link
+                href={`/${l.toLowerCase().replace(/ /g, "-")}`}
+                color="inherit"
+              >
                 {l}
               </Link>
             </Typography>
           ))}
         </Grid>
       </Grid>
-    </footer>
+    </Root>
   );
 };
 

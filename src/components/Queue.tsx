@@ -1,22 +1,33 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import Card from "@mui/material/Card";
+import styled from "@mui/material/styles/styled";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
 import React, { useState, useCallback, useMemo } from "react";
 import DataLoader from "./DataLoader";
 import Items, { Item } from "./Items";
 
-const useStyles = makeStyles((theme) => ({
-  listItem: {
+const PREFIX = "Queue";
+
+const classes = {
+  listItem: `${PREFIX}-listItem`,
+  card: `${PREFIX}-card`,
+  cardContent: `${PREFIX}-cardContent`,
+  list: `${PREFIX}-list`,
+};
+
+const StyledCard = styled(Card)(({ theme }) => ({
+  [`& .${classes.listItem}`]: {
     paddingRight: theme.spacing(12),
     borderTop: "1px solid gray",
   },
-  card: {
+
+  [`&.${classes.card}`]: {
     height: "100%",
     display: "flex",
     flexDirection: "column",
   },
-  cardContent: {
+
+  [`& .${classes.cardContent}`]: {
     flexGrow: 1,
     overflowY: "scroll",
     padding: 0,
@@ -27,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
     },
   },
-  list: {
+
+  [`& .${classes.list}`]: {
     padding: 0,
   },
 }));
@@ -50,7 +62,7 @@ const Queue = ({
     () => loadItems().then((items) => setItems(items)),
     [setItems]
   );
-  const classes = useStyles();
+
   const filteredItems = useMemo(
     () =>
       items
@@ -59,7 +71,7 @@ const Queue = ({
     [items, filter, mapper, loadAsync]
   );
   return (
-    <Card className={classes.card}>
+    <StyledCard className={classes.card}>
       <CardHeader title={title} subheader={subheader} />
       <CardContent className={classes.cardContent}>
         <DataLoader loadAsync={loadAsync}>
@@ -70,7 +82,7 @@ const Queue = ({
           />
         </DataLoader>
       </CardContent>
-    </Card>
+    </StyledCard>
   );
 };
 

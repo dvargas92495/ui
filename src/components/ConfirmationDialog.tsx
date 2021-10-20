@@ -1,18 +1,28 @@
-import { CircularProgress, makeStyles } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import { CircularProgress } from "@mui/material";
+import styled from "@mui/material/styles/styled";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import React, { useCallback, useState } from "react";
 import H6 from "./H6";
 
-const useStyles = makeStyles(() => ({
-  title: {
+const PREFIX = "ConfirmationDialog";
+
+const classes = {
+  title: `${PREFIX}-title`,
+  content: `${PREFIX}-content`,
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled("div")(() => ({
+  [`& .${classes.title}`]: {
     margin: 0,
   },
-  content: {
+
+  [`& .${classes.content}`]: {
     margin: 0,
   },
 }));
@@ -60,14 +70,14 @@ const ConfirmationDialog: React.FunctionComponent<{
       )
       .finally(() => setLoading(false));
   }, [setLoading, closeWithSuccess, setError, action]);
-  const classes = useStyles();
+
   return (
-    <>
+    <Root>
       <Button color={color} variant="contained" onClick={handleOpen}>
         {buttonText}
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="dialog-title">
-        <DialogTitle disableTypography={true}>
+        <DialogTitle>
           <H6 className={classes.title}>{title}</H6>
         </DialogTitle>
         <DialogContent>
@@ -81,12 +91,16 @@ const ConfirmationDialog: React.FunctionComponent<{
           <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
-          <Button onClick={onSubmit} color="primary" disabled={loading || disabled}>
+          <Button
+            onClick={onSubmit}
+            color="primary"
+            disabled={loading || disabled}
+          >
             Submit
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </Root>
   );
 };
 

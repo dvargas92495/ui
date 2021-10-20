@@ -1,6 +1,6 @@
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 import React from "react";
 import { isBrowser } from "react-device-detect";
 import Subtitle from "./Subtitle";
