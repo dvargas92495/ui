@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0, 1),
   },
   home: {
-    maxWidth: theme.spacing(10.5)
-  }
+    maxWidth: theme.spacing(10.5),
+  },
 }));
 
 const AppBar: React.FunctionComponent<{
@@ -25,12 +25,18 @@ const AppBar: React.FunctionComponent<{
   return (
     <MuiAppBar position="static" elevation={5} color="transparent">
       <Toolbar>
-        <Link href={"/"} className={classes.home}>{homeIcon}</Link>
+        <Link href={"/"} className={classes.home}>
+          {homeIcon}
+        </Link>
         <Grid container justifyContent="center">
           {pages.map((p, i) => (
             <React.Fragment key={i}>
               {i > 0 && <Divider orientation="vertical" flexItem />}
-              <Typography variant={"subtitle1"} color={"textPrimary"} className={classes.link}>
+              <Typography
+                variant={"subtitle1"}
+                color={"textPrimary"}
+                className={classes.link}
+              >
                 <Link href={`/${p}`} color="inherit">
                   {p}
                 </Link>

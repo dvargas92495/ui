@@ -11,6 +11,7 @@ export { default as ConfirmationDialog } from "./components/ConfirmationDialog";
 export { default as Contact } from "./components/Contact";
 export { default as DataLoader } from "./components/DataLoader";
 export { default as DateField } from "./components/DateField";
+export { default as Document, Head } from "./components/Document";
 export { default as ExternalLink } from "./components/ExternalLink";
 export { default as Footer } from "./components/Footer";
 export { default as FormDialog } from "./components/FormDialog";
@@ -28,7 +29,7 @@ export {
   Stats as StatsLanding,
   Showcase as ShowcaseLanding,
 } from "./components/Landing";
-export { default as Layout, LayoutHead } from "./components/Layout";
+export { default as Layout } from "./components/Layout";
 export { default as LI } from "./components/LI";
 export { default as Loading } from "./components/Loading";
 export { default as Logo } from "./components/Logo";
