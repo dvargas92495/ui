@@ -6,10 +6,6 @@ import createEmotionServer from "@emotion/server/create-instance";
 import { CacheProvider } from "@emotion/react";
 
 const cache = createCache({ key: "css" });
-const {
-  extractCriticalToChunks,
-  constructStyleTagsFromChunks,
-} = createEmotionServer(cache);
 
 const Document: React.FC = ({ children }) => {
   return (
@@ -34,6 +30,10 @@ export const Head = ({
   img?: string;
   styles?: string;
 }): React.ReactElement => {
+  const {
+    extractCriticalToChunks,
+    constructStyleTagsFromChunks,
+  } = createEmotionServer(cache);
   const emotionChunks = extractCriticalToChunks(html);
   const emotionCss = constructStyleTagsFromChunks(emotionChunks);
   return (
