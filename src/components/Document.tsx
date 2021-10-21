@@ -18,24 +18,16 @@ const Document: React.FC = ({ children }) => {
 };
 
 export const Head = ({
-  html,
   title,
   description = title,
   img,
   styles,
 }: {
-  html: string;
   title: string;
   description?: string;
   img?: string;
   styles?: string;
 }): React.ReactElement => {
-  const {
-    extractCriticalToChunks,
-    constructStyleTagsFromChunks,
-  } = createEmotionServer(cache);
-  const emotionChunks = extractCriticalToChunks(html);
-  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
   return (
     <>
       <title>{title}</title>
@@ -51,10 +43,19 @@ export const Head = ({
       <meta name="twitter:description" content={description} />
       <meta name="og:image" content={img} />
       <meta name="twitter:image" content={img} />
-      {emotionCss}
       {styles && <style>{styles}</style>}
     </>
   );
 };
+
+export const transformHead = (head: string, body: string) => {
+  const {
+    extractCriticalToChunks,
+    constructStyleTagsFromChunks,
+  } = createEmotionServer(cache);
+  const emotionChunks = extractCriticalToChunks(body);
+  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
+  return `${head}\n  ${emotionCss}`;
+}
 
 export default Document;

@@ -11,7 +11,7 @@ export { default as ConfirmationDialog } from "./components/ConfirmationDialog";
 export { default as Contact } from "./components/Contact";
 export { default as DataLoader } from "./components/DataLoader";
 export { default as DateField } from "./components/DateField";
-export { default as Document, Head } from "./components/Document";
+export { default as Document, Head, transformHead } from "./components/Document";
 export { default as ExternalLink } from "./components/ExternalLink";
 export { default as Footer } from "./components/Footer";
 export { default as FormDialog } from "./components/FormDialog";
