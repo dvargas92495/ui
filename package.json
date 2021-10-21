@@ -55,5 +55,6 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "sideEffects": false
 }
