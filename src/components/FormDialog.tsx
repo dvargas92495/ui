@@ -1,5 +1,4 @@
-import Button from "@mui/material/Button";
-import styled from "@mui/material/styles/styled";
+import MuiButton from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import React, { useCallback, useMemo, useState } from "react";
@@ -10,19 +9,6 @@ import Grid from "@mui/material/Grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import { FieldComponent } from "../types";
 import H6 from "./H6";
-
-const PREFIX = "FormDialog";
-
-const classes = {
-  title: `${PREFIX}-title`,
-};
-
-// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled("div")(() => ({
-  [`& .${classes.title}`]: {
-    marginBottom: 0,
-  },
-}));
 
 type FormElement<T> = {
   defaultValue: T;
@@ -39,14 +25,27 @@ const FormDialog = ({
   title,
   contentText,
   formElements,
+  Button = ({ onClick, buttonText }) => (
+    <MuiButton color="primary" variant="contained" onClick={onClick}>
+      {buttonText}
+    </MuiButton>
+  ),
 }: {
   onSave: (body: any) => Promise<any>;
   onSuccess?: () => void;
   buttonText: string;
   title: React.ReactNode;
   contentText: React.ReactNode;
-  formElements: FormElement<string | number | Date>[];
+  formElements: (
+    | FormElement<string>
+    | FormElement<number>
+    | FormElement<Date>
+  )[];
   defaultIsOpen?: boolean;
+  Button?: (p: {
+    onClick: () => void;
+    buttonText: string;
+  }) => React.ReactElement;
 }) => {
   const [open, setOpen] = useState(defaultIsOpen);
   const handleOpen = useCallback(() => setOpen(true), [setOpen]);
@@ -73,7 +72,7 @@ const FormDialog = ({
       .finally(() => setLoading(false));
   }, [setLoading, formData, closeWithSuccess, setError]);
   const onChange = useCallback(
-    ({ name, value }: { name: string; value: any }) => {
+    ({ name, value }: { name: string; value: string | number | Date }) => {
       setFormData({ ...formData, [name]: value });
       setError("");
     },
@@ -89,60 +88,65 @@ const FormDialog = ({
   );
 
   return (
-    <Root>
-      <Button color="primary" variant="contained" onClick={handleOpen}>
-        {buttonText}
-      </Button>
+    <>
+      <Button onClick={handleOpen} buttonText={buttonText} />
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="issue-form-title"
       >
         <DialogTitle>
-          <H6 className={classes.title}>{title}</H6>
+          <H6 sx={{ marginBottom: 0 }}>{title}</H6>
         </DialogTitle>
         <DialogContent>
           <DialogContentText>{contentText}</DialogContentText>
           <Grid container spacing={2}>
-            {formElements.map((f) => (
-              <Grid item xs={12} key={f.name}>
-                <f.component
-                  key={f.name}
-                  value={formData[f.name]}
-                  setValue={(v: any) => onChange({ name: f.name, value: v })}
-                  required
-                  fullWidth
-                  error={!!fieldError[f.name]}
-                  helperText={fieldError[f.name]}
-                  name={f.name}
-                  label={`${f.name.charAt(0).toUpperCase()}${f.name.substring(
-                    1
-                  )}`}
-                  variant={"filled"}
-                  onBlur={async () => {
-                    const error = await f.validate(formData[f.name]);
-                    if (error) {
-                      setFieldError({ ...fieldError, [f.name]: error });
+            {formElements.map((f) => {
+              const { component: FormComponent, validate } = f as FormElement<
+                typeof f.defaultValue
+              >;
+              return (
+                <Grid item xs={12} key={f.name}>
+                  <FormComponent
+                    key={f.name}
+                    value={formData[f.name]}
+                    setValue={(v) => onChange({ name: f.name, value: v })}
+                    required
+                    fullWidth
+                    error={!!fieldError[f.name]}
+                    helperText={fieldError[f.name]}
+                    name={f.name}
+                    label={`${f.name.charAt(0).toUpperCase()}${f.name.substring(
+                      1
+                    )}`}
+                    variant={"filled"}
+                    onBlur={() => {
+                      const error = validate(formData[f.name]);
+                      if (error) {
+                        setFieldError({ ...fieldError, [f.name]: error });
+                      }
+                    }}
+                    onFocus={() =>
+                      setFieldError({ ...fieldError, [f.name]: "" })
                     }
-                  }}
-                  onFocus={() => setFieldError({ ...fieldError, [f.name]: "" })}
-                />
-              </Grid>
-            ))}
+                  />
+                </Grid>
+              );
+            })}
           </Grid>
         </DialogContent>
         <DialogActions>
           <DialogContentText color={"error"}>{error}</DialogContentText>
           {loading && <CircularProgress />}
-          <Button onClick={handleClose} color="secondary">
+          <MuiButton onClick={handleClose} color="secondary">
             Cancel
-          </Button>
-          <Button onClick={onSubmit} color="primary" disabled={saveDisabled}>
+          </MuiButton>
+          <MuiButton onClick={onSubmit} color="primary" disabled={saveDisabled}>
             Submit
-          </Button>
+          </MuiButton>
         </DialogActions>
       </Dialog>
-    </Root>
+    </>
   );
 };
 
