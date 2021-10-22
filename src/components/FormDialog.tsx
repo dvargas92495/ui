@@ -12,12 +12,12 @@ import H6 from "./H6";
 
 type FormElement<T> = {
   defaultValue: T;
-  name: string;
   validate: (value: T) => string;
   component: FieldComponent<T>;
+  order: number;
 };
 
-const FormDialog = ({
+const FormDialog = <T extends Record<string, string | number | Date>>({
   defaultIsOpen = false,
   onSave,
   onSuccess,
@@ -31,16 +31,12 @@ const FormDialog = ({
     </MuiButton>
   ),
 }: {
-  onSave: (body: Record<string, string | number | Date>) => Promise<unknown>;
+  onSave: (body: T) => Promise<unknown>;
   onSuccess?: () => void;
   buttonText: string;
   title: React.ReactNode;
   contentText?: React.ReactNode;
-  formElements: (
-    | FormElement<string>
-    | FormElement<number>
-    | FormElement<Date>
-  )[];
+  formElements: { [k in keyof T]: FormElement<T[k]> };
   defaultIsOpen?: boolean;
   Button?: (p: {
     onClick: () => void;
@@ -58,11 +54,13 @@ const FormDialog = ({
   }, [handleClose, onSuccess]);
   const [error, setError] = useState("");
   const [fieldError, setFieldError] = useState(
-    Object.fromEntries(formElements.map((f) => [f.name, ""]))
+    Object.fromEntries(Object.keys(formElements).map((f) => [f, ""]))
   );
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState(
-    Object.fromEntries(formElements.map((f) => [f.name, f.defaultValue]))
+  const [formData, setFormData] = useState<T>(
+    Object.fromEntries(
+      Object.entries(formElements).map(([name, f]) => [name, f.defaultValue])
+    ) as T
   );
   const onSubmit = useCallback(() => {
     setLoading(true);
@@ -101,38 +99,40 @@ const FormDialog = ({
         <DialogContent>
           <DialogContentText>{contentText}</DialogContentText>
           <Grid container spacing={2}>
-            {formElements.map((f) => {
-              const { component: FormComponent, validate } = f as FormElement<
-                typeof f.defaultValue
-              >;
-              return (
-                <Grid item xs={12} key={f.name}>
-                  <FormComponent
-                    key={f.name}
-                    value={formData[f.name]}
-                    setValue={(v) => onChange({ name: f.name, value: v })}
-                    required
-                    fullWidth
-                    error={!!fieldError[f.name]}
-                    helperText={fieldError[f.name]}
-                    name={f.name}
-                    label={`${f.name.charAt(0).toUpperCase()}${f.name.substring(
-                      1
-                    )}`}
-                    variant={"filled"}
-                    onBlur={() => {
-                      const error = validate(formData[f.name]);
-                      if (error) {
-                        setFieldError({ ...fieldError, [f.name]: error });
+            {Object.values(formElements)
+              .sort(({ order: a }, { order: b }) => a - b)
+              .map((f) => {
+                const { component: FormComponent, validate } = f as FormElement<
+                  typeof f.defaultValue
+                >;
+                return (
+                  <Grid item xs={12} key={f.name}>
+                    <FormComponent
+                      key={f.name}
+                      value={formData[f.name]}
+                      setValue={(v) => onChange({ name: f.name, value: v })}
+                      required
+                      fullWidth
+                      error={!!fieldError[f.name]}
+                      helperText={fieldError[f.name]}
+                      name={f.name}
+                      label={`${f.name
+                        .charAt(0)
+                        .toUpperCase()}${f.name.substring(1)}`}
+                      variant={"filled"}
+                      onBlur={() => {
+                        const error = validate(formData[f.name]);
+                        if (error) {
+                          setFieldError({ ...fieldError, [f.name]: error });
+                        }
+                      }}
+                      onFocus={() =>
+                        setFieldError({ ...fieldError, [f.name]: "" })
                       }
-                    }}
-                    onFocus={() =>
-                      setFieldError({ ...fieldError, [f.name]: "" })
-                    }
-                  />
-                </Grid>
-              );
-            })}
+                    />
+                  </Grid>
+                );
+              })}
           </Grid>
         </DialogContent>
         <DialogActions>

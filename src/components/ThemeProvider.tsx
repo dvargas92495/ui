@@ -65,14 +65,7 @@ const theme = createTheme({
     },
   },
   components: {
-    MuiFormControlLabel: {
-      styleOverrides: {
-        label: {
-          margin: 0,
-        },
-      },
-    },
-    MuiInputLabel: {
+    MuiBreadcrumbs: {
       styleOverrides: {
         root: {
           margin: 0,
@@ -89,6 +82,29 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          minWidth: 400,
+        },
+      },
+    },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          "& h2": {
+            margin: 0,
+          },
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          margin: 0,
+        },
+      },
+    },
     MuiInputBase: {
       styleOverrides: {
         root: {
@@ -96,7 +112,7 @@ const theme = createTheme({
         },
       },
     },
-    MuiBreadcrumbs: {
+    MuiInputLabel: {
       styleOverrides: {
         root: {
           margin: 0,
@@ -118,15 +134,6 @@ const theme = createTheme({
       styleOverrides: {
         primary: {
           margin: 0,
-        },
-      },
-    },
-    MuiDialogTitle: {
-      styleOverrides: {
-        root: {
-          "& h2": {
-            margin: 0,
-          },
         },
       },
     },
