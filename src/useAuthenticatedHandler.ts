@@ -44,7 +44,7 @@ const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
           }
         })
       ),
-    [getToken, method, path]
+    [/*getToken, returning a new method right now */method, path]
   );
 };
 
