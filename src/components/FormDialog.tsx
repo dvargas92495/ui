@@ -39,7 +39,7 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
   defaultIsOpen?: boolean;
   Button?: (p: {
     onClick: () => void;
-    buttonText: string;
+    buttonText: React.ReactNode;
   }) => React.ReactElement;
 }) => {
   const [open, setOpen] = useState(defaultIsOpen);
