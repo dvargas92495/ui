@@ -99,35 +99,35 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
         <DialogContent>
           <DialogContentText>{contentText}</DialogContentText>
           <Grid container spacing={2}>
-            {Object.values(formElements)
-              .sort(({ order: a }, { order: b }) => a - b)
-              .map((f) => {
+            {Object.entries(formElements)
+              .sort(([,{ order: a }], [,{ order: b }]) => a - b)
+              .map(([name, f]) => {
                 const { component: FormComponent, validate } = f as FormElement<
                   typeof f.defaultValue
                 >;
                 return (
-                  <Grid item xs={12} key={f.name}>
+                  <Grid item xs={12} key={name}>
                     <FormComponent
-                      key={f.name}
-                      value={formData[f.name]}
-                      setValue={(v) => onChange({ name: f.name, value: v })}
+                      key={name}
+                      value={formData[name]}
+                      setValue={(v) => onChange({ name, value: v })}
                       required
                       fullWidth
-                      error={!!fieldError[f.name]}
-                      helperText={fieldError[f.name]}
-                      name={f.name}
-                      label={`${f.name
+                      error={!!fieldError[name]}
+                      helperText={fieldError[name]}
+                      name={name}
+                      label={`${name
                         .charAt(0)
-                        .toUpperCase()}${f.name.substring(1)}`}
+                        .toUpperCase()}${name.substring(1)}`}
                       variant={"filled"}
                       onBlur={() => {
-                        const error = validate(formData[f.name]);
+                        const error = validate(formData[name]);
                         if (error) {
-                          setFieldError({ ...fieldError, [f.name]: error });
+                          setFieldError({ ...fieldError, [name]: error });
                         }
                       }}
                       onFocus={() =>
-                        setFieldError({ ...fieldError, [f.name]: "" })
+                        setFieldError({ ...fieldError, [name]: "" })
                       }
                     />
                   </Grid>
