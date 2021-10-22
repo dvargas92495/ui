@@ -8,7 +8,6 @@ import DialogActions from "@mui/material/DialogActions";
 import Grid from "@mui/material/Grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import { FieldComponent } from "../types";
-import H6 from "./H6";
 
 type FormElement<T> = {
   defaultValue: T;
@@ -33,7 +32,7 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
 }: {
   onSave: (body: T) => Promise<unknown>;
   onSuccess?: () => void;
-  buttonText: string;
+  buttonText: React.ReactNode;
   title: React.ReactNode;
   contentText?: React.ReactNode;
   formElements: { [k in keyof T]: FormElement<T[k]> };
@@ -93,23 +92,20 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
         onClose={handleClose}
         aria-labelledby="issue-form-title"
       >
-        <DialogTitle>
-          <H6 sx={{ marginBottom: 0 }}>{title}</H6>
-        </DialogTitle>
+        <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <DialogContentText>{contentText}</DialogContentText>
           <Grid container spacing={2}>
-            {Object.entries(formElements)
-              .sort(([,{ order: a }], [,{ order: b }]) => a - b)
-              .map(([name, f]) => {
-                const { component: FormComponent, validate } = f as FormElement<
-                  typeof f.defaultValue
-                >;
+            {Object.keys(formElements)
+              .sort((a, b) => formElements[a].order - formElements[b].order)
+              .map((name) => {
+                const { component: FormComponent, validate, order } = formElements[name];
+                const value = formData[name] as T[string];
                 return (
                   <Grid item xs={12} key={name}>
                     <FormComponent
                       key={name}
-                      value={formData[name]}
+                      value={value}
                       setValue={(v) => onChange({ name, value: v })}
                       required
                       fullWidth
@@ -121,7 +117,7 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
                         .toUpperCase()}${name.substring(1)}`}
                       variant={"filled"}
                       onBlur={() => {
-                        const error = validate(formData[name]);
+                        const error = validate(value);
                         if (error) {
                           setFieldError({ ...fieldError, [name]: error });
                         }
@@ -129,6 +125,7 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
                       onFocus={() =>
                         setFieldError({ ...fieldError, [name]: "" })
                       }
+                      autoFocus={order === 0}
                     />
                   </Grid>
                 );
