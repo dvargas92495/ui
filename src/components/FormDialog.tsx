@@ -23,7 +23,7 @@ const FormDialog = ({
   onSuccess,
   buttonText,
   title,
-  contentText,
+  contentText = "",
   formElements,
   Button = ({ onClick, buttonText }) => (
     <MuiButton color="primary" variant="contained" onClick={onClick}>
@@ -31,11 +31,11 @@ const FormDialog = ({
     </MuiButton>
   ),
 }: {
-  onSave: (body: any) => Promise<any>;
+  onSave: (body: Record<string, string | number | Date>) => Promise<unknown>;
   onSuccess?: () => void;
   buttonText: string;
   title: React.ReactNode;
-  contentText: React.ReactNode;
+  contentText?: React.ReactNode;
   formElements: (
     | FormElement<string>
     | FormElement<number>
