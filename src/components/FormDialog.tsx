@@ -20,7 +20,7 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
   defaultIsOpen = false,
   onSave,
   onSuccess,
-  buttonText,
+  buttonText = "",
   title,
   contentText = "",
   formElements,
