@@ -34,7 +34,9 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
   formElements: { [k in keyof T]: FormElement<T[k]> };
   defaultIsOpen?: boolean;
   Button?: (
-    p: Pick<ButtonProps, "color" | "variant" | "onClick" | "children">
+    p: Required<Pick<ButtonProps, "color" | "variant" | "children">> & {
+      onClick: () => void;
+    }
   ) => React.ReactElement;
 }) => {
   const [open, setOpen] = useState(defaultIsOpen);
