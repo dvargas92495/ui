@@ -24,9 +24,7 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
   title,
   contentText = "",
   formElements,
-  Button = (
-    props: Pick<ButtonProps, "color" | "variant" | "onClick" | "children">
-  ) => <MuiButton {...props}>{children}</MuiButton>,
+  Button = (props) => <MuiButton {...props} />,
 }: {
   onSave: (body: T) => Promise<unknown>;
   onSuccess?: () => void;
@@ -35,10 +33,9 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
   contentText?: React.ReactNode;
   formElements: { [k in keyof T]: FormElement<T[k]> };
   defaultIsOpen?: boolean;
-  Button?: (p: {
-    onClick: () => void;
-    buttonText: React.ReactNode;
-  }) => React.ReactElement;
+  Button?: (
+    p: Pick<ButtonProps, "color" | "variant" | "onClick" | "children">
+  ) => React.ReactElement;
 }) => {
   const [open, setOpen] = useState(defaultIsOpen);
   const handleOpen = useCallback(() => setOpen(true), [setOpen]);
