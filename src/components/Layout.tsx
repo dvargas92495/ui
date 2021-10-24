@@ -2,7 +2,7 @@ import React from "react";
 import AppBar from "./AppBar";
 import Main from "./Main";
 import Footer from "./Footer";
-import Button from "./Button";
+import Button from "@mui/material/Button";
 import Root from "./Root";
 import Document from "./Document";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
