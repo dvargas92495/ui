@@ -1,4 +1,4 @@
-import MuiButton from "@mui/material/Button";
+import MuiButton, { ButtonProps } from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import React, { useCallback, useMemo, useState } from "react";
@@ -24,11 +24,9 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
   title,
   contentText = "",
   formElements,
-  Button = ({ onClick, buttonText }) => (
-    <MuiButton color="primary" variant="contained" onClick={onClick}>
-      {buttonText}
-    </MuiButton>
-  ),
+  Button = (
+    props: Pick<ButtonProps, "color" | "variant" | "onClick" | "children">
+  ) => <MuiButton {...props}>{children}</MuiButton>,
 }: {
   onSave: (body: T) => Promise<unknown>;
   onSuccess?: () => void;
@@ -86,7 +84,9 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
 
   return (
     <>
-      <Button onClick={handleOpen} buttonText={buttonText} />
+      <Button onClick={handleOpen} color="primary" variant="contained">
+        {buttonText}
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -99,7 +99,11 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
             {Object.keys(formElements)
               .sort((a, b) => formElements[a].order - formElements[b].order)
               .map((name) => {
-                const { component: FormComponent, validate, order } = formElements[name];
+                const {
+                  component: FormComponent,
+                  validate,
+                  order,
+                } = formElements[name];
                 const value = formData[name] as T[string];
                 return (
                   <Grid item xs={12} key={name}>
@@ -112,9 +116,9 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
                       error={!!fieldError[name]}
                       helperText={fieldError[name]}
                       name={name}
-                      label={`${name
-                        .charAt(0)
-                        .toUpperCase()}${name.substring(1)}`}
+                      label={`${name.charAt(0).toUpperCase()}${name.substring(
+                        1
+                      )}`}
                       variant={"filled"}
                       onBlur={() => {
                         const error = validate(value);
@@ -134,7 +138,7 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
         </DialogContent>
         <DialogActions>
           <DialogContentText color={"error"}>{error}</DialogContentText>
-          {loading && <CircularProgress />}
+          {loading && <CircularProgress size={24} />}
           <MuiButton onClick={handleClose} color="secondary">
             Cancel
           </MuiButton>
