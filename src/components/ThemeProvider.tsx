@@ -60,9 +60,6 @@ const theme = createTheme({
       fontSize: "1.25rem",
       fontFamily: ["Century Gothic", "sans-serif"].join(","),
     },
-    body1: {
-      margin: "1em 0",
-    },
   },
   components: {
     MuiBreadcrumbs: {

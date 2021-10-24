@@ -10,7 +10,12 @@ const Body = ({
 >) => {
   const { ["class"]: htmlClass, className, ...props } = rest;
   return (
-    <Typography variant={"body1"} className={className || htmlClass} {...props}>
+    <Typography
+      variant={"body1"}
+      className={className || htmlClass}
+      sx={{ margin: "1em 0", ...props.sx }}
+      {...props}
+    >
       {children}
     </Typography>
   );

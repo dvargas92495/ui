@@ -6,6 +6,7 @@ import createEmotionServer from "@emotion/server/create-instance";
 import { CacheProvider } from "@emotion/react";
 
 const cache = createCache({ key: "css" });
+cache.compat = true;
 
 const Document: React.FC = ({ children }) => {
   return (
