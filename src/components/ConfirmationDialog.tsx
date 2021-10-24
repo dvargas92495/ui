@@ -1,35 +1,15 @@
 import { CircularProgress } from "@mui/material";
-import styled from "@mui/material/styles/styled";
-import Button from "@mui/material/Button";
+import Button, { ButtonProps } from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import React, { useCallback, useState } from "react";
-import H6 from "./H6";
-
-const PREFIX = "ConfirmationDialog";
-
-const classes = {
-  title: `${PREFIX}-title`,
-  content: `${PREFIX}-content`,
-};
-
-// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled("div")(() => ({
-  [`& .${classes.title}`]: {
-    margin: 0,
-  },
-
-  [`& .${classes.content}`]: {
-    margin: 0,
-  },
-}));
 
 const ConfirmationDialog: React.FunctionComponent<{
   buttonText: React.ReactNode;
-  color?: "primary" | "secondary";
+  color?: ButtonProps['color'];
   title: string;
   content: string;
   action: () => Promise<any>;
@@ -72,18 +52,14 @@ const ConfirmationDialog: React.FunctionComponent<{
   }, [setLoading, closeWithSuccess, setError, action]);
 
   return (
-    <Root>
+    <>
       <Button color={color} variant="contained" onClick={handleOpen}>
         {buttonText}
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="dialog-title">
-        <DialogTitle>
-          <H6 className={classes.title}>{title}</H6>
-        </DialogTitle>
+        <DialogTitle sx={{ m: 0 }}>{title}</DialogTitle>
         <DialogContent>
-          <DialogContentText className={classes.content}>
-            {content}
-          </DialogContentText>
+          <DialogContentText sx={{ m: 0 }}>{content}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <DialogContentText color={"error"}>{error}</DialogContentText>
@@ -100,7 +76,7 @@ const ConfirmationDialog: React.FunctionComponent<{
           </Button>
         </DialogActions>
       </Dialog>
-    </Root>
+    </>
   );
 };
 
