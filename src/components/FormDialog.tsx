@@ -24,7 +24,7 @@ const FormDialog = <T extends Record<string, string | number | Date>>({
   title,
   contentText = "",
   formElements,
-  Button = (props) => <MuiButton {...props} />,
+  Button = MuiButton,
 }: {
   onSave: (body: T) => Promise<unknown>;
   onSuccess?: () => void;

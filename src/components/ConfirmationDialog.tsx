@@ -1,5 +1,5 @@
 import { CircularProgress } from "@mui/material";
-import Button, { ButtonProps } from "@mui/material/Button";
+import MuiButton, { ButtonProps } from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,15 +9,22 @@ import React, { useCallback, useState } from "react";
 
 const ConfirmationDialog: React.FunctionComponent<{
   buttonText: React.ReactNode;
-  color?: ButtonProps['color'];
+  color?: ButtonProps["color"];
   title: string;
   content: string;
   action: () => Promise<any>;
   onSuccess?: () => void;
   defaultIsOpen?: boolean;
   disabled?: boolean;
+  Button: (
+    p: Required<
+      Pick<ButtonProps, "children" | "color" | "variant"> & {
+        onClick: () => void;
+      }
+    >
+  ) => React.ReactElement;
 }> = ({
-  buttonText,
+  buttonText = "",
   color = "primary",
   title,
   content,
@@ -25,6 +32,7 @@ const ConfirmationDialog: React.FunctionComponent<{
   onSuccess,
   defaultIsOpen = false,
   disabled = false,
+  Button = MuiButton,
 }) => {
   const [open, setOpen] = useState(defaultIsOpen);
   const [loading, setLoading] = useState(false);
@@ -64,16 +72,16 @@ const ConfirmationDialog: React.FunctionComponent<{
         <DialogActions>
           <DialogContentText color={"error"}>{error}</DialogContentText>
           {loading && <CircularProgress />}
-          <Button onClick={handleClose} color="secondary">
+          <MuiButton onClick={handleClose} color="secondary">
             Cancel
-          </Button>
-          <Button
+          </MuiButton>
+          <MuiButton
             onClick={onSubmit}
             color="primary"
             disabled={loading || disabled}
           >
             Submit
-          </Button>
+          </MuiButton>
         </DialogActions>
       </Dialog>
     </>
