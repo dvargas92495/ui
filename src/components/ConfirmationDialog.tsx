@@ -16,7 +16,7 @@ const ConfirmationDialog: React.FunctionComponent<{
   onSuccess?: () => void;
   defaultIsOpen?: boolean;
   disabled?: boolean;
-  Button: (
+  Button?: (
     p: Required<
       Pick<ButtonProps, "children" | "color" | "variant"> & {
         onClick: () => void;
