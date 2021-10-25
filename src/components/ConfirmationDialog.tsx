@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import React, { useCallback, useState } from "react";
 
 const ConfirmationDialog: React.FunctionComponent<{
-  buttonText: React.ReactNode;
+  buttonText?: React.ReactNode;
   color?: ButtonProps["color"];
   title: string;
   content: string;
