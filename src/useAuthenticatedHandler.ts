@@ -36,7 +36,12 @@ const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
           }
         ).then((r) => {
           if (r.ok) {
-            return r.json().then((d) => d as InnerPromise<ReturnType<T>>);
+            return r
+              .json()
+              .then(
+                (d) =>
+                  d as Omit<InnerPromise<ReturnType<T>>, "code" | "headers">
+              );
           } else {
             return r.text().then((s) => {
               throw new Error(s);
@@ -44,7 +49,7 @@ const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
           }
         })
       ),
-    [/*getToken, returning a new method right now */method, path]
+    [/*getToken, returning a new method right now */ method, path]
   );
 };
 

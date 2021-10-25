@@ -71,7 +71,7 @@ const ConfirmationDialog: React.FunctionComponent<{
         </DialogContent>
         <DialogActions>
           <DialogContentText color={"error"}>{error}</DialogContentText>
-          {loading && <CircularProgress />}
+          {loading && <CircularProgress size={24} />}
           <MuiButton onClick={handleClose} color="secondary">
             Cancel
           </MuiButton>
