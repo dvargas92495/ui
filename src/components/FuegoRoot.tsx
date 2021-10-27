@@ -8,7 +8,11 @@ const cache = createCache({ key: "css" });
 cache.compat = true;
 
 const FuegoRoot: React.FC = ({ children }) => {
-  return <CacheProvider value={cache}>{children}</CacheProvider>;
+  return (
+    <div>
+      <CacheProvider value={cache}>{children}</CacheProvider>
+    </div>
+  );
 };
 
 export const transformHead = (head: string, body: string) => {
