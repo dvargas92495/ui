@@ -1,19 +1,11 @@
 import React from "react";
 import ThemeProvider from "./ThemeProvider";
 import { ClerkProvider } from "@clerk/clerk-react";
-import createCache from "@emotion/cache";
-import createEmotionServer from "@emotion/server/create-instance";
-import { CacheProvider } from "@emotion/react";
-
-const cache = createCache({ key: "css" });
-cache.compat = true;
 
 const Document: React.FC = ({ children }) => {
   return (
     <ClerkProvider frontendApi={process.env.CLERK_FRONTEND_API} authVersion={2}>
-      <CacheProvider value={cache}>
-        <ThemeProvider>{children}</ThemeProvider>
-      </CacheProvider>
+      <ThemeProvider>{children}</ThemeProvider>
     </ClerkProvider>
   );
 };
@@ -48,15 +40,5 @@ export const Head = ({
     </>
   );
 };
-
-export const transformHead = (head: string, body: string) => {
-  const {
-    extractCriticalToChunks,
-    constructStyleTagsFromChunks,
-  } = createEmotionServer(cache);
-  const emotionChunks = extractCriticalToChunks(body);
-  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
-  return `${head}\n  ${emotionCss}`;
-}
 
 export default Document;
