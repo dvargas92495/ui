@@ -13,7 +13,7 @@ const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
   return useCallback(
     (params?: Omit<Parameters<T>[0], "user">) =>
       getToken().then((token) =>
-        getHandler({
+        getHandler<(p: Omit<Parameters<T>[0], "user">) => ReturnType<T>>({
           headers: {
             Authorization: `Bearer ${token}`,
           },

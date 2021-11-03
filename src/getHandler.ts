@@ -10,7 +10,7 @@ const getHandler = <T extends (arg: never) => Promise<unknown>>({
   headers?: Record<string, string>;
 }) => {
   const isBody = ["PUT", "POST"].includes(method);
-  return (params?: Omit<Parameters<T>[0], "user">) =>
+  return (params?: Parameters<T>[0]) =>
     fetch(
       `${process.env.API_URL}/${path}${
         isBody || !params
