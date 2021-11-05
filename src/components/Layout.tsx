@@ -6,14 +6,15 @@ import Button from "@mui/material/Button";
 import Root from "./Root";
 import Document from "./Document";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+import type { ThemeProviderProps } from "./ThemeProvider";
 
-const Layout: React.FC<{ homeIcon?: React.ReactNode; pages?: string[] }> = ({
-  children,
-  pages = [],
-  homeIcon = "Home",
-}) => {
+const Layout: React.FC<{
+  homeIcon?: React.ReactNode;
+  pages?: string[];
+  themeProps?: ThemeProviderProps;
+}> = ({ children, pages = [], homeIcon = "Home", themeProps }) => {
   return (
-    <Document>
+    <Document themeProps={themeProps}>
       <Root>
         <AppBar
           homeIcon={homeIcon}
