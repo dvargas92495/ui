@@ -15,7 +15,7 @@ const AppBar: React.FunctionComponent<{
   return (
     <MuiAppBar position="static" elevation={5} color="transparent">
       <Toolbar>
-        <Link href={"/"} sx={{ minWidth: "200px" }}>
+        <Link href={"/"} sx={{ minWidth: "200px", display: "flex" }}>
           {homeIcon}
         </Link>
         <Grid container justifyContent="center">

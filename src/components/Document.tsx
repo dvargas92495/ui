@@ -1,11 +1,14 @@
 import React from "react";
-import ThemeProvider from "./ThemeProvider";
+import ThemeProvider, { ThemeProviderProps } from "./ThemeProvider";
 import { ClerkProvider } from "@clerk/clerk-react";
 
-const Document: React.FC = ({ children }) => {
+const Document: React.FC<{ themeProps?: ThemeProviderProps }> = ({
+  children,
+  themeProps,
+}) => {
   return (
     <ClerkProvider frontendApi={process.env.CLERK_FRONTEND_API} authVersion={2}>
-      <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider {...themeProps}>{children}</ThemeProvider>
     </ClerkProvider>
   );
 };
