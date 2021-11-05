@@ -1,43 +1,21 @@
 import React from "react";
-import styled from '@mui/material/styles/styled';
 import MuiAppBar from "@mui/material/AppBar";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-
-const PREFIX = 'AppBar';
-
-const classes = {
-  link: `${PREFIX}-link`,
-  home: `${PREFIX}-home`
-};
-
-const StyledMuiAppBar = styled(MuiAppBar)((
-  {
-    theme
-  }
-) => ({
-  [`& .${classes.link}`]: {
-    margin: theme.spacing(0, 1),
-  },
-
-  [`& .${classes.home}`]: {
-    maxWidth: theme.spacing(10.5),
-  }
-}));
+import Box from "@mui/material/Box";
 
 const AppBar: React.FunctionComponent<{
   homeIcon: React.ReactNode;
   userIcon: React.ReactNode;
   pages?: string[];
 }> = ({ children, homeIcon, pages = [], userIcon }) => {
-
   return (
-    <StyledMuiAppBar position="static" elevation={5} color="transparent">
+    <MuiAppBar position="static" elevation={5} color="transparent">
       <Toolbar>
-        <Link href={"/"} className={classes.home}>
+        <Link href={"/"} sx={{ minWidth: "200px" }}>
           {homeIcon}
         </Link>
         <Grid container justifyContent="center">
@@ -47,9 +25,18 @@ const AppBar: React.FunctionComponent<{
               <Typography
                 variant={"subtitle1"}
                 color={"textPrimary"}
-                className={classes.link}
+                sx={{ mx: 1 }}
               >
-                <Link href={`/${p}`} color="inherit">
+                <Link
+                  href={`/${p}`}
+                  color="inherit"
+                  sx={{
+                    textDecoration: "none",
+                    ":hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
                   {p}
                 </Link>
               </Typography>
@@ -57,9 +44,11 @@ const AppBar: React.FunctionComponent<{
           ))}
         </Grid>
         {children}
-        {userIcon}
+        <Box display={"flex"} justifyContent={"end"} sx={{ minWidth: "200px" }}>
+          {userIcon}
+        </Box>
       </Toolbar>
-    </StyledMuiAppBar>
+    </MuiAppBar>
   );
 };
 
