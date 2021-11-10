@@ -48,19 +48,24 @@ const Queue = ({
   title,
   subheader,
   loadItems,
+  initialItems = [],
   mapper,
   filter = () => true,
 }: {
   title: string;
   subheader: React.ReactNode;
-  loadItems: () => Promise<any[]>;
   mapper: (item: any, refresh: () => Promise<void>) => Omit<Item, "key">;
   filter?: (item: Item) => boolean;
+  initialItems?: Item[];
+  loadItems?: () => Promise<Item[]>;
 }) => {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Item[]>(initialItems);
   const loadAsync = useCallback(
-    () => loadItems().then((items) => setItems(items)),
-    [setItems]
+    () =>
+      (loadItems || (() => Promise.resolve(initialItems)))().then((items) =>
+        setItems(items)
+      ),
+    [setItems, initialItems]
   );
 
   const filteredItems = useMemo(
@@ -70,17 +75,22 @@ const Queue = ({
         .filter(filter),
     [items, filter, mapper, loadAsync]
   );
+  const reactItems = (
+    <Items
+      items={filteredItems}
+      listClassName={classes.list}
+      itemClassName={classes.listItem}
+    />
+  );
   return (
     <StyledCard className={classes.card}>
       <CardHeader title={title} subheader={subheader} />
       <CardContent className={classes.cardContent}>
-        <DataLoader loadAsync={loadAsync}>
-          <Items
-            items={filteredItems}
-            listClassName={classes.list}
-            itemClassName={classes.listItem}
-          />
-        </DataLoader>
+        {loadItems ? (
+          <DataLoader loadAsync={loadAsync}>{reactItems}</DataLoader>
+        ) : (
+          reactItems
+        )}
       </CardContent>
     </StyledCard>
   );
