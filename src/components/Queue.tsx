@@ -44,7 +44,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const Queue = ({
+const Queue = <T extends Record<string, unknown>>({
   title,
   subheader,
   loadItems,
@@ -54,12 +54,12 @@ const Queue = ({
 }: {
   title: string;
   subheader: React.ReactNode;
-  mapper: (item: any, refresh: () => Promise<void>) => Omit<Item, "key">;
+  mapper: (item: T, refresh?: () => Promise<void>) => Omit<Item, "key">;
   filter?: (item: Item) => boolean;
-  initialItems?: Item[];
-  loadItems?: () => Promise<Item[]>;
+  initialItems?: T[];
+  loadItems?: () => Promise<T[]>;
 }) => {
-  const [items, setItems] = useState<Item[]>(initialItems);
+  const [items, setItems] = useState<T[]>(initialItems);
   const loadAsync = useCallback(
     () =>
       (loadItems || (() => Promise.resolve(initialItems)))().then((items) =>
