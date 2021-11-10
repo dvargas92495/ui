@@ -44,7 +44,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const Queue = <T extends Record<string, unknown>>({
+const Queue = <T extends unknown>({
   title,
   subheader,
   loadItems,
