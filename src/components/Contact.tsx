@@ -2,9 +2,15 @@ import React from "react";
 import Body from "./Body";
 import ExternalLink from "./ExternalLink";
 import H2 from "./H2";
+import Box from "@mui/material/Box";
 
 const Contact = ({ email }: { email: string }) => (
-  <div>
+  <Box
+    sx={{
+      maxWidth: "800px",
+      width: "100%",
+    }}
+  >
     <H2>Contact Us</H2>
     <Body>You can email us for any bugs, issues, or ideas at {email}.</Body>
     <Body>
@@ -14,7 +20,7 @@ const Contact = ({ email }: { email: string }) => (
       </ExternalLink>
       .
     </Body>
-  </div>
+  </Box>
 );
 
 export default Contact;

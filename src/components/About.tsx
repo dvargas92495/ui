@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Box from "@mui/material/Box";
 import Body from "./Body";
 import H1 from "./H1";
 import H6 from "./H6";
@@ -10,15 +11,22 @@ const About = ({
 }: {
   title: string;
   subtitle: string;
-  paragraphs: string[];
+  paragraphs: React.ReactNode[];
 }) => (
-  <div>
+  <Box
+    sx={{
+      maxWidth: "800px",
+      width: "100%",
+    }}
+  >
     <H1>{title}</H1>
     <H6>{subtitle}</H6>
     {paragraphs.map((p, i) => (
-      <Body key={i}>{p}</Body>
+      <Body key={i} sx={{ whiteSpace: "pre" }}>
+        {p}
+      </Body>
     ))}
-  </div>
+  </Box>
 );
 
 export default About;

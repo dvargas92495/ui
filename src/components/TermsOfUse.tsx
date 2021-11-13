@@ -3,9 +3,15 @@ import Body from "./Body";
 import ExternalLink from "./ExternalLink";
 import H1 from "./H1";
 import H6 from "./H6";
+import Box from "@mui/material/Box";
 
 const TermsOfUse = ({ name, domain }: { name: string; domain: string }) => (
-  <div>
+  <Box
+    sx={{
+      maxWidth: "800px",
+      width: "100%",
+    }}
+  >
     <H1>Terms of Use</H1>
     <Body>
       The {name} website located at https://{domain} was founded by Vargas Arts,
@@ -391,7 +397,7 @@ const TermsOfUse = ({ name, domain }: { name: string; domain: string }) => (
     <H6> Contact Information</H6>
     <Body>Address: Earth</Body>
     <Body>Email: dvargas92495@gmail.com</Body>
-  </div>
+  </Box>
 );
 
 export default TermsOfUse;

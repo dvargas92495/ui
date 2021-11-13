@@ -3,9 +3,15 @@ import Body from "./Body";
 import ExternalLink from "./ExternalLink";
 import H2 from "./H2";
 import H6 from "./H6";
+import Box from "@mui/material/Box";
 
 const PrivacyPolicy = ({ name, domain }: { name: string; domain: string }) => (
-  <div>
+  <Box
+    sx={{
+      maxWidth: "800px",
+      width: "100%",
+    }}
+  >
     <H2>Privacy Policy for Vargas Arts, LLC</H2>
     <Body>
       {name}, accessible from https://{domain}, is an application residing in
@@ -34,7 +40,7 @@ const PrivacyPolicy = ({ name, domain }: { name: string; domain: string }) => (
     <Body>
       By using our websites, you hereby consent to our Privacy Policy and agree
       to its terms. For our Terms and Conditions, please visit the{" "}
-      <ExternalLink href={'/terms-of-use'}>Terms Of Use</ExternalLink>.
+      <ExternalLink href={"/terms-of-use"}>Terms Of Use</ExternalLink>.
     </Body>
     <H6>Information we collect</H6>
     <Body>
@@ -183,7 +189,7 @@ const PrivacyPolicy = ({ name, domain }: { name: string; domain: string }) => (
       contact us immediately and we will do our best efforts to promptly remove
       such information from our records.
     </Body>
-  </div>
+  </Box>
 );
 
 export default PrivacyPolicy;
