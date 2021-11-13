@@ -22,7 +22,7 @@ const About = ({
     <H1>{title}</H1>
     <H6>{subtitle}</H6>
     {paragraphs.map((p, i) => (
-      <Body key={i} sx={{ whiteSpace: "pre" }}>
+      <Body key={i} sx={{ whiteSpace: "pre-wrap", my: "1em" }}>
         {p}
       </Body>
     ))}
