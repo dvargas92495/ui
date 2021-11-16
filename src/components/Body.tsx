@@ -4,9 +4,8 @@ import React from "react";
 const Body = ({
   children,
   ...rest
-}: { children: React.ReactNode; class?: string } & Omit<
-  TypographyProps,
-  "variant"
+}: { children: React.ReactNode; class?: string } & Partial<
+  Omit<TypographyProps, "variant">
 >) => {
   const { ["class"]: htmlClass, className, ...props } = rest;
   return (
