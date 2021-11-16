@@ -1,6 +1,6 @@
 {
   "name": "@dvargas92495/ui",
-  "version": "0.32.18",
+  "version": "0.32.19",
   "description": "UI Component Library For All My Apps",
   "main": "dist/index.js",
   "scripts": {
