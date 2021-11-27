@@ -160,6 +160,9 @@ const LandingContent = styled("div")<{ index: number }>(({ theme, index }) => ({
 const Landing = ({ children }: { children: React.ReactNodeArray }) => {
   return (
     <LandingRoot>
+      <style>{`main {
+  width: 100%
+}`}</style>
       {children.map((c, i) => (
         <LandingContent index={i} key={i}>
           <Container maxWidth={"lg"}>{[c]}</Container>
