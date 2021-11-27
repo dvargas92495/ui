@@ -57,5 +57,3 @@ export { default as VerticalTabs } from "./components/VerticalTabs";
 
 export { default as clerkUserProfileCss } from "./clerkUserProfileCss";
 export { default as useAuthenticatedHandler } from "./useAuthenticatedHandler";
-
-export { InnerPromise } from "./types";

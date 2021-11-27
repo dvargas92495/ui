@@ -1,5 +1,3 @@
-import { InnerPromise } from "./types";
-
 const getHandler = <T extends (arg: never) => Promise<unknown>>({
   method,
   path,
@@ -34,7 +32,7 @@ const getHandler = <T extends (arg: never) => Promise<unknown>>({
         return r
           .json()
           .then(
-            (d) => d as Omit<InnerPromise<ReturnType<T>>, "code" | "headers">
+            (d) => d as Omit<Awaited<ReturnType<T>>, "code" | "headers">
           );
       } else {
         return r.text().then((s) => {
