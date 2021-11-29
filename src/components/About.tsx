@@ -29,7 +29,17 @@ const About = ({
     ))}
     <hr style={{ margin: "32px 0" }} />
     <Body>
-      <img src="https://pbs.twimg.com/profile_images/1272885092545896450/VaEFChlf_400x400.jpg" />{" "}
+      <Box
+        component={"img"}
+        src="https://pbs.twimg.com/profile_images/1272885092545896450/VaEFChlf_400x400.jpg"
+        style={{
+          borderRadius: "80px",
+          width: "160px",
+          display: "inline-grid",
+          marginRight: "16px",
+          float: "left",
+        }}
+      />
       {title} is part of the Vargas Arts portfolio of projects. Check out some
       of my other projects at{" "}
       <ExternalLink href={"https://davidvargas.me/projects"}>
