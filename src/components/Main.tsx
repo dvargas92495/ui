@@ -14,7 +14,7 @@ const Root = styled("main")(({ theme }) => ({
 }));
 
 const Main = ({ children }: { children: React.ReactNode }) => {
-  return <Root>{children}</Root>;
+  return <Root className="main">{children}</Root>;
 };
 
 export default Main;

@@ -94,7 +94,7 @@ export const Showcase = ({
       <BreakTitle>
         <H4>{header}</H4>
       </BreakTitle>
-      <Grid container alignItems="flex-start" spacing={2}>
+      <Grid container alignItems="flex-start" justifyContent={"center"} spacing={2}>
         {showCards.map((b) => (
           <Grid item xs={4} key={b.title}>
             <StyledCard>
@@ -160,8 +160,9 @@ const LandingContent = styled("div")<{ index: number }>(({ theme, index }) => ({
 const Landing = ({ children }: { children: React.ReactNodeArray }) => {
   return (
     <LandingRoot>
-      <style>{`main {
-  width: 100%
+      <style>{`main.main {
+  width: 100%;
+  max-width: unset;
 }`}</style>
       {children.map((c, i) => (
         <LandingContent index={i} key={i}>
