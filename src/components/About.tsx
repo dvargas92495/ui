@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Body from "./Body";
 import H1 from "./H1";
 import H6 from "./H6";
+import ExternalLink from "./ExternalLink";
 
 const About = ({
   title,
@@ -26,6 +27,16 @@ const About = ({
         {p}
       </Body>
     ))}
+    <hr style={{ margin: "32px 0" }} />
+    <Body>
+      <img src="https://pbs.twimg.com/profile_images/1272885092545896450/VaEFChlf_400x400.jpg" />{" "}
+      {title} is part of the Vargas Arts portfolio of projects. Check out some
+      of my other projects at{" "}
+      <ExternalLink href={"https://davidvargas.me/projects"}>
+        https://davidvargas.me/projects
+      </ExternalLink>
+      !
+    </Body>
   </Box>
 );
 
