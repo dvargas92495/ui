@@ -9,6 +9,7 @@ const Root = styled("main")(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   maxWidth: "760px",
+  width: "100%",
   padding: 0,
   flexGrow: 1,
 }));

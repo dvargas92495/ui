@@ -161,7 +161,6 @@ const Landing = ({ children }: { children: React.ReactNodeArray }) => {
   return (
     <LandingRoot>
       <style>{`main.main {
-  width: 100%;
   max-width: unset;
 }`}</style>
       {children.map((c, i) => (
