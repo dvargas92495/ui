@@ -8,6 +8,7 @@ export { default as CardGrid } from "./components/CardGrid";
 export { default as CheckboxForm } from "./components/CheckboxForm";
 export { default as ConfirmationDialog } from "./components/ConfirmationDialog";
 export { default as Contact } from "./components/Contact";
+export { default as ConvertKit } from "./components/ConvertKit";
 export { default as DataLoader } from "./components/DataLoader";
 export { default as DateField } from "./components/DateField";
 export { default as Document, Head } from "./components/Document";
