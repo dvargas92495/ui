@@ -2,13 +2,19 @@ import React, { useMemo } from "react";
 import createTheme from "@mui/material/styles/createTheme";
 import MuiThemeProvider from "@mui/material/styles/ThemeProvider";
 import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 
-export type ThemeProviderProps = { primary?: string; secondary?: string };
+export type ThemeProviderProps = {
+  primary?: string;
+  secondary?: string;
+  background?: string;
+};
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
   primary = "#3BA4DC",
   secondary = "#F7941D",
+  background = "#FFFFFF",
 }) => {
   const theme = useMemo(
     () =>
@@ -144,9 +150,14 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
       }),
     []
   );
+  const inputGlobalStyles = useMemo(
+    () => <GlobalStyles styles={{ body: { background } }} />,
+    [background]
+  );
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
+      {inputGlobalStyles}
       {children}
     </MuiThemeProvider>
   );
