@@ -1,5 +1,5 @@
 import { CircularProgress, makeStyles } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import MuiButton, { ButtonProps } from "@material-mui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -22,10 +22,18 @@ const ConfirmationDialog: React.FunctionComponent<{
   color?: "primary" | "secondary";
   title: string;
   content: string;
-  action: () => Promise<any>;
+  action?: () => Promise<any>;
   onSuccess?: () => void;
   defaultIsOpen?: boolean;
   disabled?: boolean;
+  actions?: { text: string; onClick: () => Promise<any> }[];
+  Button?: (
+    p: Required<
+      Pick<ButtonProps, "children" | "color" | "variant"> & {
+        onClick: () => void;
+      }
+    >
+  ) => React.ReactElement;
 }> = ({
   buttonText,
   color = "primary",
@@ -33,8 +41,10 @@ const ConfirmationDialog: React.FunctionComponent<{
   content,
   action,
   onSuccess,
+  actions,
   defaultIsOpen = false,
   disabled = false,
+  Button = MuiButton,
 }) => {
   const [open, setOpen] = useState(defaultIsOpen);
   const [loading, setLoading] = useState(false);
@@ -50,16 +60,19 @@ const ConfirmationDialog: React.FunctionComponent<{
       onSuccess();
     }
   }, [handleClose, onSuccess]);
-  const onSubmit = useCallback(() => {
-    setLoading(true);
-    setError("");
-    action()
-      .then(closeWithSuccess)
-      .catch((e) =>
-        setError(e.response?.data?.error || e.response?.data || e.message)
-      )
-      .finally(() => setLoading(false));
-  }, [setLoading, closeWithSuccess, setError, action]);
+  const onSubmit = useCallback(
+    (action?: () => Promise<any>) => () => {
+      setLoading(true);
+      setError("");
+      action?.()
+        .then(closeWithSuccess)
+        .catch((e) =>
+          setError(e.response?.data?.error || e.response?.data || e.message)
+        )
+        .finally(() => setLoading(false));
+    },
+    [setLoading, closeWithSuccess, setError, action]
+  );
   const classes = useStyles();
   return (
     <>
@@ -81,9 +94,25 @@ const ConfirmationDialog: React.FunctionComponent<{
           <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
-          <Button onClick={onSubmit} color="primary" disabled={loading || disabled}>
-            Submit
-          </Button>
+          {actions?.length ? (
+            actions.map(({ text, onClick }) => (
+              <Button
+                onClick={onSubmit(onClick)}
+                color="primary"
+                disabled={loading || disabled}
+              >
+                {text}
+              </Button>
+            ))
+          ) : (
+            <Button
+              onClick={onSubmit(action)}
+              color="primary"
+              disabled={loading || disabled}
+            >
+              Submit
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>
