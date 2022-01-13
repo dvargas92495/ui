@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ConfirmationDialog: React.FunctionComponent<{
-  buttonText: React.ReactNode;
+  buttonText?: React.ReactNode;
   color?: "primary" | "secondary";
   title: string;
   content: string;
@@ -35,7 +35,7 @@ const ConfirmationDialog: React.FunctionComponent<{
     >
   ) => React.ReactElement;
 }> = ({
-  buttonText,
+  buttonText = '',
   color = "primary",
   title,
   content,
@@ -91,27 +91,27 @@ const ConfirmationDialog: React.FunctionComponent<{
         <DialogActions>
           <DialogContentText color={"error"}>{error}</DialogContentText>
           {loading && <CircularProgress />}
-          <Button onClick={handleClose} color="secondary">
+          <MuiButton onClick={handleClose} color="secondary">
             Cancel
           </Button>
           {actions?.length ? (
             actions.map(({ text, onClick }) => (
-              <Button
+              <MuiButton
                 onClick={onSubmit(onClick)}
                 color="primary"
                 disabled={loading || disabled}
               >
                 {text}
-              </Button>
+              </MuiButton>
             ))
           ) : (
-            <Button
+            <MuiButton
               onClick={onSubmit(action)}
               color="primary"
               disabled={loading || disabled}
             >
               Submit
-            </Button>
+            </MuiButton>
           )}
         </DialogActions>
       </Dialog>
