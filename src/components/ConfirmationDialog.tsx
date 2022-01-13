@@ -93,7 +93,7 @@ const ConfirmationDialog: React.FunctionComponent<{
           {loading && <CircularProgress />}
           <MuiButton onClick={handleClose} color="secondary">
             Cancel
-          </Button>
+          </MuiButton>
           {actions?.length ? (
             actions.map(({ text, onClick }) => (
               <MuiButton
