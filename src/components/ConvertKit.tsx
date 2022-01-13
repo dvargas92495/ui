@@ -4,11 +4,15 @@ import React, { useEffect, useState } from "react";
 const ConvertKit = ({ id }: { id: string }) => {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://prodigious-trader-7332.ck.page/${id}/index.js`;
-    document.head.appendChild(script);
-    setLoaded(true);
+    if (!document.getElementById(id)) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://prodigious-trader-7332.ck.page/${id}/index.js`;
+      script.id = id;
+      document.head.appendChild(script);
+      setLoaded(true);
+    }
+    return () => script.remove();
   }, [setLoaded]);
   return (
     <>
