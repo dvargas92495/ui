@@ -11,8 +11,8 @@ const ConvertKit = ({ id }: { id: string }) => {
       script.id = id;
       document.head.appendChild(script);
       setLoaded(true);
+      return () => script.remove();
     }
-    return () => script.remove();
   }, [setLoaded]);
   return (
     <>
