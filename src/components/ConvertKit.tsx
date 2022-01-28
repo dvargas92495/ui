@@ -13,6 +13,7 @@ const ConvertKit = ({ id }: { id: string }) => {
       setLoaded(true);
       return () => script.remove();
     }
+    return;
   }, [setLoaded]);
   return (
     <>
