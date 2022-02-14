@@ -1,8 +1,8 @@
 import React from "react";
-import ThemeProvider, { ThemeProviderProps } from "./ThemeProvider";
+import ThemeProvider from "./ThemeProvider";
 import { ClerkProvider } from "@clerk/clerk-react";
 
-const Document: React.FC<{ themeProps?: ThemeProviderProps }> = ({
+const Document: React.FC<{ themeProps?: Parameters<typeof ThemeProvider>[0] }> = ({
   children,
   themeProps,
 }) => {

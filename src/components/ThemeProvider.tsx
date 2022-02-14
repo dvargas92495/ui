@@ -1,36 +1,26 @@
 import React, { useMemo } from "react";
-import createTheme from "@mui/material/styles/createTheme";
+import createTheme, { ThemeOptions } from "@mui/material/styles/createTheme";
 import MuiThemeProvider from "@mui/material/styles/ThemeProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 
-export type ThemeProviderProps = {
-  primary?: string;
-  secondary?: string;
-  background?: string;
-};
-
-const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  children,
-  primary = "#3BA4DC",
-  secondary = "#F7941D",
-  background = "#FFFFFF",
-}) => {
+const ThemeProvider: React.FC<ThemeOptions> = ({ children, ...options }) => {
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
           primary: {
-            main: primary,
+            main: "#3ba4dc",
           },
           secondary: {
-            main: secondary,
+            main: "#f8a94a",
           },
           text: {
             primary: "#333333",
             secondary: "#888888",
           },
           divider: "#333333",
+          ...options.palette,
         },
         typography: {
           fontFamily: ["Avenir Light", "sans-serif"].join(","),
@@ -72,6 +62,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
             fontSize: "1.25rem",
             fontFamily: ["Century Gothic", "sans-serif"].join(","),
           },
+          ...options.typography,
         },
         components: {
           MuiBreadcrumbs: {
@@ -146,13 +137,22 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
               },
             },
           },
+          ...options.components,
         },
+        ...options,
       }),
     []
   );
   const inputGlobalStyles = useMemo(
-    () => <GlobalStyles styles={{ body: { background } }} />,
-    [background]
+    () =>
+      options.palette?.background?.default ? (
+        <GlobalStyles
+          styles={{
+            body: { background: options.palette?.background?.default },
+          }}
+        />
+      ) : null,
+    [options.palette?.background?.default]
   );
   return (
     <MuiThemeProvider theme={theme}>
