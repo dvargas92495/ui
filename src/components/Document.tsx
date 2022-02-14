@@ -1,17 +1,34 @@
 import React from "react";
 import ThemeProvider from "./ThemeProvider";
 import { ClerkProvider } from "@clerk/clerk-react";
+import createEmotionServer from "@emotion/server/create-instance";
+import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
+import fs from 'fs';
 
-const Document: React.FC<{ themeProps?: Parameters<typeof ThemeProvider>[0] }> = ({
-  children,
-  themeProps,
-}) => {
+const cache = createCache({ key: "css" });
+cache.compat = true;
+
+const Document: React.FC<{
+  themeProps?: Parameters<typeof ThemeProvider>[0];
+}> = ({ children, themeProps }) => {
   return (
-    <ClerkProvider frontendApi={process.env.CLERK_FRONTEND_API} authVersion={2}>
-      <ThemeProvider {...themeProps}>{children}</ThemeProvider>
-    </ClerkProvider>
+    <CacheProvider value={cache}>
+      <ClerkProvider
+        frontendApi={process.env.CLERK_FRONTEND_API}
+        authVersion={2}
+      >
+        <ThemeProvider {...themeProps}>{children}</ThemeProvider>
+      </ClerkProvider>
+    </CacheProvider>
   );
 };
+
+export const generateCss = (_html: string) => {
+  const { extractCritical } = createEmotionServer(cache);
+  const { css } = extractCritical(_html);
+  fs.writeFileSync("/public/build/_assets/theme.css", css);
+}
 
 export const Head = ({
   title,
