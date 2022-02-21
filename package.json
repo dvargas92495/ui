@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^1.22.1",
+    "@clerk/remix": "0.1.0-alpha.0",
     "@emotion/react": "^11.5.0",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.3.0",

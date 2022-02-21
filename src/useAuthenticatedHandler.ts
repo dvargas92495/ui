@@ -1,4 +1,4 @@
-import { useSession } from "@clerk/clerk-react";
+import { useSession } from "@clerk/remix";
 import { useCallback } from "react";
 import getHandler from "./getHandler";
 
@@ -9,10 +9,10 @@ const useAuthenticatedHandler = <T extends (arg: never) => Promise<unknown>>({
   path: string;
   method: "PUT" | "POST" | "GET" | "DELETE";
 }) => {
-  const { getToken } = useSession();
+  const { session, isSignedIn } = useSession();
   return useCallback(
     (params?: Omit<Parameters<T>[0], "user">) =>
-      getToken().then((token) =>
+      !isSignedIn ? Promise.reject(new Error('No user is logged in')) : !session ? Promise.reject(new Error('Logged in user is missing a session object')) : session.getToken().then((token) =>
         getHandler<(p: Omit<Parameters<T>[0], "user">) => ReturnType<T>>({
           headers: {
             Authorization: `Bearer ${token}`,
