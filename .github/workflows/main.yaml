@@ -6,6 +6,9 @@ on:
       - "package.json"
       - ".github/workflows/main.yaml"
 
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   deploy:
     runs-on: ubuntu-20.04
@@ -22,5 +25,3 @@ jobs:
       - name: publish
         run: npm publish --access public
         working-directory: dist
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
