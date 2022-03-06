@@ -21,8 +21,6 @@ jobs:
         run: npm install
       - name: build
         run: npm run build
-      - name: read
-        run: cat ~/.npmrc
       - name: write
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
       - name: publish
