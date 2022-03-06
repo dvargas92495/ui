@@ -5,12 +5,11 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "postbuild": "cp package.json dist & cp README.md dist",
-    "prepublish": "npm run build",
-    "postversion": "git push origin main",
+    "postversion": "git push origin main && git push --tags",
     "postinstall": "remix setup node",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc",
+    "postbuild": "cp package.json dist & cp README.md dist"
   },
   "jest": {
     "setupFilesAfterEnv": [
@@ -58,7 +57,8 @@
     "react": "^17.0.1",
     "react-device-detect": "^1.14.0",
     "react-dom": "^17.0.1",
-    "remix": "^1.2.3"
+    "remix": "^1.2.3",
+    "remix-utils": "^2.7.0"
   },
   "files": [
     "/components",

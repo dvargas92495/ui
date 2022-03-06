@@ -4,53 +4,48 @@ import Main from "./Main";
 import Footer from "./Footer";
 import Button from "@mui/material/Button";
 import Root from "./Root";
-import Document from "./Document";
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
-import type ThemeProvider from "./ThemeProvider";
+import { SignedIn, SignedOut, UserButton } from "@clerk/remix";
 
 const Layout: React.FC<{
   homeIcon?: React.ReactNode;
   pages?: string[];
-  themeProps?: Parameters<typeof ThemeProvider>[0];
-}> = ({ children, pages = [], homeIcon = "Home", themeProps }) => {
+}> = ({ children, pages = [], homeIcon = "Home" }) => {
   return (
-    <Document themeProps={themeProps}>
-      <Root>
-        <AppBar
-          homeIcon={homeIcon}
-          userIcon={
-            <>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-              <SignedOut>
-                <Button
-                  color={"primary"}
-                  href={"/login"}
-                  variant={"outlined"}
-                  style={{ margin: "0 4px" }}
-                >
-                  LOGIN
-                </Button>
-                <Button
-                  color={"secondary"}
-                  href={"/signup"}
-                  variant={"outlined"}
-                  style={{ marginLeft: 4, marginRight: 8 }}
-                >
-                  SIGNUP
-                </Button>
-              </SignedOut>
-            </>
-          }
-          pages={pages}
-        />
-        <Main>{children}</Main>
-        <Footer
-          siteLinks={["About", "Terms of Use", "Privacy Policy", "Contact"]}
-        />
-      </Root>
-    </Document>
+    <Root>
+      <AppBar
+        homeIcon={homeIcon}
+        userIcon={
+          <>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <Button
+                color={"primary"}
+                href={"/login"}
+                variant={"outlined"}
+                style={{ margin: "0 4px" }}
+              >
+                LOGIN
+              </Button>
+              <Button
+                color={"secondary"}
+                href={"/signup"}
+                variant={"outlined"}
+                style={{ marginLeft: 4, marginRight: 8 }}
+              >
+                SIGNUP
+              </Button>
+            </SignedOut>
+          </>
+        }
+        pages={pages}
+      />
+      <Main>{children}</Main>
+      <Footer
+        siteLinks={["About", "Terms of Use", "Privacy Policy", "Contact"]}
+      />
+    </Root>
   );
 };
 

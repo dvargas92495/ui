@@ -1,4 +1,23 @@
 import React, { useMemo } from "react";
+import {
+  Links,
+  LinksFunction,
+  LiveReload,
+  LoaderFunction,
+  Meta,
+  MetaFunction,
+  Outlet,
+  Scripts,
+  useCatch,
+  ScrollRestoration,
+  useLoaderData,
+} from "remix";
+import { ExternalScripts } from "remix-utils";
+import { ConnectClerk } from "@clerk/remix";
+import { rootAuthLoader } from "@clerk/remix/ssr.server";
+import { CacheProvider } from "@emotion/react";
+import getEmotionCache, { emotionCache } from "../utils/getEmotionCache";
+import { APP_NAME } from "../utils/constants";
 import createTheme, { ThemeOptions } from "@mui/material/styles/createTheme";
 import MuiThemeProvider from "@mui/material/styles/ThemeProvider";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -163,4 +182,115 @@ const ThemeProvider: React.FC<ThemeOptions> = ({ children, ...options }) => {
   );
 };
 
-export default ThemeProvider;
+export const getRootMeta = (
+  tags: ReturnType<MetaFunction> = {}
+): MetaFunction => () => {
+  return {
+    title: APP_NAME,
+    "og:type": "website",
+    "twitter:card": "summary",
+    "twitter:creator": "@dvargas92495",
+    ...tags,
+  };
+};
+
+export const getRootLoader = ({
+  env = {},
+}: { env?: Record<string, string | undefined> } = {}): LoaderFunction => (
+  args
+) =>
+  rootAuthLoader(
+    args,
+    () => ({
+      ENV: {
+        API_URL: process.env.API_URL,
+        CLERK_FRONTEND_API: process.env.CLERK_FRONTEND_API,
+        HOST: process.env.HOST,
+        NODE_ENV: process.env.NODE_ENV,
+        STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
+        ...env,
+      },
+    }),
+    { loadUser: true }
+  );
+
+export const getRootLinks = (
+  links: ReturnType<LinksFunction> = []
+): LinksFunction => () => {
+  return [
+    { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    { rel: "preconnect", href: "https://fonts.gstatic.com" },
+    {
+      rel: "stylesheet",
+      href:
+        "https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap",
+    },
+    ...links,
+  ];
+};
+
+export function RootCatchBoundary() {
+  const caught = useCatch();
+  return (
+    <html>
+      <head>
+        <title>Oops!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <h1>
+          {caught.status} {caught.statusText}
+        </h1>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+type Props = { themeProps?: ThemeOptions };
+
+const App = ({ themeProps = {} }: Props) => {
+  const data = useLoaderData<{ ENV: Record<string, string> }>();
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <Meta />
+        <Links />
+        {typeof document === "undefined" ? "__STYLES__" : null}
+        {typeof document === "undefined" ? "__STYLES2__" : null}
+      </head>
+      <body>
+        <CacheProvider
+          value={
+            typeof document === "undefined" ? emotionCache : getEmotionCache()
+          }
+        >
+          <ThemeProvider {...themeProps}>
+            <Outlet />
+          </ThemeProvider>
+        </CacheProvider>
+        <ScrollRestoration />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.process = {
+  env: ${JSON.stringify(data?.ENV || {})}
+};`,
+          }}
+        />
+        <ExternalScripts />
+        <Scripts />
+        {process.env.NODE_ENV === "development" && <LiveReload />}
+      </body>
+    </html>
+  );
+};
+
+const RemixRoot = (props: Props) =>
+  ConnectClerk(() => <App {...props} />, {
+    frontendApi: process.env.CLERK_FRONTEND_API || "",
+  });
+
+export default RemixRoot;

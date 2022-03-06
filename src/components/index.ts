@@ -11,7 +11,6 @@ export { default as Contact } from "./Contact";
 export { default as ConvertKit } from "./ConvertKit";
 export { default as DataLoader } from "./DataLoader";
 export { default as DateField } from "./DateField";
-export { default as Document, Head } from "./Document";
 export { default as ExternalLink } from "./ExternalLink";
 export { default as Footer } from "./Footer";
 export { default as FormDialog } from "./FormDialog";
@@ -49,9 +48,5 @@ export {
   isThankYouEmoji,
 } from "./ThankYou";
 export { default as Tooltip } from "./Tooltip";
-export { default as ThemeProvider } from "./ThemeProvider";
 export { default as UserAvatar } from "./UserAvatar";
 export { default as UserProfileTab } from "./UserProfileTab";
-export { default as VerticalGridContent } from "./VerticalGridContent";
-export { default as VerticalNavigationTabs } from "./VerticalNavigationTabs";
-export { default as VerticalTabs } from "./VerticalTabs";
