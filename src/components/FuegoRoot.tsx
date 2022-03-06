@@ -25,14 +25,4 @@ export const generateCss = (_html: string) => {
   return _html.replace("__STYLES__", styles);
 };
 
-export const transformHead = (head: string, body: string) => {
-  const {
-    extractCriticalToChunks,
-    constructStyleTagsFromChunks,
-  } = createEmotionServer(cache);
-  const emotionChunks = extractCriticalToChunks(body);
-  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
-  return `${head}\n  ${emotionCss}`;
-};
-
 export default FuegoRoot;
