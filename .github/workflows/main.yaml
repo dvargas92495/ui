@@ -5,7 +5,6 @@ on:
     paths:
       - "package.json"
       - ".github/workflows/main.yaml"
-
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -22,8 +21,10 @@ jobs:
         run: npm install
       - name: build
         run: npm run build
-      - name: login
-        run: npm login
+      - name: read
+        run: cat ~/.npmrc
+      - name: write
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
       - name: publish
         run: npm publish --access public
         working-directory: dist
