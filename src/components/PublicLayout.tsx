@@ -5,11 +5,12 @@ import Footer from "./Footer";
 import Button from "@mui/material/Button";
 import Root from "./Root";
 import { SignedIn, SignedOut, UserButton } from "@clerk/remix";
+import { Outlet } from "remix";
 
 const Layout: React.FC<{
   homeIcon?: React.ReactNode;
   pages?: string[];
-}> = ({ children, pages = [], homeIcon = "Home" }) => {
+}> = ({ pages = [], homeIcon = "Home" }) => {
   return (
     <Root>
       <AppBar
@@ -41,7 +42,7 @@ const Layout: React.FC<{
         }
         pages={pages}
       />
-      <Main>{children}</Main>
+      <Main><Outlet /></Main>
       <Footer
         siteLinks={["About", "Terms of Use", "Privacy Policy", "Contact"]}
       />

@@ -28,7 +28,6 @@ export {
   Stats as StatsLanding,
   Showcase as ShowcaseLanding,
 } from "./Landing";
-export { default as Layout } from "./Layout";
 export { default as LI } from "./LI";
 export { default as Loading } from "./Loading";
 export { default as Logo } from "./Logo";
@@ -37,6 +36,7 @@ export { default as NavList } from "./NavList";
 export { default as NumberField } from "./NumberField";
 export { default as Outlined } from "./Outlined";
 export { default as PrivacyPolicy } from "./PrivacyPolicy";
+export { default as PublicLayout } from "./PublicLayout";
 export { default as Queue } from "./Queue";
 export { default as Root } from "./Root";
 export { default as StringField } from "./StringField";
