@@ -291,6 +291,6 @@ const App = ({ themeProps = {} }: Props) => {
 const RemixRoot = (props: Props) =>
   ConnectClerk(() => <App {...props} />, {
     frontendApi: process.env.CLERK_FRONTEND_API || "",
-  });
+  })();
 
 export default RemixRoot;
