@@ -34,6 +34,7 @@
   "homepage": "https://github.com/dvargas92495/ui#readme",
   "devDependencies": {
     "@remix-run/dev": "^1.2.3",
+    "@remix-run/serve": "^1.2.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@types/jest": "^26.0.14",
@@ -52,7 +53,6 @@
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.4",
     "@remix-run/react": "^1.2.3",
-    "@remix-run/serve": "^1.2.3",
     "date-fns": "^2.16.1",
     "react": "^17.0.1",
     "react-device-detect": "^1.14.0",

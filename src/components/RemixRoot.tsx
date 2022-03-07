@@ -260,7 +260,6 @@ const App = ({ themeProps = {} }: Props) => {
         <Meta />
         <Links />
         {typeof document === "undefined" ? "__STYLES__" : null}
-        {typeof document === "undefined" ? "__STYLES2__" : null}
       </head>
       <body>
         <CacheProvider
@@ -282,7 +281,7 @@ const App = ({ themeProps = {} }: Props) => {
         />
         <ExternalScripts />
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        <LiveReload />
       </body>
     </html>
   );
