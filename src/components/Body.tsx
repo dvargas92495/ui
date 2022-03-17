@@ -1,4 +1,4 @@
-import { Typography, TypographyProps } from "@mui/material";
+import Typography, { TypographyProps } from "@mui/material/Typography";
 import React from "react";
 
 const Body = ({
