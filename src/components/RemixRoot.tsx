@@ -12,7 +12,6 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "remix";
-import { ExternalScripts } from "remix-utils";
 import { ConnectClerk } from "@clerk/remix";
 import { rootAuthLoader } from "@clerk/remix/ssr.server";
 import { CacheProvider } from "@emotion/react";
@@ -279,7 +278,6 @@ const App = ({ themeProps = {} }: Props) => {
 };`,
           }}
         />
-        <ExternalScripts />
         <Scripts />
         <LiveReload />
       </body>

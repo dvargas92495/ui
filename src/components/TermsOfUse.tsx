@@ -395,8 +395,10 @@ const TermsOfUse = ({ name, domain }: { name: string; domain: string }) => (
       <ExternalLink href={"/privacy-policy"}>Privacy Policy</ExternalLink>.
     </Body>
     <H6> Contact Information</H6>
-    <Body>Address: Earth</Body>
-    <Body>Email: dvargas92495@gmail.com</Body>
+    <Body>
+      Please read our{" "}
+      <ExternalLink href={"/contact"}>Contact Page</ExternalLink>.
+    </Body>
   </Box>
 );
 
