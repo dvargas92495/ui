@@ -8,6 +8,7 @@
     "postversion": "git push origin main && git push --tags",
     "test": "jest",
     "build": "tsc",
+    "prebuild": "remix setup node",
     "postbuild": "cp package.json dist & cp README.md dist"
   },
   "jest": {
