@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import type {
   LinksFunction,
-  LoaderFunction,
   MetaFunction,
 } from "@remix-run/server-runtime";
 import {
@@ -15,7 +14,6 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import { ConnectClerk } from "@clerk/remix";
-import { rootAuthLoader } from "@clerk/remix/ssr.server";
 import { CacheProvider } from "@emotion/react";
 import getEmotionCache, { emotionCache } from "../utils/getEmotionCache";
 import { APP_NAME } from "../utils/constants";
@@ -194,26 +192,6 @@ export const getRootMeta = (
     ...tags,
   };
 };
-
-export const getRootLoader = ({
-  env = {},
-}: { env?: Record<string, string | undefined> } = {}): LoaderFunction => (
-  args
-) =>
-  rootAuthLoader(
-    args,
-    () => ({
-      ENV: {
-        API_URL: process.env.API_URL,
-        CLERK_FRONTEND_API: process.env.CLERK_FRONTEND_API,
-        HOST: process.env.HOST,
-        NODE_ENV: process.env.NODE_ENV,
-        STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
-        ...env,
-      },
-    }),
-    { loadUser: true }
-  );
 
 export const getRootLinks = (
   links: ReturnType<LinksFunction> = []
