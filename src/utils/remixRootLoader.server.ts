@@ -1,11 +1,9 @@
 import { rootAuthLoader } from "@clerk/remix/ssr.server";
 import type { LoaderFunction } from "@remix-run/server-runtime";
 
-const getRootLoader = ({
-  env = {},
-}: { env?: Record<string, string | undefined> } = {}): LoaderFunction => (
-  args
-) =>
+const remixRootLoader = (
+  args: Parameters<LoaderFunction>[0] & { env: Record<string, string> }
+): ReturnType<LoaderFunction> =>
   rootAuthLoader(
     args,
     () => ({
@@ -15,10 +13,10 @@ const getRootLoader = ({
         HOST: process.env.HOST,
         NODE_ENV: process.env.NODE_ENV,
         STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
-        ...env,
+        ...args.env,
       },
     }),
     { loadUser: true }
   );
 
-export default getRootLoader;
+export default remixRootLoader;

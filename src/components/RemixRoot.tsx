@@ -1,8 +1,5 @@
 import React, { useMemo } from "react";
-import type {
-  LinksFunction,
-  MetaFunction,
-} from "@remix-run/server-runtime";
+import type { LinksFunction, MetaFunction } from "@remix-run/server-runtime";
 import {
   Links,
   LiveReload,
@@ -13,7 +10,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { ConnectClerk } from "@clerk/remix";
+import { ClerkApp } from "@clerk/remix";
 import { CacheProvider } from "@emotion/react";
 import getEmotionCache, { emotionCache } from "../utils/getEmotionCache";
 import { APP_NAME } from "../utils/constants";
@@ -265,9 +262,6 @@ const App = ({ themeProps = {} }: Props) => {
   );
 };
 
-const RemixRoot = (props: Props) =>
-  ConnectClerk(() => <App {...props} />, {
-    frontendApi: process.env.CLERK_FRONTEND_API || "",
-  })();
+const RemixRoot = (props: Props) => ClerkApp(() => <App {...props} />)();
 
 export default RemixRoot;
