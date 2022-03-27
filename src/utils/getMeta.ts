@@ -1,4 +1,4 @@
-import type { MetaFunction } from "remix";
+import type { MetaFunction } from "@remix-run/server-runtime";
 import { APP_NAME } from "./constants";
 
 const getMeta = ({

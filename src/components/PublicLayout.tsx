@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import Button from "@mui/material/Button";
 import Root from "./Root";
 import { SignedIn, SignedOut, UserButton } from "@clerk/remix";
-import { Outlet } from "remix";
+import { Outlet } from "@remix-run/react";
 
 const Layout: React.FC<{
   homeIcon?: React.ReactNode;

@@ -1,17 +1,19 @@
 import React, { useMemo } from "react";
+import type {
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/server-runtime";
 import {
   Links,
-  LinksFunction,
   LiveReload,
-  LoaderFunction,
   Meta,
-  MetaFunction,
   Outlet,
   Scripts,
   useCatch,
   ScrollRestoration,
   useLoaderData,
-} from "remix";
+} from "@remix-run/react";
 import { ConnectClerk } from "@clerk/remix";
 import { rootAuthLoader } from "@clerk/remix/ssr.server";
 import { CacheProvider } from "@emotion/react";
