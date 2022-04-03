@@ -12,7 +12,7 @@ const ConfirmationDialog: React.FunctionComponent<{
   color?: ButtonProps["color"];
   title: string;
   content: string;
-  action: () => Promise<any>;
+  action?: () => Promise<any>;
   onSuccess?: () => void;
   defaultIsOpen?: boolean;
   disabled?: boolean;
@@ -23,6 +23,7 @@ const ConfirmationDialog: React.FunctionComponent<{
       }
     >
   ) => React.ReactElement;
+  actions?: { text: string; onClick: () => Promise<any> }[];
 }> = ({
   buttonText = "",
   color = "primary",
@@ -31,6 +32,7 @@ const ConfirmationDialog: React.FunctionComponent<{
   action,
   onSuccess,
   defaultIsOpen = false,
+  actions = [],
   disabled = false,
   Button = MuiButton,
 }) => {
@@ -48,17 +50,19 @@ const ConfirmationDialog: React.FunctionComponent<{
       onSuccess();
     }
   }, [handleClose, onSuccess]);
-  const onSubmit = useCallback(() => {
-    setLoading(true);
-    setError("");
-    action()
-      .then(closeWithSuccess)
-      .catch((e) =>
-        setError(e.response?.data?.error || e.response?.data || e.message)
-      )
-      .finally(() => setLoading(false));
-  }, [setLoading, closeWithSuccess, setError, action]);
-
+  const onSubmit = useCallback(
+    (action?: () => Promise<any>) => () => {
+      setLoading(true);
+      setError("");
+      action?.()
+        .then(closeWithSuccess)
+        .catch((e) =>
+          setError(e.response?.data?.error || e.response?.data || e.message)
+        )
+        .finally(() => setLoading(false));
+    },
+    [setLoading, closeWithSuccess, setError]
+  );
   return (
     <>
       <Button color={color} variant="contained" onClick={handleOpen}>
@@ -75,13 +79,25 @@ const ConfirmationDialog: React.FunctionComponent<{
           <MuiButton onClick={handleClose} color="secondary">
             Cancel
           </MuiButton>
-          <MuiButton
-            onClick={onSubmit}
-            color="primary"
-            disabled={loading || disabled}
-          >
-            Submit
-          </MuiButton>
+          {actions?.length ? (
+            actions.map(({ text, onClick }) => (
+              <MuiButton
+                onClick={onSubmit(onClick)}
+                color="primary"
+                disabled={loading || disabled}
+              >
+                {text}
+              </MuiButton>
+            ))
+          ) : (
+            <MuiButton
+              onClick={onSubmit(action)}
+              color="primary"
+              disabled={loading || disabled}
+            >
+              Submit
+            </MuiButton>
+          )}
         </DialogActions>
       </Dialog>
     </>
