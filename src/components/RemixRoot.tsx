@@ -18,6 +18,7 @@ import createTheme, { ThemeOptions } from "@mui/material/styles/createTheme";
 import MuiThemeProvider from "@mui/material/styles/ThemeProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
+import Clerk from '@clerk/clerk-js';
 
 const ThemeProvider: React.FC<ThemeOptions> = ({ children, ...options }) => {
   const theme = useMemo(
@@ -262,6 +263,9 @@ const App = ({ themeProps = {} }: Props) => {
   );
 };
 
-const RemixRoot = (props: Props) => ClerkApp(() => <App {...props} />)();
+const RemixRoot = (props: Props) => ClerkApp(() => <App {...props} />, {
+  // @ts-ignore
+  Clerk,
+})();
 
 export default RemixRoot;
