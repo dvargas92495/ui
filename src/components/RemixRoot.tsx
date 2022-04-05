@@ -10,7 +10,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { ClerkApp } from "@clerk/remix";
+import { ClerkApp, ClerkCatchBoundary } from "@clerk/remix";
 import { CacheProvider } from "@emotion/react";
 import getEmotionCache, { emotionCache } from "../utils/getEmotionCache";
 import createTheme, { ThemeOptions } from "@mui/material/styles/createTheme";
@@ -204,7 +204,7 @@ export const getRootLinks = (
   ];
 };
 
-export function RootCatchBoundary() {
+export const RootCatchBoundary = ClerkCatchBoundary(() => {
   const caught = useCatch();
   return (
     <html>
@@ -221,7 +221,7 @@ export function RootCatchBoundary() {
       </body>
     </html>
   );
-}
+});
 
 type Props = { themeProps?: ThemeOptions };
 
@@ -261,9 +261,10 @@ const App = ({ themeProps = {} }: Props) => {
   );
 };
 
-const RemixRoot = (props: Props) => ClerkApp(() => <App {...props} />, {
-  // @ts-ignore - Remove Clerk Hot loading
-  // Clerk, 
-})();
+const RemixRoot = (props: Props) =>
+  ClerkApp(() => <App {...props} />, {
+    // @ts-ignore - Remove Clerk Hot loading
+    // Clerk,
+  })();
 
 export default RemixRoot;
