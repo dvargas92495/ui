@@ -13,7 +13,7 @@ import {
 import { ClerkApp } from "@clerk/remix";
 import { CacheProvider } from "@emotion/react";
 import getEmotionCache, { emotionCache } from "../utils/getEmotionCache";
-import { APP_NAME } from "../utils/constants";
+import getAppName from "../utils/getAppName";
 import createTheme, { ThemeOptions } from "@mui/material/styles/createTheme";
 import MuiThemeProvider from "@mui/material/styles/ThemeProvider";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -183,7 +183,7 @@ export const getRootMeta = (
   tags: ReturnType<MetaFunction> = {}
 ): MetaFunction => () => {
   return {
-    title: APP_NAME,
+    title: getAppName(),
     "og:type": "website",
     "twitter:card": "summary",
     "twitter:creator": "@dvargas92495",
