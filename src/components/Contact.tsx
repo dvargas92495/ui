@@ -1,26 +1,26 @@
 import React from "react";
-import Body from "./Body";
-import ExternalLink from "./ExternalLink";
-import H2 from "./H2";
-import Box from "@mui/material/Box";
 
 const Contact = ({ email }: { email: string }) => (
-  <Box
-    sx={{
+  <div
+    style={{
       maxWidth: "800px",
       width: "100%",
     }}
   >
-    <H2>Contact Us</H2>
-    <Body>You can email us for any bugs, issues, or ideas at {email}.</Body>
-    <Body>
+    <h2>Contact Us</h2>
+    <p>You can email us for any bugs, issues, or ideas at {email}.</p>
+    <p>
       Our DMs are also open on Twitter at{" "}
-      <ExternalLink href={"https://twitter.com/dvargas92495"}>
+      <a
+        target="_blank"
+        rel="noopener"
+        href={"https://twitter.com/dvargas92495"}
+      >
         @dvargas92495
-      </ExternalLink>
+      </a>
       .
-    </Body>
-  </Box>
+    </p>
+  </div>
 );
 
 export default Contact;

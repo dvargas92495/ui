@@ -1,4 +1,3 @@
-import Skeleton from "@mui/material/Skeleton";
 import React, { useEffect, useState } from "react";
 
 const ConvertKit = ({ id }: { id: string }) => {
@@ -17,7 +16,7 @@ const ConvertKit = ({ id }: { id: string }) => {
   }, [setLoaded]);
   return (
     <>
-      {!loaded && <Skeleton variant="rectangular" height={300} />}
+      {!loaded && <div style={{ height: 300, background: "#333333" }} />}
       <script data-uid={id} />
     </>
   );

@@ -1,9 +1,4 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Body from "./Body";
-import H1 from "./H1";
-import H6 from "./H6";
-import ExternalLink from "./ExternalLink";
 
 const About = ({
   title,
@@ -14,23 +9,29 @@ const About = ({
   subtitle: string;
   paragraphs: React.ReactNode[];
 }) => (
-  <Box
-    sx={{
+  <div
+    style={{
       maxWidth: "800px",
       width: "100%",
     }}
   >
-    <H1>{title}</H1>
-    <H6>{subtitle}</H6>
+    <h1>{title}</h1>
+    <h6>{subtitle}</h6>
     {paragraphs.map((p, i) => (
-      <Body key={i} sx={{ whiteSpace: "pre-wrap", my: "1em" }}>
+      <p
+        key={i}
+        style={{
+          whiteSpace: "pre-wrap",
+          marginTop: "1em",
+          marginBottom: "1em",
+        }}
+      >
         {p}
-      </Body>
+      </p>
     ))}
     <hr style={{ margin: "32px 0" }} />
-    <Body>
-      <Box
-        component={"img"}
+    <p>
+      <img
         src="https://pbs.twimg.com/profile_images/1272885092545896450/VaEFChlf_400x400.jpg"
         style={{
           borderRadius: "80px",
@@ -42,12 +43,12 @@ const About = ({
       />
       {title} is part of the Vargas Arts portfolio of projects. Check out some
       of my other projects at{" "}
-      <ExternalLink href={"https://davidvargas.me/projects"}>
+      <a target="_blank" rel="noopener" href={"https://davidvargas.me/projects"}>
         https://davidvargas.me/projects
-      </ExternalLink>
+      </a>
       !
-    </Body>
-  </Box>
+    </p>
+  </div>
 );
 
 export default About;

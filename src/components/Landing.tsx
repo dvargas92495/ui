@@ -1,21 +1,4 @@
-import Grid from "@mui/material/Grid";
-import styled from "@mui/material/styles/styled";
-import Container from "@mui/material/Container";
-import { alpha } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
 import React, { SVGAttributes } from "react";
-import Button from "@mui/material/Button";
-import H4 from "./H4";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import H6 from "./H6";
-
-const LogoContainer = styled(Grid)({
-  width: "100%",
-  textAlign: "center",
-});
 
 export const Splash = ({
   Logo,
@@ -30,57 +13,41 @@ export const Splash = ({
   primaryHref: string;
   secondaryHref: string;
 }) => {
-  const StyledLogo = styled(Logo)({
-    width: "100%",
-    height: "100%",
-  });
   return (
-    <Grid container alignItems="center">
-      <Grid item xs={6}>
-        <Typography variant="h1">{title}</Typography>
-        <Typography variant="subtitle1">
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ width: "50%" }}>
+        <h1>{title}</h1>
+        <h6>
           <i>{subtitle}</i>
-        </Typography>
-        <Button
-          variant={"contained"}
-          color="primary"
-          href={`/${primaryHref}`}
-          sx={{ m: 2 }}
-        >
-          <Typography variant="h6" sx={{ m: 0 }}>
-            Getting Started
-          </Typography>
-        </Button>
-        <Button
-          variant={"outlined"}
-          color="primary"
-          href={`/${secondaryHref}`}
-          sx={{ m: 2 }}
-        >
-          <Typography variant="h6" sx={{ m: 0 }}>
-            Explore
-          </Typography>
-        </Button>
-      </Grid>
-      <Grid item xs={1} />
-      <LogoContainer item xs={5}>
-        <StyledLogo />
-      </LogoContainer>
-    </Grid>
+        </h6>
+        <a href={`/${primaryHref}`} style={{ margin: 16 }}>
+          <h6 style={{ margin: 0 }}>Getting Started</h6>
+        </a>
+        <a href={`/${secondaryHref}`} style={{ margin: 16 }}>
+          <h6 style={{ margin: 0 }}>Explore</h6>
+        </a>
+      </div>
+      <div
+        style={{
+          width: "10%",
+        }}
+      />
+      <div
+        style={{
+          width: "40%",
+          textAlign: "center",
+        }}
+      >
+        <Logo
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+        />
+      </div>
+    </div>
   );
 };
-
-const StyledCard = styled(Card)({
-  height: 350,
-});
-const BreakTitle = styled("div")({
-  textAlign: "center",
-});
-const StyledMedia = styled(CardMedia)(({ theme }) => ({
-  height: 160,
-  backgroundSize: "contain",
-  margin: theme.spacing(2),
-}));
 
 export const Showcase = ({
   header,
@@ -91,20 +58,36 @@ export const Showcase = ({
 }) => {
   return (
     <>
-      <BreakTitle>
-        <H4>{header}</H4>
-      </BreakTitle>
-      <Grid container alignItems="flex-start" justifyContent={"center"} spacing={2}>
+      <div
+        style={{
+          textAlign: "center",
+        }}
+      >
+        <h4>{header}</h4>
+      </div>
+      <div
+        style={{
+          alignItems: "flex-start",
+          justifyContent: "center",
+          display: "flex",
+          gap: 16,
+        }}
+      >
         {showCards.map((b) => (
-          <Grid item xs={4} key={b.title}>
-            <StyledCard>
-              <CardHeader title={b.title} />
-              <StyledMedia title={b.title} image={b.image} />
-              <CardContent>{b.description}</CardContent>
-            </StyledCard>
-          </Grid>
+          <div style={{ width: "30%" }} key={b.title}>
+            <div
+              style={{
+                height: 350,
+                borderRadius: 8,
+              }}
+            >
+              <h2 title={b.title} />
+              <img title={b.title} src={b.image} style={{ margin: 16 }} />
+              <p>{b.description}</p>
+            </div>
+          </div>
         ))}
-      </Grid>
+      </div>
     </>
   );
 };
@@ -120,55 +103,53 @@ export const Stats = ({
 }) => {
   return (
     <>
-      <H4>{statHeader}</H4>
-      <H6>{statSubheader}</H6>
-      <Grid
-        container
-        alignItems="flex-start"
-        spacing={8}
-        justifyContent="space-evenly"
+      <h4>{statHeader}</h4>
+      <h6>{statSubheader}</h6>
+      <div
+        style={{
+          display: "flex",
+          gap: 64,
+          alignItems: "flex-start",
+          justifyContent: "space-evenly",
+        }}
       >
         {stats.map((s) => (
-          <Grid item xs={3} key={s.label}>
-            <H4>{s.value}</H4>
-            <H6 sx={{ m: 0 }}>{s.label}</H6>
-          </Grid>
+          <div style={{ display: "flex", width: "33%" }} key={s.label}>
+            <h4>{s.value}</h4>
+            <h6 style={{ margin: 0 }}>{s.label}</h6>
+          </div>
         ))}
-      </Grid>
+      </div>
     </>
   );
 };
 
-// const useStyles = makeStyles((theme) => ({
-const LandingRoot = styled("div")(({ theme }) => ({
-  marginTop: theme.spacing(-8),
-  width: "100%",
-}));
-
-const LandingContent = styled("div")<{ index: number }>(({ theme, index }) => ({
-  paddingTop: theme.spacing(8),
-  paddingBottom: theme.spacing(8),
-  textAlign: "center",
-  background:
-    index % 4 === 0
-      ? alpha(theme.palette.secondary.light, 0.25)
-      : index % 4 === 2
-      ? alpha(theme.palette.primary.light, 0.25)
-      : "inherit",
-}));
-
 const Landing = ({ children }: { children: React.ReactNodeArray }) => {
   return (
-    <LandingRoot>
+    <div
+      style={{
+        marginTop: -64,
+        width: "100%",
+      }}
+    >
       <style>{`main.main {
   max-width: unset;
 }`}</style>
       {children.map((c, i) => (
-        <LandingContent index={i} key={i}>
-          <Container maxWidth={"lg"}>{[c]}</Container>
-        </LandingContent>
+        <div
+          style={{
+            paddingTop: 64,
+            paddingBottom: 64,
+            textAlign: "center",
+            background:
+              i % 4 === 0 ? "#3ba4dc40" : i % 4 === 2 ? "#f8a94a40" : "inherit",
+          }}
+          key={i}
+        >
+          <div style={{ maxWidth: 920 }}>{c}</div>
+        </div>
       ))}
-    </LandingRoot>
+    </div>
   );
 };
 
