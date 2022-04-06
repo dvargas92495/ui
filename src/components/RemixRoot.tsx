@@ -19,6 +19,8 @@ export const getRootMeta = (
   tags: ReturnType<MetaFunction> = {}
 ): MetaFunction => () => {
   return {
+    charSet: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
     "og:type": "website",
     "twitter:card": "summary",
     "twitter:creator": "@dvargas92495",
@@ -60,16 +62,11 @@ export const RootCatchBoundary = ClerkCatchBoundary(() => {
   );
 });
 
-// keeping this in case there is anything to add
-type Props = {};
-
 const App = () => {
   const data = useLoaderData<{ ENV: Record<string, string> }>();
   return (
     <html lang="en" className="h-full">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
@@ -90,8 +87,8 @@ const App = () => {
   );
 };
 
-const RemixRoot = (props: Props) =>
-  ClerkApp(() => <App {...props} />, {
+const RemixRoot = () =>
+  ClerkApp(App, {
     // @ts-ignore - Remove Clerk Hot loading
     // Clerk,
   })();
