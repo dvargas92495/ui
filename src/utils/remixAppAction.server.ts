@@ -1,14 +1,16 @@
 import { ActionFunction } from "@remix-run/server-runtime";
+import type { Params } from "react-router";
 
 type ActionMethod = "post" | "put" | "delete";
 
 const remixAppAction = (
-  { request }: Parameters<ActionFunction>[0],
+  { request, params }: Parameters<ActionFunction>[0],
   callback?: (args: {
     userId: string;
     data: Record<string, string[]>;
     method: ActionMethod;
-    params: Record<string, string>;
+    params: Params<string>;
+    searchParams: Record<string, string>;
   }) => ReturnType<ActionFunction>
 ) => {
   return import("@clerk/remix/ssr.server.js")
@@ -21,7 +23,9 @@ const remixAppAction = (
         );
       }
       if (!callback) return {};
-      const params = Object.fromEntries(new URL(request.url).searchParams);
+      const searchParams = Object.fromEntries(
+        new URL(request.url).searchParams
+      );
       const formData = await request.formData();
       const data = Object.fromEntries(
         Array.from(formData.keys()).map((k) => [
@@ -33,6 +37,7 @@ const remixAppAction = (
         userId,
         data,
         method: request.method as ActionMethod,
+        searchParams,
         params,
       });
     })
