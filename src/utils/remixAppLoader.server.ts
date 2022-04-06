@@ -9,7 +9,7 @@ const remixAppLoader = (
     searchParams: Record<string, string>;
   }) => ReturnType<LoaderFunction>
 ) => {
-  return import("@clerk/remix/ssr.server")
+  return import("@clerk/remix/ssr.server.js")
     .then((clerk) => clerk.getAuth(request))
     .then((authData) => {
       if (!authData.userId) {
