@@ -1,7 +1,7 @@
 import { ActionFunction } from "@remix-run/server-runtime";
 import type { Params } from "react-router";
 
-type ActionMethod = "post" | "put" | "delete";
+type ActionMethod = "POST" | "PUT" | "DELETE";
 
 const remixAppAction = (
   { request, params }: Parameters<ActionFunction>[0],
