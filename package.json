@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@clerk/clerk-js": "^3.3.0",
-    "@clerk/remix": "^0.3.5",
+    "@clerk/remix": "^0.3.6-staging.2",
     "@emotion/react": "11.5.0",
     "@emotion/server": "11.4.0",
     "@emotion/styled": "11.3.0",
