@@ -40,8 +40,7 @@ const remixAppAction = (
         searchParams,
         params,
       });
-    })
-    .catch((e) => ({ success: false, error: e.message }));
+    });
 };
 
 export default remixAppAction;
