@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut, UserButton } from "@clerk/remix";
 import React from "react";
-import {Outlet} from '@remix-run/react';
+import { Outlet } from "@remix-run/react";
 
 const PublicPage: React.FC<{
   homeIcon?: React.ReactNode;
@@ -58,7 +58,7 @@ const PublicPage: React.FC<{
         <Outlet />
       </main>
       <footer className="px-6 py-4 m-t-auto bg-orange-400 bg-opacity-25">
-        <hr className="border-gray-400"/>
+        <hr className="border-gray-400" />
         <div className="flex mt-4">
           <div className="w-1/3 text-gray-400 text-xs">
             <p>© {new Date().getFullYear()} Vargas Arts, LLC</p>
@@ -84,3 +84,5 @@ const PublicPage: React.FC<{
     </div>
   );
 };
+
+export default PublicPage;
