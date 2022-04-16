@@ -1,5 +1,6 @@
 import { SignedIn, SignedOut, UserButton } from "@clerk/remix";
 import React from "react";
+import {Outlet} from '@remix-run/react';
 
 const PublicPage: React.FC<{
   homeIcon?: React.ReactNode;
