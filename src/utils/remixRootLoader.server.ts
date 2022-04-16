@@ -10,7 +10,7 @@ const remixRootLoader = (
       ENV: {
         API_URL: process.env.API_URL,
         CLERK_FRONTEND_API: process.env.CLERK_FRONTEND_API,
-        HOST: process.env.HOST,
+        ORIGIN: process.env.ORIGIN,
         NODE_ENV: process.env.NODE_ENV,
         STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
         ...args.env,

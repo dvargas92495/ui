@@ -11,9 +11,8 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import { ClerkApp, ClerkCatchBoundary } from "@clerk/remix";
-// import Clerk from '@clerk/clerk-js';
-// primary: "#3ba4dc",
-// secondary: "#f8a94a",
+// primary: "sky-400",
+// secondary: "orange-400",
 
 export const getRootMeta = (
   tags: ReturnType<MetaFunction> = {}
