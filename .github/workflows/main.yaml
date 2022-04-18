@@ -19,6 +19,8 @@ jobs:
           node-version: 14.17.6
       - name: install
         run: npm install
+      - name: patch
+        run: node patch.js
       - name: build
         run: npm run build
       - name: write
