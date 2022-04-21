@@ -40,7 +40,7 @@ const Toast = ({
   const nodeRef = useRef<HTMLDivElement>(null);
 
   const setAutoHideTimer = useCallback(
-    (autoHideDurationParam) => {
+    (autoHideDurationParam: number | null) => {
       if (autoHideDurationParam == null) {
         return;
       }

@@ -2,11 +2,16 @@ import { Transition, Dialog as HeadlessDialog } from "@headlessui/react";
 import React, { useEffect } from "react";
 import { useActionData } from "@remix-run/react";
 
-const Dialog: React.FC<{
+const Dialog = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+}: React.PropsWithChildren<{
   isOpen: boolean;
   onClose: () => void;
   title: React.ReactNode;
-}> = ({ isOpen, onClose, title, children }) => {
+}>) => {
   const actionData = useActionData();
   useEffect(() => {
     if (actionData?.success) {
