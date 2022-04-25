@@ -9,12 +9,14 @@ const Dialog = ({
   children,
   className = "fixed inset-0 z-30 overflow-y-auto",
   contentClassName = "inline-block w-96 max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl",
+  titleClassName = "text-lg font-medium leading-6 text-gray-900",
 }: React.PropsWithChildren<{
   isOpen: boolean;
   onClose: () => void;
   title: React.ReactNode;
   className?: string;
   contentClassName?: string;
+  titleClassName?: string;
 }>) => {
   const actionData = useActionData();
   useEffect(() => {
@@ -50,10 +52,7 @@ const Dialog = ({
             leaveTo="opacity-0 scale-95"
           >
             <div className={contentClassName}>
-              <HeadlessDialog.Title
-                as="h3"
-                className="text-lg font-medium leading-6 text-gray-900"
-              >
+              <HeadlessDialog.Title as="h3" className={titleClassName}>
                 {title}
               </HeadlessDialog.Title>
               {children}
