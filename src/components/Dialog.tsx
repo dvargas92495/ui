@@ -7,10 +7,12 @@ const Dialog = ({
   onClose,
   title,
   children,
+  className = "fixed inset-0 z-30 overflow-y-auto",
 }: React.PropsWithChildren<{
   isOpen: boolean;
   onClose: () => void;
   title: React.ReactNode;
+  className?: string;
 }>) => {
   const actionData = useActionData();
   useEffect(() => {
@@ -24,7 +26,7 @@ const Dialog = ({
         open={isOpen}
         onClose={onClose}
         as={"div"}
-        className={"fixed inset-0 z-10 overflow-y-auto"}
+        className={className}
       >
         <div className="min-h-screen px-4 text-center flex justify-center items-center">
           <Transition.Child
